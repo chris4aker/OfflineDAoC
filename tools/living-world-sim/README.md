@@ -124,6 +124,16 @@ python3 tools/living-world-sim/persona_sim.py 1,2 120 out.json      # 4 cases, a
 python3 tools/living-world-sim/summarize_persona.py out.json
 ```
 
+## Three-realm RvR model (`rvr_sim.py`)
+
+Keeps, relics, the server's siege scheduler and caps, roaming groups, stealthers, realm points (pre-1.81
+formula), Darkness Falls access, and PvE bots farming their own frontier (proposed content).
+
+```bash
+python3 tools/living-world-sim/rvr_sim.py 1,2,3 120 out.json     # 5 scenarios, about a minute
+python3 tools/living-world-sim/summarize_rvr.py out.json
+```
+
 ## Results recorded so far
 
 - `results/v2_20h_results.json`: the 20-hour personality study, corrected to the live rules.
@@ -147,5 +157,7 @@ python3 tools/living-world-sim/summarize_persona.py out.json
   the owner's 9-character rotation, grouping, no-lifers, crafter profit banking). Cases are `V4` in `persona_sim.py`.
 - `results/persona_v4_crafteralt_120h.json` and `persona_v4_crafterfix2_120h.json`: crafter players with a hunting
   main and a crafter alt (`crafter_alt`), and banking half of net crafting profit.
+
+- `results/rvr_120h.json`: the RvR model, 5 scenarios, 120 server hours.
 
 Summaries are in the roadmap ("Simulation findings" and "Trade study").

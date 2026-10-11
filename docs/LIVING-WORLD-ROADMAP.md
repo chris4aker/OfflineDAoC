@@ -663,6 +663,73 @@ Options if the owner wants the *typical* crafter rich, not only the famous ones:
 work (commissions sized to the crafter's skill, paid for time rather than item value), or fewer
 crafters sharing the same work.
 
+## RvR study (2026-10-11): three realms, keeps, relics, roaming and frontier PvE
+
+**What already exists in the server (read from the code, not playtested here):**
+- **Bot RvR objectives:** regroup, hunt enemies, defend a keep under attack, and assault keeps
+  (`AutonomousRvrDirector`).
+- **Organized sieges** (`AutonomousRvrEventLayer`):
+  - Each one goes muster → march → battle within a 4-hour window.
+  - Up to 128 attackers (240 for relic raids); relic raids are about 12% of sieges.
+  - A scheduler keeps about one siege running at almost all times (rarely two or three).
+  - A realm that loses a keep to the player makes one retake attempt.
+- **Realm raids into Darkness Falls and Summoner's Hall** (`AutonomousRealmRaid`). Their raid AI is
+  not described here as working; see `AGENTS.md`.
+- **Realm points for bots** use the pre-1.81 formula. The rank table puts RR2 at 7,125 RP, RR3 at
+  61,750, RR4 at 213,875 and RR5 at 513,500.
+- **Related server settings:** `rp_rate`, `relic_owning_bonus` (10% per enemy relic),
+  `relic_players_required_on_pad` (16), `Relic_Return_Time` (20 minutes) and
+  `keep_balance_multiplier`.
+- **A gap for the "deep frontier PvE" vision:** the bots' PvE camp catalog has no frontier zones, so
+  bots do not level or farm in the frontier today. Frontier PvE would be new content.
+
+**Model** (`tools/living-world-sim/rvr_sim.py`):
+- Three frontiers of 5 zones each (2 border, 2 middle, 1 inner), with 7 keeps and 2 relic keeps
+  per frontier.
+- 400 RvR-capable characters per 1,000 online in each realm, rotating through sessions. Roles: 45%
+  join sieges, 43% roam in groups of 8, 12% are stealthers; 10% are no-lifers.
+- 8% of level 35+ PvE bots farm their own frontier (proposed content).
+- The scheduler, caps, relic share and RP formula follow the code. Meeting, spotting and fight
+  odds are assumptions.
+- 120 server hours (about 24 weeks of the owner's play), 3 seeds.
+
+| Per hour of server time | Balanced 1000/1000/1000 | Hibernia at 750 | Hibernia 750 + 15% underdog bonus |
+|---|---|---|---|
+| Sieges / keep flips | 2.1 / 1.0 | 2.1 / 1.0 | 2.1 / 1.0 |
+| Open-field fights / RvR deaths | 33 / 285 | 29 / 256 | 29 / 256 |
+| Relic raids / relic captures | 0.04 / 0.01 | 0.03 / 0.01 | 0.02 / 0.01 |
+| Darkness Falls access (Alb / Mid / Hib) | 25% / 53% / 20% | 38% / 59% / **3%** | 50% / 40% / 9% |
+| Keeps held, mean of 21 (Alb / Mid / Hib) | 6.6 / 7.9 / 6.4 | 7.4 / 8.5 / 5.1 | 7.8 / 7.8 / 5.3 |
+
+| Per active hour (balanced) | RP per hour | Deaths per hour |
+|---|---|---|
+| Siege armies | about 1,200–1,400 | 0.3 |
+| 8-person roaming groups | about 500 | 0.56 |
+| Stealthers | about 320 | 0.09 |
+
+**Ranks after 24 weeks:** every RvR-capable bot is RR2 or higher, about 45% are RR3 or higher, a
+handful reach RR4 and none reach RR5. No-lifers reach a median of about 90,000–110,000 RP (RR3).
+
+**Frontier PvE** (proposed), deaths per hour while farming: border 0.81, middle 0.78, inner
+0.73. Without warnings when enemies enter the zone, this rises to 0.86–1.13.
+
+Takeaways:
+1. **The frontier is busy.** About one keep changes hands every hour of play, and there are about
+   30 small fights an hour across the three frontiers. No realm runs away with the map.
+2. **Population balance decides Darkness Falls.** A realm with 25% fewer bots holds Darkness Falls
+   only about 3% of the time, and a 15% underdog bonus barely helps (9%). Keep the three realms'
+   bot counts equal (the launcher creates bots per realm, and a realm login balancer exists).
+3. **Relics barely move:** about one capture per 100 hours. If relic drama is wanted, relic raids
+   need to be easier or more frequent. (The model's rule that a raid needs 3 keeps in that frontier
+   is an assumption.)
+4. **Zerging pays 2.5× more than small-group roaming and is safer.** That pushes everyone into the
+   zerg, the classic complaint. Options: realm point bonuses for small groups or outnumbered kills.
+5. **Deep-frontier PvE is too deadly and not graded by depth:** about one death per 75–80 minutes
+   anywhere in the frontier. For "explore deep, avoid the kill squads", it needs safer inner zones
+   (guards, patrols, nearness to the portal keep), warnings, and rewards that rise toward the border.
+6. **Realm ranks are a long climb** at the default `rp_rate` of 1. RR5 is out of reach in 24 weeks
+   even for no-lifers. The owner can tune `rp_rate`, which already exists.
+
 ## Open questions
 
 - Final type list, names and time budgets.
