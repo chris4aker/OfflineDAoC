@@ -121,9 +121,11 @@ zones are empty by hour 3, and everyone is level 21–30 by hour 20.
   touched.
 - **Play sessions:** bots log in for 2–5 hours and log off for 1–4 hours. That is about 60%
   online at a time. Prime-time shaping can come later.
-- **New characters and alts:** a steady trickle of new level-1 characters. In the
-  simulation, one every 15 minutes per 300 bots: an offline bot of level 30 or higher
-  starts an alt. This is the owner's choice of "replace" or "add".
+- **New characters and alts:** a steady trickle of new level-1 characters. The 60-hour
+  study tested the rate: one alt every 15 minutes per 300 bots drains the high levels (levels
+  41–50 fall from 43 bots to 1 by hour 60); no alts empties levels 1–10 by hour 40; **one alt per
+  hour per 300 bots kept every level band populated for 60 hours.** Start there and tune in
+  playtest. "Replace" or "add" is still the owner's choice.
 - **Check what exists first.** `AutonomousPopulationController`, `AutonomousPopulationRamp`
   and `offline_population_settings` already manage population. stefanrows' roadmap
   milestone M5 ("Established-server generator and alts") is the reference design to
@@ -347,6 +349,58 @@ Not modeled: which gear is actually best for a class, group buffs and dyes, pric
 supply and demand, crafters trading with each other, and how often live bots reach the
 Exchange. How often bots shop depends on live between-task visits, which this model only
 approximates.
+
+## 60-hour study (2026-10-11): leveling, zones and crafting together
+
+Same model, 60 hours, 5 seeds, with the corrected live rules. Results are in
+`tools/living-world-sim/results/trade_60h_*.json`; `summarize_population.py` prints them.
+
+**Fresh start (everyone level 1):**
+
+| At hour 60 | Today's rules | Strong personalities | + crafting |
+|---|---|---|---|
+| Mean level | 34.6 | 32.9 | 33.1 |
+| Bots by level band 1–10 / 11–20 / 21–30 / 31–40 / 41–50 | 0 / 0 / 0 / 300 / 0 | 0 / 1 / 63 / 236 / 0 | 0 / 2 / 61 / 237 / 0 |
+| Zones with someone present (of 25) | 12 | 20 | 20 |
+| Share of hunters in the busiest zone | 35% | 29% | 27% |
+| Hunters at overcrowded camps | 30% | 15% | 14% |
+
+- Today's rules march everyone together: at hour 20 all 300 bots are level 21–30, at hour 60 all
+  are 31–40. Personalities keep a trailing group behind (about 60 bots still in 21–30).
+- **Nobody reaches level 41 in 60 hours from a fresh start**, so the level 41–50 zones stay empty.
+  This depends on the assumed XP curve; it is the strongest reason to use an established start.
+
+**Established start (levels spread over 1–50, sessions and alts on):**
+
+| At hour 60 | Alt every 15 min | **Alt every hour** | No alts |
+|---|---|---|---|
+| Bots by level band 1–10 / 11–20 / 21–30 / 31–40 / 41–50 | 30 / 71 / 183 / 15 / 1 | **10 / 19 / 90 / 132 / 49** | 0 / 4 / 58 / 163 / 75 |
+| Full gear sets (level 10+) | 25% | **85%** | 90% |
+| Crafted share of worn gear | 44% | **47%** | 41% |
+
+(All three with strong personalities, crafting and scarce loot. Today's rules with the
+15-minute alt rate drain the same way: levels 41–50 fall from 44 to 3.)
+
+**Crafting at hour 60:**
+- Crafters slowly catch up. In a fresh world the average crafter's skill is 29 and the best 39,
+  against bots at level 33–37. In the healthy established world (alt every hour) the best crafters
+  reach skill 48.
+- Crafters end 3 to 7 levels behind other bots, but when loot is scarce they become the richest
+  group (about 2,300–3,600 gold against 800–2,400).
+- With scarce loot, crafting lifts full sets from 22% to 83% in a fresh world by hour 60.
+- **Perfect sets are still essentially absent** (at most 0.2 per 300 bots, in the alt-every-hour
+  world). The bar is high: all 7 pieces quality 96+ and within 5 levels of the wearer. Fully
+  crafted sets stay rare (at most about 8 per 300 bots). In a fresh world they peak early, on
+  low-level characters, and then fall, because crafters cannot keep the top of the population
+  supplied.
+
+What this changes in the plan:
+1. **Set the alt rate deliberately** (Part A above). It is the biggest single lever in the
+   established world, bigger than personalities or crafting.
+2. **Use an established start** if the owner wants level 41–50 zones alive early.
+3. **If "amazing crafted sets" are a goal, crafting needs its own design**: faster crafter skill,
+   or crafters who specialize in a level range, or quality that is easier to reach. The current
+   proposal makes crafters useful, not legendary.
 
 ## Open questions
 

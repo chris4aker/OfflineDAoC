@@ -118,5 +118,9 @@ guess. Change them to test sensitivity.
 
 - `results/v2_20h_results.json`: the 20-hour personality study, corrected to the live rules.
 - `results/trade_40h_results.json`: the 40-hour trade study (5 seeds).
+- `results/trade_60h_results.json` and `trade_60h_extra.json`: the 60-hour study with hourly data
+  (`TRADE_HOURS=60 TRADE_KEEP_HOURLY=1 python3 tools/living-world-sim/trade_study.py ...`;
+  summarize with `python3 tools/living-world-sim/summarize_population.py <file>`). Cases M and N
+  test the alt rate (`alt_every` option: minutes between alts, 0 = none).
 
 Summaries are in the roadmap ("Simulation findings" and "Trade study").

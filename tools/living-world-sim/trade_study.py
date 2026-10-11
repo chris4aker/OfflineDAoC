@@ -6,7 +6,7 @@ A design model, not the game: compare rows, do not trust absolute numbers.
 import json, os, statistics, sys
 from multiprocessing import Pool
 
-os.environ["LWS_HOURS"] = "40"
+os.environ["LWS_HOURS"] = os.environ.get("TRADE_HOURS", "40")
 _seeds = sys.argv[1] if len(sys.argv) > 1 else "1,2,3,4,5"
 _out = sys.argv[2] if len(sys.argv) > 2 else "trade_40h_results.json"
 sys.argv = ["living_world_sim.py", "", _seeds]
@@ -26,6 +26,9 @@ CASES = {
     "I  C with scarce materials (30%)":                          ("fresh", True, True, "craft", {"mat_rate": 0.3}),
     "J  established world, strong, crafting does not exist":     ("established", True, True, "loot", {"loot_rate": 0.4}),
     "K  established world, strong + crafting economy":           ("established", True, True, "craft", {"loot_rate": 0.4}),
+    "L  established world, today's rules, loot only":            ("established", False, False, "loot", {"loot_rate": 0.4}),
+    "M  K, but one new alt per hour instead of every 15 min":    ("established", True, True, "craft", {"loot_rate": 0.4, "alt_every": 60}),
+    "N  K, with no alts":                                        ("established", True, True, "craft", {"loot_rate": 0.4, "alt_every": 0}),
 }
 SEEDS = [int(s) for s in _seeds.split(",")]
 
@@ -34,7 +37,8 @@ def job(args):
     name, seed = args
     scen, P, strong, econ, opts = CASES[name]
     r = L.run(seed, P, scen, strong, econ=econ, opts=opts)
-    r.pop("hourly")                       # keep files small
+    if not os.environ.get("TRADE_KEEP_HOURLY"):
+        r.pop("hourly")                   # keep files small
     return name, seed, r
 
 

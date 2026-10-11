@@ -332,7 +332,8 @@ def run(seed, P, scenario="fresh", strong=False, econ=None, opts=None):
                 b.update(state="hunt", camp=camp, zone=camp["zone"], region=camp["region"], group=None,
                          until=t + travel_minutes(b["zone"], b["region"], camp) + tenure(b, rng, P))
                 b["visited"][camp["zone"]] = t
-        if scenario == "established" and t % 15 == 0 and t > 0:
+        alt_every = opts.get("alt_every", 15)   # minutes between new alts per 300 bots; 0 = no alts
+        if scenario == "established" and alt_every and t % alt_every == 0 and t > 0:
             cands_alt = [b for b in bots if b["state"] == "offline" and b["level"] >= 30]
             if cands_alt:
                 b = rng.choice(cands_alt)
@@ -360,6 +361,7 @@ def run(seed, P, scenario="fresh", strong=False, econ=None, opts=None):
                                town=sum(1 for b in bots if b["state"] == "town") / N_BOTS,
                                grouped=sum(1 for b in hunters if b["group"]) / n,
                                mean_level=statistics.mean(b["level"] for b in bots),
+                               bands=[sum(1 for b in bots if a <= b["level"] <= a + 9) for a in (1, 11, 21, 31, 41)],
                                online=sum(1 for b in bots if b['state'] != 'offline'),
                                near={X: sum(1 for b in hunters if abs(b['level'] - X) <= 3) for X in (5, 15, 25, 35, 45)},
                                zone_counts=dict(zc),
