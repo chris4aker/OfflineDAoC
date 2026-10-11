@@ -143,5 +143,7 @@ python3 tools/living-world-sim/summarize_persona.py out.json
 - `results/persona_fresh_plan_120h.json` and `persona_fresh_sellback_120h.json`: the owner's fresh-start plan
   (everyone level 1, 7% crafters, double commissions, bot-only luxury sink), with 50% and 90% practice-craft
   sellback and a staggered launch (`join_spread_hours`).
+- `results/persona_v4_120h.json` and `persona_v4_crafterfix_120h.json`: model v4 (shaped XP by level range,
+  the owner's 9-character rotation, grouping, no-lifers, crafter profit banking). Cases are `V4` in `persona_sim.py`.
 
 Summaries are in the roadmap ("Simulation findings" and "Trade study").

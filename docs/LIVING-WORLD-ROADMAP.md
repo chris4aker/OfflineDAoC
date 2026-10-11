@@ -588,6 +588,56 @@ Takeaways:
 6. **The luxury sink barely matters in a fresh start** (bots are not rich yet). Median gold per bot stays
    around 20–30 hours of hunting income. Inflation is a later-server problem here.
 
+## Model v4 (2026-10-11): shaped XP, the owner's 9 characters, grouping, no-lifers
+
+The owner's direction:
+- **9 characters**, 3 per realm, with a favored main in each realm.
+- **Do not skip low levels:** keep 1–35 worth exploring, and compress the 35–50 grind instead.
+- **Grouping matters.**
+- **A staggered launch.**
+- **4% no-lifers:** no alts, always online, min-maxing gear, chasing epics, raids and RvR.
+
+Model (`V4` in `persona_sim.py`): everyone starts at level 1, 40% of bots at launch and the rest
+join over about 12 weeks. The owner's Midgard time is a third of his play, in 60–120 minute
+blocks, 60% on his main. XP by level range (needs a small server change; today the server has
+one flat `xp_rate` and one `bot_xp_rate`):
+
+| Levels | Owner | Bots |
+|---|---|---|
+| 1–19 | 3× | 1.5× |
+| 20–34 | 5× | 2.5× |
+| 35–50 | 12× | 6× |
+
+Grouping follows the server default of 40% group goals (no-lifers 70%, socialites 50%), groups of
+4–8 within 4 levels, a 20-minute matchmaking timeout, and a group XP bonus of 1.4× with fewer
+deaths. The bonus is an assumption; the server's XP code has group and camp bonuses. Crafters
+bank half their crafting profit; practice crafts sell back at 90%. 24 weeks of the owner's play,
+2 seeds per case.
+
+| Week 24 | **Shaped XP** | Flat XP (owner 10×, bots 5×) | Shaped, no grouping |
+|---|---|---|---|
+| Owner's hours in Midgard levels 1–10 / 11–20 / 21–30 / 31–40 / 41–50 | **1.1 / 3.2 / 7.4 / 11.3 / 20.4** | 0.4 / 1.1 / 3.3 / 10.3 / 22.9 | 1.3 / 4.2 / 7.5 / 9.7 / 11.4 |
+| Owner's three Midgard characters | 50 (week 17–19), ~38, ~39 | 50 (week 15–20), ~34, ~45 | ~47, ~33, ~27 |
+| Hours with fewer than 3 bots near the owner | **3–5%** | 4–11% | 0–1% |
+| Hours the owner could form a group | **91–93%** | 91–94% | n/a |
+| Bots online by level range at week 24 (1–10 / 11–20 / 21–30 / 31–40 / 41–50) | 37 / 95 / 159 / 172 / 478 | 18 / 44 / 96 / 211 / 570 | 34 / 63 / 103 / 228 / 500 |
+| Bots that reached 50 / alts started | 598 / 596 | 658 / 660 | 367 / 294 |
+| Hunters at crowded camps | 13% | 11% | 21% |
+| Share of hunting time in groups, levels 11–20 / 21–30 / 31–40 / 41–50 | 32% / 40% / 41% / 45% | 9% / 34% / 42% / 45% | 0 |
+| No-lifers at 50 / with a full top set | 97% / about 45% | 97% / about 43% | 93% / about 36% |
+
+Takeaways:
+1. **Shaped XP keeps the low levels alive for the owner:** about 12 hours in levels 1–30 against
+   about 5 at a flat 10×, with the main still reaching 50 in about 4–5 months.
+2. **Grouping is a big lever:** almost always a group available, twice as many bots reaching 50
+   (and starting alts), and less crowding, because a group shares one camp.
+3. **The world stays spread** across all level ranges through week 24 (staggered launch plus alts).
+4. **Crafters are still the poorest group.** A model leak was found and fixed (a "cheap practice
+   craft" rule drained them; they bought salvage they did not need). After the fix, crafter median
+   gold rose from about 200 to about 1,800, still far below other players (about 11,100). Crafters
+   level much slower (27 vs 38.5), and hunting income grows with level while craft margins are
+   fixed per piece. Closing the gap needs bigger margins or more paid work, not more tuning of sinks.
+
 ## Open questions
 
 - Final type list, names and time budgets.

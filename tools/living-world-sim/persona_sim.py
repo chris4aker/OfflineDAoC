@@ -26,7 +26,20 @@ import living_world_sim as LW          # reuse the real camp catalog and camp ch
 sys.argv = _saved
 
 SLOTS = 7
-TYPES = LW.STRONG_TYPES               # Leveler, Crafter, Socialite, Explorer, Daredevil with time budgets
+TYPES = dict(LW.STRONG_TYPES)         # Leveler, Crafter, Socialite, Explorer, Daredevil with time budgets
+# No-lifer (only with the "nolifers" option): always online while the server runs, no alts, min-maxes gear,
+# chases epics, groups a lot. (share, curiosity, risk, sociability, patience, chattiness, budget)
+TYPES["NoLifer"] = (0, 3, 8, 6, 9, 5, (0.95, 0.0, 0.02, 0.03))
+GROUP_XP = 1.4                         # ASSUMPTION: group bonus + faster kills of tougher monsters, per member
+GROUP_DEATHS = 0.4
+CRAFT_INCOME = {"orders_earned", "commissions", "repairs_earned", "consumables_earned", "quality_premium"}
+
+
+def curve_mult(curve, level):
+    for lo, hi, mult in curve:
+        if lo <= level <= hi:
+            return mult
+    return curve[-1][2]
 ACTS = ("hunt", "craft", "social", "explore")
 
 
@@ -121,6 +134,13 @@ class World:
         self.snaps = []
         self.player_me = dict(level=1, xp=0.0, chars_at_50=0) if opts.get("player_xp") else None
         self.E2 = bool(opts.get("econ2"))
+        self.pool = []
+        self.me = None
+        if opts.get("player_rotation"):
+            # the owner: 9 characters, 3 per realm; Midgard gets a third of his time; a favored main per realm
+            self.me = dict(chars=[dict(level=1, xp=0.0, minutes_by_band=[0] * 5) for _ in range(3)], weights=[0.6, 0.2, 0.2],
+                           active=None, block_end=0, grouped=False, mid_min=0, lonely_min=0, group_ok_min=0,
+                           lonely_by_band=[0] * 5, group_ok_by_band=[0] * 5, min_by_band=[0] * 5)
         self.online_crafters = []
         self.commissions = 0
         self.make_population()
@@ -141,11 +161,13 @@ class World:
 
     def make_population(self):
         rng, o = self.rng, self.o
-        names = list(TYPES)
-        weights = [TYPES[n][0] for n in names]
+        names = [n for n in TYPES if n != "NoLifer" or o.get("nolifers")]
+        weights = [(o.get("nolifers", 0) if n == "NoLifer" else TYPES[n][0]) for n in names]
+        self.type_names = names
         if "crafter_share" in o:                  # e.g. 7: Crafter share in percent, others scaled to fill the rest
-            others = sum(w for n, w in zip(names, weights) if n != "Crafter")
-            weights = [o["crafter_share"] if n == "Crafter" else w * (100 - o["crafter_share"]) / others
+            others = sum(w for n, w in zip(names, weights) if n not in ("Crafter", "NoLifer"))
+            fixed = o["crafter_share"] + o.get("nolifers", 0)
+            weights = [o["crafter_share"] if n == "Crafter" else w if n == "NoLifer" else w * (100 - fixed) / others
                        for n, w in zip(names, weights)]
         self.type_weights = weights
         fresh = bool(o.get("fresh"))
@@ -211,6 +233,8 @@ class World:
     # ----- per-minute character activity -----
     def gold(self, b, amount, why):
         b["player"]["gold"] += amount
+        if amount > 0 and b["crafter"] and why in CRAFT_INCOME and self.o.get("crafter_bank"):
+            b["player"]["skill_budget"] = b["player"].get("skill_budget", 0.0) + 0.5 * amount   # half the profit may go to skill
         (self.gold_in if amount > 0 else self.gold_out)[why] += abs(amount)
 
     def hunt_minute(self, b):
@@ -222,7 +246,8 @@ class World:
         fit = self.fit(b) if rng.random() < 0.1 or "fit" not in b else b["fit"]
         b["fit"] = fit
         if L < 50:
-            rate = LW.XP_RATE.get(c, 0.3) * eff * (0.85 + 0.3 * fit) * self.o.get("bot_xp", 2.0)
+            mult = curve_mult(self.o["bot_xp_curve"], L) if "bot_xp_curve" in self.o else self.o.get("bot_xp", 2.0)
+            rate = LW.XP_RATE.get(c, 0.3) * eff * (0.85 + 0.3 * fit) * mult * (GROUP_XP if b.get("group") else 1.0)
             b["xp"] += rate / 60 / LW.hours_to_level(L)
             while b["xp"] >= 1 and b["level"] < 50:
                 b["xp"] -= 1
@@ -265,7 +290,11 @@ class World:
                 self.list_item(b, slot, item)
             else:
                 self.sell_junk(b, item["level"])
-        if rng.random() < LW.DEATH_PER_HOUR.get(c, 0.6) / 60 * (1.4 - 0.8 * fit):
+        band = min(4, (L - 1) // 10)
+        self.stats[f"hunt_min_band{band}"] += 1
+        if b.get("group"):
+            self.stats[f"grouped_min_band{band}"] += 1
+        if rng.random() < LW.DEATH_PER_HOUR.get(c, 0.6) / 60 * (1.4 - 0.8 * fit) * (GROUP_DEATHS if b.get("group") else 1.0):
             b["until"] += 8
             self.stats["deaths"] += 1
 
@@ -282,7 +311,9 @@ class World:
         if self.E2 and self.online_crafters and self.rng.random() < SALVAGE_SHARE:
             c = self.rng.choice(self.online_crafters)
             pay = 0.35 * mats_cost(level)
-            if c["player"]["gold"] >= pay:
+            # crafters buy salvage only while they need materials (credit below about 5 pieces' worth)
+            need = not self.o.get("crafter_bank") or c.get("salvage_credit", 0.0) < 5 * mats_cost(max(1, int(c["skill"]) // 20))
+            if need and c["player"]["gold"] >= pay:
                 self.gold(c, -pay, "salvage_bought")
                 self.gold(b, pay, "salvage_sold")
                 c["salvage_credit"] = c.get("salvage_credit", 0.0) + 0.7 * mats_cost(level)
@@ -362,7 +393,7 @@ class World:
             limit = sc_price * (2.5 if self.E2 else 1.0)          # epics are worth paying more for
             if best and best["price"] <= limit and best["price"] <= 0.6 * p["gold"]:
                 self.buy_from_market(b, best, slot)
-            elif sc_price <= 0.6 * p["gold"] * self.o.get("buy_appetite", 1.0):
+            elif sc_price <= 0.6 * p["gold"] * self.o.get("buy_appetite", 1.0) * (1.5 if p["type"] == "NoLifer" else 1.0):
                 self.place_order(b, slot, 50, 8, sc_price)
             break                                  # one purchase decision per visit
 
@@ -450,8 +481,15 @@ class World:
             reserve = self.o.get("crafter_reserve", 2000)
             if reserve == "dynamic":                  # keep about 20 hours of hunting income before skill-ups (max 15,000)
                 reserve = min(15000, 20 * income_per_hour(b["level"]))
+            if self.o.get("crafter_bank"):
+                # skill-ups are paid only from the half of crafting profit set aside for them (or are trivially cheap)
+                net = cost * (1 - self.o.get("skillup_resale", SKILLUP_RESALE))
+                # (only near-free practice crafts, under 1 coin net, skip the budget: that is how a new crafter bootstraps)
+                if b["skill"] >= 1000 or p["gold"] < cost or (net > p.get("skill_budget", 0.0) and net > 1.0):
+                    break
+                p["skill_budget"] = max(0.0, p.get("skill_budget", 0.0) - net)
             # cheap low-level recipes are always affordable (how new crafters bootstrap); costly ones respect the reserve
-            if b["skill"] >= 1000 or p["gold"] < cost or (p["gold"] < cost + reserve and cost > 0.05 * p["gold"]):
+            elif b["skill"] >= 1000 or p["gold"] < cost or (p["gold"] < cost + reserve and cost > 0.05 * p["gold"]):
                 break
             self.buy_mats(b, cost)
             left -= CRAFT_MINUTES
@@ -494,7 +532,8 @@ class World:
         roster = p["roster"]
         below = [c for c in roster if c["level"] < 50]
         # add an alt (never replace) when everything is 50, or sometimes when the main is 50
-        if len(roster) < self.o.get("max_roster", 3) and (not below or (rng.random() < self.o.get("alt_chance", 0.08) and roster[0]["level"] == 50)):
+        max_roster = 1 if p["type"] == "NoLifer" else self.o.get("max_roster", 3)
+        if len(roster) < max_roster and (not below or (rng.random() < self.o.get("alt_chance", 0.08) and roster[0]["level"] == 50)):
             if self.stats["characters_created"] < self.o.get("name_cap", 5700):
                 self.new_char(p, 1)
                 self.stats["alts_created"] += 1
@@ -511,7 +550,7 @@ class World:
 
     def logout(self, p):
         ch = p["online"]
-        if ch and ch["state"] == "hunt" and ch["camp"]:
+        if ch and ch["state"] == "hunt" and ch["camp"] and (not ch.get("group") or ch.get("group_leader")):
             self.occupancy[ch["camp"]["id"]] -= 1
         if ch:
             ch["state"] = "off"
@@ -521,7 +560,7 @@ class World:
         if self.rng.random() < self.o.get("retire_chance", 0.004):
             p["retired"] = True
             self.stats["retired_players"] += 1
-            q = dict(id=len(self.players), type=self.rng.choices(list(TYPES), weights=self.type_weights)[0],
+            q = dict(id=len(self.players), type=self.rng.choices(self.type_names, weights=self.type_weights)[0],
                      roster=[], gold=0.0, online=None, until=self.t + self.rng.randint(30, 240),
                      guild=(self.rng.randrange(max(1, self.o.get("n_personas", 1450) // 25)) if self.rng.random() < 0.5 else None),
                      retired=False, joined=self.t)
@@ -554,6 +593,13 @@ class World:
         if b["level"] == 50 and rng.random() < 0.4:
             b.update(state="rvr", act=None, until=self.t + rng.randint(45, 120), zone="Frontier", region=163)
             return
+        if self.o.get("grouping") and b["level"] >= 5 and not b.get("solo_once"):
+            chance = {"NoLifer": 0.7, "Socialite": 0.5}.get(b["type"], 0.4)      # server default (BotGoalSettings): 40% group goals
+            if rng.random() < chance:
+                b.update(state="pool", act=None, until=10 ** 9, pool_since=self.t)
+                self.pool.append(b)
+                return
+        b["solo_once"] = False
         camp = LW.choose_camp(b, self.camps_by_band, self.occupancy, self.zone_pop, self.t, rng, True)
         if camp is None:
             b.update(state="town", act=None, until=self.t + 10)
@@ -562,6 +608,74 @@ class World:
         b.update(state="hunt", act=None, camp=camp, zone=camp["zone"], region=camp["region"],
                  until=self.t + LW.travel_minutes(b["zone"], b["region"], camp) + LW.tenure(b, rng, True))
         b["visited"][camp["zone"]] = self.t
+
+    def match_groups(self):
+        t, rng = self.t, self.rng
+        live = [b for b in self.pool if b["state"] == "pool" and b["player"]["online"] is b]
+        for b in live:
+            if t - b["pool_since"] >= 20:                 # matchmaking timeout: go solo
+                b.update(state="idle", until=t, solo_once=True)
+                self.stats["group_timeouts"] += 1
+        live = sorted((b for b in live if b["state"] == "pool"), key=lambda b: b["level"])
+        i = 0
+        while i < len(live):
+            j = i
+            while j + 1 < len(live) and live[j + 1]["level"] - live[i]["level"] <= 4 and j - i < 7:
+                j += 1
+            members = live[i:j + 1]
+            if len(members) >= 4:
+                leader = max(members, key=lambda b: b["level"])
+                proxy = dict(leader, level=round(statistics.mean(b["level"] for b in members)))
+                camp = LW.choose_camp(proxy, self.camps_by_band, self.occupancy, self.zone_pop, t, rng, True, len(members))
+                if camp is not None:
+                    self.occupancy[camp["id"]] += 1
+                    dur = LW.tenure(leader, rng, True)
+                    gid = (t, leader["id"])
+                    for b in members:
+                        self.stats["group_joins"] += 1
+                        self.stats["group_wait_total"] += t - b["pool_since"]
+                        b.update(state="hunt", act=None, camp=camp, zone=camp["zone"], region=camp["region"], group=gid,
+                                 group_leader=(b is leader), until=t + LW.travel_minutes(b["zone"], b["region"], camp) + dur)
+                        b["visited"][camp["zone"]] = t
+                    self.stats["groups_formed"] += 1
+                i = j + 1
+            else:
+                i += 1
+        self.pool = [b for b in self.pool if b["state"] == "pool"]
+
+    def me_minute(self):
+        """The owner's 9-character rotation: blocks of about 90 minutes, a third of them in Midgard."""
+        me, rng, t = self.me, self.rng, self.t
+        if t >= me["block_end"]:
+            me["block_end"] = t + rng.randint(60, 120)
+            me["active"] = rng.choices(me["chars"], weights=me["weights"])[0] if rng.random() < 1 / 3 else None
+        ch = me["active"]
+        if ch is None:
+            return
+        L = ch["level"]
+        band = min(4, (L - 1) // 10)
+        me["mid_min"] += 1
+        me["min_by_band"][band] += 1
+        ch["minutes_by_band"][band] += 1
+        if t % 5 == 0:
+            online = [p["online"] for p in self.players if p["online"] is not None]
+            near = sum(1 for b in online if b["state"] == "hunt" and abs(b["level"] - L) <= 3)
+            seekers = sum(1 for b in online if abs(b["level"] - L) <= 4 and (b["state"] == "pool" or b.get("group")))
+            me["near"], me["grouped"] = near, (self.o.get("grouping") and L >= 5 and seekers >= 3)
+        if me.get("near", 0) < 3:
+            me["lonely_min"] += 1
+            me["lonely_by_band"][band] += 1
+        if me["grouped"]:
+            me["group_ok_min"] += 1
+            me["group_ok_by_band"][band] += 1
+        if L < 50:
+            mult = curve_mult(self.o["player_xp_curve"], L) * (GROUP_XP if me["grouped"] else 1.0)
+            ch["xp"] += 0.75 * mult / 60 / LW.hours_to_level(L)
+            while ch["xp"] >= 1 and ch["level"] < 50:
+                ch["xp"] -= 1
+                ch["level"] += 1
+                if ch["level"] == 50:
+                    ch["hour_reached_50"] = round(t / 60, 1)
 
     # ----- main loop -----
     def run(self, hours):
@@ -583,20 +697,26 @@ class World:
                 if p["online"] is None:
                     if t >= p["until"]:
                         self.login(p)
-                        p["session_end"] = t + rng.randint(120, 300)
+                        p["session_end"] = 10 ** 12 if p["type"] == "NoLifer" else t + rng.randint(120, 300)
                     continue
                 b = p["online"]
                 if b["state"] == "hunt":
                     self.hunt_minute(b)
                 if t >= b["until"]:
                     if b["state"] == "hunt" and b["camp"]:
-                        self.occupancy[b["camp"]["id"]] -= 1
+                        if not b.get("group") or b.get("group_leader"):
+                            self.occupancy[b["camp"]["id"]] -= 1
                         b["camp"] = None
+                        b["group"] = None
                     if t >= p["session_end"]:
                         self.logout(p)
                         p["until"] = t + rng.randint(60, 240)
                         continue
                     self.decide(b)
+            if self.o.get("grouping") and t % 5 == 0:
+                self.match_groups()
+            if self.me:
+                self.me_minute()
             if self.player_me:
                 me = self.player_me
                 me["xp"] += 0.75 * self.o["player_xp"] / 60 / LW.hours_to_level(me["level"])
@@ -691,7 +811,33 @@ class World:
                     templates={s: dict(n=len(v), median_hours=(statistics.median(v) if v else None)) for s, v in by_src.items()},
                     gold_crafter_players=round(statistics.median(gold_cr)) if gold_cr else 0,
                     gold_other_players=round(statistics.median(gold_other)) if gold_other else 0,
-                    me=self.player_me)
+                    me=self.player_me, me_rotation=self.me_result(),
+                    nolifers=self.type_summary("NoLifer"), grouping=dict(
+                        groups_formed=self.stats["groups_formed"], timeouts=self.stats["group_timeouts"],
+                        mean_wait_min=round(self.stats["group_wait_total"] / max(1, self.stats["group_joins"]), 1),
+                        grouped_share_by_band=[round(self.stats[f"grouped_min_band{k}"] / max(1, self.stats[f"hunt_min_band{k}"]), 3) for k in range(5)]))
+
+    def me_result(self):
+        me = self.me
+        if not me:
+            return None
+        pct = lambda a, b: round(100 * a / max(1, b), 1)
+        return dict(levels=[c["level"] for c in me["chars"]], reached_50_hour=[c.get("hour_reached_50") for c in me["chars"]],
+                    midgard_hours=round(me["mid_min"] / 60, 1),
+                    hours_by_band=[round(m / 60, 1) for m in me["min_by_band"]],
+                    lonely_pct=pct(me["lonely_min"], me["mid_min"]), group_ok_pct=pct(me["group_ok_min"], me["mid_min"]),
+                    lonely_pct_by_band=[pct(a, b) for a, b in zip(me["lonely_by_band"], me["min_by_band"])],
+                    group_ok_pct_by_band=[pct(a, b) for a, b in zip(me["group_ok_by_band"], me["min_by_band"])])
+
+    def type_summary(self, typ):
+        ps = [p for p in self.players if p["type"] == typ and not p["retired"]]
+        if not ps:
+            return None
+        chars = [p["roster"][0] for p in ps]
+        return dict(n=len(ps), level_mean=round(statistics.mean(c["level"] for c in chars), 1),
+                    at_50=sum(1 for c in chars if c["level"] == 50), templated=sum(1 for c in chars if c["templated"]),
+                    wearing_epic=sum(1 for c in chars if any(it and it["src"] == "epic" for it in c["gear"])),
+                    gold_median=round(statistics.median(p["gold"] for p in ps)))
 
 
 World.hour_rows = None
@@ -712,7 +858,18 @@ PACKAGE = dict(econ2=True, price_mult=1.3, rare_mult=2.0, crafter_reserve=15000)
 # small classic repair and potion costs, and bot-only luxury spending as the main gold sink.
 PLAN = dict(econ2=True, fresh=True, price_mult=1.3, rare_mult=2.0, crafter_share=7, commission_mult=2.0,
             repair_share=0.02, consumable_share=0.01, luxury=True, crafter_reserve="dynamic")
+# Model v4 (2026-10-11): the owner rotates 9 characters (3 per realm), XP shaped by level range, grouping,
+# a staggered launch, 4% no-lifers, crafters bank half their profit, 90% practice-craft sellback.
+SHAPED_PLAYER = [(1, 19, 3.0), (20, 34, 5.0), (35, 50, 12.0)]
+SHAPED_BOTS = [(1, 19, 1.5), (20, 34, 2.5), (35, 50, 6.0)]
+V4 = dict(PLAN, skillup_resale=0.9, join_spread_hours=60, nolifers=4, crafter_bank=True, grouping=True,
+          player_rotation=True, player_xp_curve=SHAPED_PLAYER, bot_xp_curve=SHAPED_BOTS)
 CASES = {
+    "v4 shaped XP": dict(V4),
+    "v4 flat XP (you 10x, bots 5x)": dict(V4, player_xp_curve=[(1, 50, 10.0)], bot_xp_curve=[(1, 50, 5.0)]),
+    "v4 shaped XP, no grouping": dict(V4, grouping=False),
+    # crafter spending fix: no cheap-craft loophole, salvage only when needed (code change applies to all v4 cases)
+    "v4 shaped XP, crafter fix": dict(V4),
     "fresh plan, bots 2x": dict(PLAN, bot_xp=2.0, player_xp=8),
     # crafting_sellback_percent-style setting: practice crafts sell back at 90% of materials instead of 50%
     "fresh plan + 90% sellback, bots 2x": dict(PLAN, bot_xp=2.0, player_xp=8, skillup_resale=0.9),
