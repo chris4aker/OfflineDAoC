@@ -547,6 +547,47 @@ What did not:
    24. Either that is the endgame chase working, or high-level rates should be lower so they stay
    special. The owner's call.
 
+## Fresh-start study (2026-10-11): everyone at level 1, the owner's economy plan
+
+The owner chose a fresh start: every bot begins at level 1 with no armor. Plan (`PLAN` in
+`persona_sim.py`): 7% crafters, realm commissions doubled (60 per hour), small classic repair
+(2%) and potion (1%) costs that do not punish a player who stays out of the economy, an Exchange
+tax only on trades, and **bot-only luxury spending** (rich bots spend part of their surplus on
+houses, guild costs, dyes and horse routes) as the main gold sink. 1,450 bot players, about 900
+Midgard bots online, the owner at 8× for 24 weeks of 5 hours, 2 seeds per case.
+
+**A model correction found here.** The server has a `crafting_sellback_percent` setting (default
+95) that can set crafted items' vendor price near their material cost (it is applied by
+`Recipe.cs` only when `crafting_adjust_product_price` is on, so what your item data pays today is
+not verified). The earlier runs assumed practice crafts sell back at 50%. The follow-up runs use 90%.
+
+| At week 24 | Plan, bots 2× (50% sellback) | Plan, bots 2× (90%) | Plan, bots 4× (90%) | Plan, bots 4× (90%), staggered launch |
+|---|---|---|---|---|
+| Bots at level 50 | 0 | 0 | 213 | 164 |
+| Crafter skill: median / 700+ / Legendary | 363 / 7 / 0 | 453 / 20 / 13 | 547 / 26 / 14 | 460 / 19 / 9 |
+| Crafting orders that expired unfilled | 42% | 5% | 13% | 17% |
+| Median gold: crafter players / others / top 5% farmers | 110 / 11,300 / 22,800 | 121 / 10,340 / 21,000 | 320 / 13,800 / 27,000 | 166 / 11,500 / 27,700 |
+| Crafter characters' mean level vs others | 28.9 vs 39.5 | 27.8 vs 39.5 | 34.4 vs 42.6 | 31.9 vs 42.1 |
+| Hours with fewer than 3 bots near the owner: weeks 1–5 / 5–12 / 12–24 | 100% / 69% / 12% | 100% / 68% / 10% | 100% / 19% / 2% | 100% / 19% / 0% |
+| Bots online in levels 1–20 at week 5 / 12 / 24 | 300 / 27 / 10 | 287 / 28 / 16 | 97 / 12 / 42 | 121 / 107 / 44 |
+| Level 41–50 characters wearing a named or epic piece | 59% | 61% | 47% | 49% |
+
+Takeaways:
+1. **Bots at 2× are too slow for a fresh start:** none reach 50 in 24 weeks, so no alts start
+   and the low zones empty after about week 6. **Bots at 4×** reach 50 from about week 18.
+2. **The owner at 8× is alone for the first ~5 weeks** in every case, because he outlevels a
+   fresh world. Options: start the owner slower until the bots catch up, or add a small group of
+   "hardcore" bots (a few percent) that level at the owner's pace, as real servers had.
+3. **A staggered launch keeps low zones alive:** with 40% of bots at launch and the rest joining
+   over about 12 weeks, levels 1–20 keep about 110 bots online at week 12 instead of 12.
+4. **Generous sellback lets crafters keep up with demand** (expired orders fall from 42% to 5–17%,
+   and Legendary crafters appear), but **crafters are still broke.** The bots reinvest every coin in
+   skill-ups. Crafter wealth is now a bot spending-policy question: for example, crafters invest
+   at most half their profit in skill-ups and keep the rest.
+5. **Crafters do level much more slowly** (8–12 levels behind), as the owner wanted.
+6. **The luxury sink barely matters in a fresh start** (bots are not rich yet). Median gold per bot stays
+   around 20–30 hours of hunting income. Inflation is a later-server problem here.
+
 ## Open questions
 
 - Final type list, names and time budgets.

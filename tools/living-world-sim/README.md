@@ -140,5 +140,8 @@ python3 tools/living-world-sim/summarize_persona.py out.json
 - `results/persona_package_120h.json`: the economy package (`econ2`: named and epic drops, discounts,
   realm commissions, repairs, consumables, salvage, masterpiece premium, Exchange tax). Run one case with
   `PERSONA_ONLY="package, bots 2x" python3 tools/living-world-sim/persona_sim.py 1,2 120 out.json`.
+- `results/persona_fresh_plan_120h.json` and `persona_fresh_sellback_120h.json`: the owner's fresh-start plan
+  (everyone level 1, 7% crafters, double commissions, bot-only luxury sink), with 50% and 90% practice-craft
+  sellback and a staggered launch (`join_spread_hours`).
 
 Summaries are in the roadmap ("Simulation findings" and "Trade study").

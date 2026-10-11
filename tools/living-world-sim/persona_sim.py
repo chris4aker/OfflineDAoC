@@ -143,24 +143,32 @@ class World:
         rng, o = self.rng, self.o
         names = list(TYPES)
         weights = [TYPES[n][0] for n in names]
+        if "crafter_share" in o:                  # e.g. 7: Crafter share in percent, others scaled to fill the rest
+            others = sum(w for n, w in zip(names, weights) if n != "Crafter")
+            weights = [o["crafter_share"] if n == "Crafter" else w * (100 - o["crafter_share"]) / others
+                       for n, w in zip(names, weights)]
+        self.type_weights = weights
+        fresh = bool(o.get("fresh"))
         n_guilds = o.get("n_personas", 1450) // 25
         for i in range(o.get("n_personas", 1450)):
+            spread = o.get("join_spread_hours", 0)     # staggered launch: 40% at launch, the rest join over this many hours
             p = dict(id=i, type=rng.choices(names, weights=weights)[0], roster=[], gold=0.0, online=None,
-                     until=rng.randint(0, 240), guild=(rng.randrange(n_guilds) if rng.random() < 0.75 else None),
+                     until=(rng.randint(0, spread * 60) if spread and rng.random() < 0.6 else rng.randint(0, 240)), guild=(rng.randrange(n_guilds) if rng.random() < 0.75 else None),
                      retired=False, joined=0)
             self.players.append(p)
             # established start: a mature server has many level 50s (ASSUMPTION: 30%)
-            level = 50 if rng.random() < 0.30 else rng.randint(1, 49)
+            level = 1 if fresh else (50 if rng.random() < 0.30 else rng.randint(1, 49))
             main = self.new_char(p, level, crafter=(p["type"] == "Crafter"))
             if main["crafter"]:
-                main["skill"] = min(1000.0, level * 20 * rng.uniform(0.6, 1.05))
+                main["skill"] = 1.0 if fresh else min(1000.0, level * 20 * rng.uniform(0.6, 1.05))
             if level == 50:
                 main["reached_50"] = -1          # before the run started
                 if rng.random() < 0.5 and len(p["roster"]) < 3:
                     self.new_char(p, rng.randint(5, 45))     # mature players already have an alt
-            for ch in p["roster"]:
-                self.starting_gear(ch)
-            p["gold"] = 40 * level ** 1.5 * rng.uniform(0.3, 2.0)
+            if not fresh:                         # a fresh world starts naked: gamebots earn their armor
+                for ch in p["roster"]:
+                    self.starting_gear(ch)
+            p["gold"] = 20.0 if fresh else 40 * level ** 1.5 * rng.uniform(0.3, 2.0)
 
     def starting_gear(self, b):
         rng, L = self.rng, b["level"]
@@ -226,8 +234,8 @@ class World:
         self.gold(b, inc, "hunting")
         if self.E2:
             self.gold(b, -inc * UPKEEP2, "upkeep")
-            b["repair_due"] = b.get("repair_due", 0.0) + inc * REPAIR_SHARE
-            b["consumables_due"] = b.get("consumables_due", 0.0) + inc * CONSUMABLE_SHARE
+            b["repair_due"] = b.get("repair_due", 0.0) + inc * self.o.get("repair_share", REPAIR_SHARE)
+            b["consumables_due"] = b.get("consumables_due", 0.0) + inc * self.o.get("consumable_share", CONSUMABLE_SHARE)
         else:
             self.gold(b, -inc * UPKEEP, "upkeep")
         if rng.random() < COMMON_LOOT_PER_HOUR / 60:
@@ -294,8 +302,18 @@ class World:
         self.equip(b, slot, dict(level=m.get("level", 50), q=m["q"], B=m["B"], src=m.get("src", "market")))
         self.check_template(b)
 
+    LUXURY_HOURS = {"Socialite": 20, "Crafter": 60, "Explorer": 30, "Daredevil": 30, "Leveler": 45}
+
     def pay_dues(self, b):
-        """Repairs and consumables, paid at a town visit. Part goes to an online crafter; the rest leaves the economy."""
+        """Repairs and consumables, paid at a town visit. Part goes to an online crafter; the rest leaves the economy.
+        With the luxury option, rich bots also spend part of their surplus on houses, guild costs, dyes and
+        horse routes (a bot-only sink: the real player is never charged)."""
+        if self.o.get("luxury"):
+            p = b["player"]
+            threshold = self.LUXURY_HOURS.get(p["type"], 30) * income_per_hour(max(10, b["level"]))
+            if p["gold"] > threshold:
+                spend = 0.15 * (p["gold"] - threshold)
+                self.gold(b, -spend, "luxuries")
         c = self.rng.choice(self.online_crafters) if self.online_crafters else None
         due = b.get("repair_due", 0.0)
         if due > 0:
@@ -412,8 +430,8 @@ class World:
                 self.check_template(buyer)
                 continue
             # no player order: a realm commission if any are posted (bounded NPC demand)
-            if self.E2 and self.commissions >= 1 and b["skill"] >= 200:
-                lvl = max(10, min(50, int(b["skill"]) // 20))
+            if self.E2 and self.commissions >= 1 and b["skill"] >= 50:
+                lvl = max(2, min(50, int(b["skill"]) // 20))
                 cost = mats_cost(lvl)
                 if p["gold"] >= cost:
                     self.commissions -= 1
@@ -429,7 +447,11 @@ class World:
             recipe = min(1000, int(b["skill"]) + 5)
             lvl = max(1, recipe // 20)
             cost = mats_cost(lvl)
-            if b["skill"] >= 1000 or p["gold"] < cost + self.o.get("crafter_reserve", 2000):
+            reserve = self.o.get("crafter_reserve", 2000)
+            if reserve == "dynamic":                  # keep about 20 hours of hunting income before skill-ups (max 15,000)
+                reserve = min(15000, 20 * income_per_hour(b["level"]))
+            # cheap low-level recipes are always affordable (how new crafters bootstrap); costly ones respect the reserve
+            if b["skill"] >= 1000 or p["gold"] < cost or (p["gold"] < cost + reserve and cost > 0.05 * p["gold"]):
                 break
             self.buy_mats(b, cost)
             left -= CRAFT_MINUTES
@@ -437,7 +459,7 @@ class World:
                 continue
             self.gain_skill(b, recipe)
             self.quality_reward(b, craft_quality(b["skill"], recipe, rng)) if self.E2 else None
-            self.gold(b, cost * SKILLUP_RESALE, "skillup_resale")
+            self.gold(b, cost * self.o.get("skillup_resale", SKILLUP_RESALE), "skillup_resale")
             self.stats["skillup_crafts"] += 1
         self.stats["craft_idle_min"] += left
 
@@ -499,7 +521,7 @@ class World:
         if self.rng.random() < self.o.get("retire_chance", 0.004):
             p["retired"] = True
             self.stats["retired_players"] += 1
-            q = dict(id=len(self.players), type=self.rng.choices(list(TYPES), weights=[TYPES[n][0] for n in TYPES])[0],
+            q = dict(id=len(self.players), type=self.rng.choices(list(TYPES), weights=self.type_weights)[0],
                      roster=[], gold=0.0, online=None, until=self.t + self.rng.randint(30, 240),
                      guild=(self.rng.randrange(max(1, self.o.get("n_personas", 1450) // 25)) if self.rng.random() < 0.5 else None),
                      retired=False, joined=self.t)
@@ -646,7 +668,7 @@ class World:
         cr_players = {id(c["player"]) for c in crafters}
         gold_cr = [p["gold"] for p in self.players if id(p) in cr_players and not p["retired"]]
         gold_other = [p["gold"] for p in self.players if id(p) not in cr_players and not p["retired"]]
-        net50 = income_per_hour(50) * (1 - (UPKEEP2 + REPAIR_SHARE + CONSUMABLE_SHARE if self.E2 else UPKEEP))
+        net50 = income_per_hour(50) * (1 - (UPKEEP2 + self.o.get("repair_share", REPAIR_SHARE) + self.o.get("consumable_share", CONSUMABLE_SHARE) if self.E2 else UPKEEP))
         template_price = 7 * (mats_cost(50) * CRAFT_MARKUP * PRICE_MULT + spellcraft_cost(50, 8))
         drops_needed = 7 * sum(1 / k for k in range(1, 8)) / (5 / 9)      # coupon collector, B >= 8
         farm_hours = drops_needed / (RARE_PER_HOUR * self.o.get("rare_mult", 1.0))
@@ -686,7 +708,19 @@ def run(seed, hours, opts):
 # price_mult 1.3 puts a crafted template at about half the farming time once repairs and consumables are paid;
 # crafters keep 15,000 gold before spending on skill-ups, so they stay rich instead of reinvesting everything.
 PACKAGE = dict(econ2=True, price_mult=1.3, rare_mult=2.0, crafter_reserve=15000)
+# Owner's plan (2026-10-11): everyone starts at level 1 with no armor, 7% crafters, commissions doubled,
+# small classic repair and potion costs, and bot-only luxury spending as the main gold sink.
+PLAN = dict(econ2=True, fresh=True, price_mult=1.3, rare_mult=2.0, crafter_share=7, commission_mult=2.0,
+            repair_share=0.02, consumable_share=0.01, luxury=True, crafter_reserve="dynamic")
 CASES = {
+    "fresh plan, bots 2x": dict(PLAN, bot_xp=2.0, player_xp=8),
+    # crafting_sellback_percent-style setting: practice crafts sell back at 90% of materials instead of 50%
+    "fresh plan + 90% sellback, bots 2x": dict(PLAN, bot_xp=2.0, player_xp=8, skillup_resale=0.9),
+    "fresh plan + 90% sellback, bots 4x": dict(PLAN, bot_xp=4.0, player_xp=8, skillup_resale=0.9),
+    "fresh plan + 90% sellback + staggered launch, bots 4x": dict(PLAN, bot_xp=4.0, player_xp=8, skillup_resale=0.9,
+                                                                   join_spread_hours=60),
+    "fresh plan, bots 4x": dict(PLAN, bot_xp=4.0, player_xp=8),
+    "fresh plan without luxury sinks, bots 2x": dict(PLAN, bot_xp=2.0, player_xp=8, luxury=False),
     "package, bots 2x": dict(PACKAGE, bot_xp=2.0, player_xp=8),
     "package, bots 4x": dict(PACKAGE, bot_xp=4.0, player_xp=8),
     "package without commissions, bots 2x": dict(PACKAGE, bot_xp=2.0, player_xp=8, commission_mult=0.0),
