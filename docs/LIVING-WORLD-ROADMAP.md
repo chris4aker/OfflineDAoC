@@ -638,6 +638,31 @@ Takeaways:
    level much slower (27 vs 38.5), and hunting income grows with level while craft margins are
    fixed per piece. Closing the gap needs bigger margins or more paid work, not more tuning of sinks.
 
+### Follow-up: does "hunting main + crafter alt" make crafters rich? (2026-10-11)
+
+Small test on the v4 world (2 seeds, 24 weeks): 80% of crafter players hunt on a main and craft on an
+alt (shared purse), 20% stay pure crafters. Another model flaw was found and fixed first: "bank half
+the profit" was banking half of *revenue* (which includes materials), so crafters spent about 90% of
+their profit on skill-ups.
+
+| Week 24 | Pure crafters | Main + crafter alt |
+|---|---|---|
+| Median gold: crafter players vs others | 2,970 vs 11,190 | 2,810 vs 10,880 |
+| Crafter skill median / Legendary | 538 / 11 | 481 / 13 |
+| Orders expired | 2% | 4% |
+
+**The alt alone does not close the gap.** A 90-hour ledger trace (1 seed) shows why: crafting income is
+**concentrated at the top.** The top fifth of crafters (skill about 780) hold a median of about 13,600
+gold, richer than the median hunter (about 7,100). The other four-fifths (skill about 370) hold about
+1,300. The average crafter player (about 10,900) is slightly richer than the average other player
+(about 9,800). Two causes: high-level orders and commissions pay far more and go to the best
+crafters, and the luxury sink was scaled to the crafter character's (low) level, taxing crafters
+early. The luxury threshold now uses the player's highest-level character (fixed after these runs).
+
+Options if the owner wants the *typical* crafter rich, not only the famous ones: apprentice-level paid
+work (commissions sized to the crafter's skill, paid for time rather than item value), or fewer
+crafters sharing the same work.
+
 ## Open questions
 
 - Final type list, names and time budgets.

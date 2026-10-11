@@ -32,7 +32,7 @@ TYPES = dict(LW.STRONG_TYPES)         # Leveler, Crafter, Socialite, Explorer, D
 TYPES["NoLifer"] = (0, 3, 8, 6, 9, 5, (0.95, 0.0, 0.02, 0.03))
 GROUP_XP = 1.4                         # ASSUMPTION: group bonus + faster kills of tougher monsters, per member
 GROUP_DEATHS = 0.4
-CRAFT_INCOME = {"orders_earned", "commissions", "repairs_earned", "consumables_earned", "quality_premium"}
+CRAFT_INCOME = {"repairs_earned", "consumables_earned", "quality_premium"}   # pure profit; orders and commissions bank net profit at the call site
 
 
 def curve_mult(curve, level):
@@ -146,9 +146,20 @@ class World:
         self.make_population()
 
     # ----- population -----
-    def new_char(self, p, level, crafter=False):
+    def add_crafter_player_chars(self, p, level):
+        """Crafter players. With the crafter_alt option, most keep a hunting main (Leveler-style time budget)
+        and craft on an alt; the rest are pure crafters, the future famous Legendary names."""
+        if self.o.get("crafter_alt") and self.rng.random() < self.o.get("crafter_alt_share", 0.8):
+            main = self.new_char(p, level, crafter=False, budget_type="Leveler")
+            self.new_char(p, level if level == 1 else max(1, level - self.rng.randint(5, 25)), crafter=True)
+            return main
+        return self.new_char(p, level, crafter=True)
+
+    def new_char(self, p, level, crafter=False, budget_type=None):
         rng = self.rng
         _, c, r, s_, pa, ch, budget = TYPES[p["type"]]
+        if budget_type:
+            budget = TYPES[budget_type][6]
         j = lambda v: max(0, min(10, v + rng.randint(-2, 2)))
         b = dict(id=len(self.chars), player=p, type=p["type"], tr=dict(cur=j(c), risk=j(r), soc=j(s_), pat=j(pa), chat=j(ch)),
                  budget=budget, level=level, xp=0.0, zone="Jordheim", region=100, state="idle", until=0, camp=None,
@@ -180,9 +191,10 @@ class World:
             self.players.append(p)
             # established start: a mature server has many level 50s (ASSUMPTION: 30%)
             level = 1 if fresh else (50 if rng.random() < 0.30 else rng.randint(1, 49))
-            main = self.new_char(p, level, crafter=(p["type"] == "Crafter"))
-            if main["crafter"]:
-                main["skill"] = 1.0 if fresh else min(1000.0, level * 20 * rng.uniform(0.6, 1.05))
+            main = self.add_crafter_player_chars(p, level) if p["type"] == "Crafter" else self.new_char(p, level)
+            for c in p["roster"]:
+                if c["crafter"]:
+                    c["skill"] = 1.0 if fresh else min(1000.0, level * 20 * rng.uniform(0.6, 1.05))
             if level == 50:
                 main["reached_50"] = -1          # before the run started
                 if rng.random() < 0.5 and len(p["roster"]) < 3:
@@ -341,7 +353,9 @@ class World:
         horse routes (a bot-only sink: the real player is never charged)."""
         if self.o.get("luxury"):
             p = b["player"]
-            threshold = self.LUXURY_HOURS.get(p["type"], 30) * income_per_hour(max(10, b["level"]))
+            # scaled to the player's highest-level character, so low-level crafter characters are not taxed early
+            top = max(c["level"] for c in p["roster"])
+            threshold = self.LUXURY_HOURS.get(p["type"], 30) * income_per_hour(max(10, top))
             if p["gold"] > threshold:
                 spend = 0.15 * (p["gold"] - threshold)
                 self.gold(b, -spend, "luxuries")
@@ -406,6 +420,11 @@ class World:
                                 guild=b["player"]["guild"], t=self.t))
         self.stats["orders_placed"] += 1
 
+    def bank_profit(self, b, profit):
+        """Crafter banking: half of the NET crafting profit may be spent on skill-ups; the rest is kept."""
+        if self.o.get("crafter_bank") and profit > 0:
+            b["player"]["skill_budget"] = b["player"].get("skill_budget", 0.0) + 0.5 * profit
+
     def buy_mats(self, b, cost):
         if self.E2:
             cost *= 1 - b.get("discount", 0.0)
@@ -445,6 +464,7 @@ class World:
                     self.gold(b, -spellcraft_cost(job["level"], job["bonus"]), "spellcraft_gems")
                 tax = job["price"] * EXCHANGE_TAX if self.E2 else 0.0
                 self.gold(b, job["price"] - tax, "orders_earned")
+                self.bank_profit(b, job["price"] - tax - cost - (spellcraft_cost(job["level"], job["bonus"]) if job["bonus"] else 0.0))
                 if tax:
                     self.gold_out["exchange_tax"] += tax
                 buyer = job["char"]
@@ -472,6 +492,7 @@ class World:
                     q = craft_quality(b["skill"], lvl * 20, rng)
                     self.quality_reward(b, q)
                     self.gold(b, cost * COMMISSION_PAY, "commissions")
+                    self.bank_profit(b, cost * (COMMISSION_PAY - 1))
                     self.stats["commissions_filled"] += 1
                     continue
             # no order: skill-up crafting while the crafter can afford it (keeps a reserve)
@@ -538,8 +559,11 @@ class World:
                 self.new_char(p, 1)
                 self.stats["alts_created"] += 1
                 below = [c for c in roster if c["level"] < 50]
+        crafter_alt = next((c for c in roster[1:] if c["crafter"]), None)
         if roster[0]["crafter"] and rng.random() < 0.7:
-            ch = roster[0]                            # crafters mostly play their crafter
+            ch = roster[0]                            # pure crafters mostly play their crafter
+        elif crafter_alt is not None and rng.random() < 0.45:
+            ch = crafter_alt                          # crafter players split time between main and crafter alt
         elif below and rng.random() < 0.7:
             ch = below[-1]
         else:
@@ -566,7 +590,7 @@ class World:
                      retired=False, joined=self.t)
             self.players.append(q)
             if self.stats["characters_created"] < self.o.get("name_cap", 5700):
-                self.new_char(q, 1, crafter=(q["type"] == "Crafter"))
+                self.add_crafter_player_chars(q, 1) if q["type"] == "Crafter" else self.new_char(q, 1)
                 self.stats["new_players"] += 1
 
     def decide(self, b):
@@ -870,6 +894,9 @@ CASES = {
     "v4 shaped XP, no grouping": dict(V4, grouping=False),
     # crafter spending fix: no cheap-craft loophole, salvage only when needed (code change applies to all v4 cases)
     "v4 shaped XP, crafter fix": dict(V4),
+    "v4, crafter fix 2 (bank half of net profit)": dict(V4),
+    "v4, crafter fix 2 + crafter alts": dict(V4, crafter_alt=True),
+    "v4 + crafter players hunt on a main, craft on an alt": dict(V4, crafter_alt=True),
     "fresh plan, bots 2x": dict(PLAN, bot_xp=2.0, player_xp=8),
     # crafting_sellback_percent-style setting: practice crafts sell back at 90% of materials instead of 50%
     "fresh plan + 90% sellback, bots 2x": dict(PLAN, bot_xp=2.0, player_xp=8, skillup_resale=0.9),

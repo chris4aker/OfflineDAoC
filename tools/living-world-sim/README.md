@@ -145,5 +145,7 @@ python3 tools/living-world-sim/summarize_persona.py out.json
   sellback and a staggered launch (`join_spread_hours`).
 - `results/persona_v4_120h.json` and `persona_v4_crafterfix_120h.json`: model v4 (shaped XP by level range,
   the owner's 9-character rotation, grouping, no-lifers, crafter profit banking). Cases are `V4` in `persona_sim.py`.
+- `results/persona_v4_crafteralt_120h.json` and `persona_v4_crafterfix2_120h.json`: crafter players with a hunting
+  main and a crafter alt (`crafter_alt`), and banking half of net crafting profit.
 
 Summaries are in the roadmap ("Simulation findings" and "Trade study").
