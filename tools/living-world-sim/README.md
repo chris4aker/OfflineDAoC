@@ -114,6 +114,16 @@ Assumptions in `lw_economy.py` are labelled `ASSUMPTION`: prices, drop rates, ma
 the quality formula, and the effect of gear on XP and deaths. The gear effect on leveling is a
 guess. Change them to test sensitivity.
 
+## Full-scale model: bot players with rosters (`persona_sim.py`)
+
+Bot players own up to 3 characters (mains kept, alts added), share gold, belong to guilds and
+sometimes retire. Crafting follows the server's real quality rule. About 900 Midgard bots online.
+
+```bash
+python3 tools/living-world-sim/persona_sim.py 1,2 120 out.json      # 4 cases, about 25 minutes on 2 cores
+python3 tools/living-world-sim/summarize_persona.py out.json
+```
+
 ## Results recorded so far
 
 - `results/v2_20h_results.json`: the 20-hour personality study, corrected to the live rules.
@@ -125,5 +135,7 @@ guess. Change them to test sensitivity.
 - `results/xp_study_120h.json`: the owner at 8× XP for 24 weeks of 5 hours, bots at 1×–6× with
   several alt rates (`python3 tools/living-world-sim/xp_study.py 1,2,3 120 out.json`, then
   `summarize_xp.py out.json`). Options: `bot_xp` (bot_xp_rate) and `player_xp` (xp_rate).
+
+- `results/persona_120h.json`: the full-scale model, 24 weeks of the owner's play.
 
 Summaries are in the roadmap ("Simulation findings" and "Trade study").

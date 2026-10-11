@@ -437,6 +437,63 @@ Takeaways:
    classic pacing (about 190 hours to 50 at 1×), not measured on this server. Measure real bot
    leveling from the `AUTONOMOUS_XP_PROGRESS` log lines before tuning.
 
+## Full-scale study (2026-10-11): bot players with rosters at 1,000 online
+
+Target from the owner: about 1,000 bots online per realm while he plays (the server only runs
+then, so every session is "peak"). `tools/living-world-sim/persona_sim.py` models Midgard alone at
+that size: 1,450 bot players, about 900 online at a time, 120 server hours (about 24 weeks at
+5 hours a week), the owner at 8×, 2 seeds per case.
+
+What is new in this model (design proposals, not built):
+- **A bot player owns up to 3 characters.** The main is never deleted; alts are added. All
+  characters share the player's gold (the server already has an account vault).
+- **Guilds:** 75% of players are in one; orders wait up to 2 hours for a capable guild crafter.
+- **Retirement:** about 7% of players leave over 24 weeks and new players join with a level-1 main.
+  Retired characters stay in the records.
+- **Real crafting rules** from `AbstractCraftingSkill.GetQuality`: crafted items are 96–99%, and a
+  100% masterpiece is a 2% chance only for a Legendary crafter (1000) or a grey recipe. (Earlier
+  models in this document used an invented quality formula; their "perfect set" numbers do not
+  apply to this server.)
+- **Vendor materials** as a gold sink; **spellcrafting** adds bonus stats; **rare drops** compete.
+
+| At week 24 | Bots 2× | Bots 4× | Bots 2×, crafted gear 2.5× pricier | Bots 2×, no alts |
+|---|---|---|---|---|
+| Online by level band 1–10 / 11–20 / 21–30 / 31–40 / 41–50 | 12 / 31 / 84 / 311 / 462 | 21 / 49 / 84 / 204 / 557 | 8 / 30 / 78 / 315 / 479 | 4 / 7 / 24 / 214 / 667 |
+| Zones with hunters (of 25) | 25 | 25 | 24 | 20 |
+| Hunters at overcrowded camps (hours 24–120) | 26% | 23% | 26% | 27% |
+| Characters created (name ceiling about 5,700) | 2,440 | 2,770 | 2,420 | 1,770 |
+| Level-50 characters with a full template | 9% | 6% | 7% | 46% |
+| Templates bought / farmed | 41 / 0 | 51 / 0 | 34 / 0 | 221 / 0 |
+| Buy vs farm cost (hunting hours) | 23 vs 131 | 23 vs 131 | 59 vs 131 | 23 vs 131 |
+| Gold in the economy, hour 20 → 120 | +120% | +130% | +113% | +140% |
+| Median gold: crafter players vs others | 2,200 vs 22,900 | 2,200 vs 25,500 | 2,400 vs 16,400 | 2,200 vs 24,200 |
+
+Takeaways:
+1. **Rosters protect legacy.** Mains, guilds and gold persist; alts are added. Characters stay well
+   under the name ceiling for 24 weeks. At about 4–8 new characters per server hour, the ceiling
+   is about 1.5–3 years of the owner's play away.
+2. **The owner is never alone:** on average 127–153 bots hunt within 3 levels of him, and fewer
+   than 3 in under 0.5% of hours.
+3. **The world still drifts toward 50.** Alts keep about 40–70 bots online in levels 1–20, not
+   more. Without alts, the low zones nearly empty and only 20 zones have hunters.
+4. **At 1,000 online, Midgard's camps get crowded:** about a quarter of hunters share a camp
+   beyond the assumed capacity. More spawns, more use of dungeons and the frontier, or a capacity
+   check in camp choice will matter at this scale. (Capacity per camp is an assumption.)
+5. **The economy does not meet the owner's goal yet:**
+   - **Crafters are poor and idle** (about 93% of crafting time has no order, and their median
+     gold is about a tenth of everyone else's). Skill-ups burn their money.
+   - **Gold inflates** (more than doubles in 100 hours): hunting income outruns the sinks.
+   - **Farming never completes a template** in 24 weeks (0 farmed in every case), so rare drops
+     are not a real alternative. Buying is far cheaper than farming at today's prices (0.18);
+     2.5× pricier crafted gear brings it to 0.45, inside the owner's "costly shortcut" target.
+   - **Alts slow endgame gear:** with no alts 46% of level 50s finish a template; with alts, 6–9%,
+     because gold and play time are split across characters.
+
+Design levers to test next (not approved yet): crafted gear priced at about 40–60% of farming
+time; rare drops about twice as common so farming can finish; crafter players with a hunting
+main for income (crafter as an alt); stronger gold sinks (Exchange tax, repairs, consumables);
+and spawn capacity at 1,000 online.
+
 ## Open questions
 
 - Final type list, names and time budgets.
