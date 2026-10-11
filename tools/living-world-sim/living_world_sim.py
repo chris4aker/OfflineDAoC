@@ -174,6 +174,10 @@ def run(seed, P, scenario="fresh", strong=False, econ=None, opts=None):
     """econ: None (no gear model), "loot" (gear from drops and vendors only) or "craft" (crafting economy)."""
     rng = random.Random(seed)
     opts = opts or {}
+    BX = opts.get("bot_xp", 1.0)              # bot_xp_rate setting
+    PX = opts.get("player_xp")                # xp_rate for the real player; None = no player modeled
+    # The real player plays whenever the server runs: 75% of time hunting at an even-con camp (ASSUMPTION).
+    player = dict(level=1, xp=0.0, chars_at_50=0, first_50_hour=None) if PX else None
     camps = load_camps()
     zones = sorted({c["zone"] for c in camps})
     camps_by_band = {L: [c for c in camps if c["level"] - L <= 4 and c["level"] - L > -(4 + L // 10)] for L in range(1, 51)}
@@ -242,7 +246,7 @@ def run(seed, P, scenario="fresh", strong=False, econ=None, opts=None):
                 gsize = gsizes[b["group"]] if b["group"] else 1
                 rate = XP_RATE.get(c, 0.3) * eff * (1.15 if gsize >= 2 else 1.0)
                 if E: rate *= 0.85 + 0.3 * b["fit"]; E.hunt_minute(b, camp["level"], eff)   # ASSUMPTION: gear helps
-                b["xp"] += rate / 60 / hours_to_level(b["level"])
+                b["xp"] += rate * BX / 60 / hours_to_level(b["level"])
                 b["inv"] += 22 / 60; b["mats"] += 1 / 60
                 if b["group"]: b["grouped_min"] += 1
                 b["con_min"][c] += 1; b["hunt_min"] += 1
@@ -263,7 +267,7 @@ def run(seed, P, scenario="fresh", strong=False, econ=None, opts=None):
             elif b["state"] == "explore":
                 b["explore_min"] += 1
                 zi = zone_info[b["zone"]]
-                b["xp"] += 0.15 / 60 / hours_to_level(b["level"])
+                b["xp"] += 0.15 * BX / 60 / hours_to_level(b["level"])
                 pd = (0.25 if zi["median"] > b["level"] + 5 else 0.03) / 60
                 if rng.random() < pd: b["deaths"] += 1; b["until"] += 8
                 if P and rng.random() < b["tr"]["chat"] * 0.15 / 60: b["chats"] += 1
@@ -351,6 +355,14 @@ def run(seed, P, scenario="fresh", strong=False, econ=None, opts=None):
                                open_orders=len(E.orders), listings=len(E.listings),
                                median_open_order_level=(sorted(o["level"] for o in E.orders)[len(E.orders) // 2] if E.orders else 0),
                                mat_stock=[round(x) for x in E.mat_stock]))
+        if player:
+            player["xp"] += 0.75 * PX / 60 / hours_to_level(player["level"])
+            while player["xp"] >= 1:
+                player["xp"] -= 1; player["level"] += 1
+                if player["level"] >= 50:
+                    player["chars_at_50"] += 1
+                    if player["first_50_hour"] is None: player["first_50_hour"] = round(t / 60, 1)
+                    player.update(level=1, xp=0.0)        # starts the next class
         if t % 60 == 59:
             hunters = [b for b in bots if b["state"] == "hunt"]
             zc = collections.Counter(b["zone"] for b in hunters)
@@ -366,7 +378,10 @@ def run(seed, P, scenario="fresh", strong=False, econ=None, opts=None):
                                near={X: sum(1 for b in hunters if abs(b['level'] - X) <= 3) for X in (5, 15, 25, 35, 45)},
                                zone_counts=dict(zc),
                                exploring=sum(1 for b in bots if b['state'] == 'explore') / N_BOTS,
-                               present_zones=len({b['zone'] for b in bots if b['state'] in ('hunt', 'explore')})))
+                               present_zones=len({b['zone'] for b in bots if b['state'] in ('hunt', 'explore')}),
+                               player_level=(player['level'] if player else None),
+                               near_player=(sum(1 for b in hunters if abs(b['level'] - player['level']) <= 3) if player else None),
+                               online_near_player=(sum(1 for b in bots if b['state'] != 'offline' and abs(b['level'] - player['level']) <= 5) if player else None)))
     by_type = collections.defaultdict(list)
     for b in bots: by_type[b["type"]].append(b)
     types = {k: dict(n=len(v), level=round(statistics.mean(b["level"] for b in v), 1),
@@ -385,7 +400,7 @@ def run(seed, P, scenario="fresh", strong=False, econ=None, opts=None):
     q = lambda p: lv[int(p * (len(lv) - 1))]
     levels = dict(p10=q(.1), p50=q(.5), p90=q(.9), std=round(statistics.pstdev(lv), 1),
                   bands={f"{a}-{a+9}": sum(1 for x in lv if a <= x <= a + 9) for a in (1, 11, 21, 31, 41)})
-    result = dict(hourly=hourly, types=types, levels=levels, zones_total=len(zones))
+    result = dict(hourly=hourly, types=types, levels=levels, zones_total=len(zones), player=player)
     if E:
         cr = [b for b in bots if b["type"] == "Crafter"]
         others = [b for b in bots if b["type"] != "Crafter"]

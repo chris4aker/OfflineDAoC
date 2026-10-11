@@ -122,5 +122,8 @@ guess. Change them to test sensitivity.
   (`TRADE_HOURS=60 TRADE_KEEP_HOURLY=1 python3 tools/living-world-sim/trade_study.py ...`;
   summarize with `python3 tools/living-world-sim/summarize_population.py <file>`). Cases M and N
   test the alt rate (`alt_every` option: minutes between alts, 0 = none).
+- `results/xp_study_120h.json`: the owner at 8× XP for 24 weeks of 5 hours, bots at 1×–6× with
+  several alt rates (`python3 tools/living-world-sim/xp_study.py 1,2,3 120 out.json`, then
+  `summarize_xp.py out.json`). Options: `bot_xp` (bot_xp_rate) and `player_xp` (xp_rate).
 
 Summaries are in the roadmap ("Simulation findings" and "Trade study").

@@ -402,6 +402,41 @@ What this changes in the plan:
    or crafters who specialize in a level range, or quality that is easier to reach. The current
    proposal makes crafters useful, not legendary.
 
+## XP-rate study (2026-10-11): the owner at 8×, 5 hours a week
+
+The owner plays about 5 hours a week and wants fast leveling. The server already has two
+separate dials: `xp_rate` (the real player only) and `bot_xp_rate` (autonomous gamebots only),
+both 1× in the release. Bots only live while the server runs, so 120 server hours is about
+24 weeks of the owner's play. Established start, strong personalities, crafting, scarce loot;
+300 Midgard bots, 3 seeds. Script: `tools/living-world-sim/xp_study.py`.
+
+- **The owner at 8×:** about 31 hours of play per character to 50 (about 6 weeks), so about
+  3 characters at 50 in 24 weeks. Levels 41–50 take about two-thirds of that time.
+- **Company:** in every case, an average of 13 to 27 bots were hunting within 3 levels of the
+  owner, and fewer than 3 of them in at most 3% of hours. The established start does this.
+
+| At week 24 | Bots by level band 1–10 / 11–20 / 21–30 / 31–40 / 41–50 | Full gear sets |
+|---|---|---|
+| Bots 1×, alt every 60 min | 9 / 20 / 52 / 166 / 54 | 91% |
+| **Bots 2×, alt every 30 min** | **14 / 26 / 61 / 103 / 97** | **70%** |
+| Bots 4×, alt every 60 min | 3 / 9 / 23 / 46 / 220 | 82% |
+| **Bots 4×, alt every 30 min** | **8 / 15 / 44 / 68 / 164** | **61%** |
+| Bots 4×, alt every 15 min | 15 / 29 / 76 / 107 / 74 | 19% |
+| Bots 6×, alt every 10 min | 18 / 29 / 85 / 108 / 59 | 4% |
+
+(Alt rates are per 300 bots; scale them with the bot count.)
+
+Takeaways:
+1. **Faster bots need faster alts**, or the world piles up at 50 and the low zones empty.
+2. **But fast churn breaks the economy.** Characters that are replaced quickly never get geared:
+   at 6× with an alt every 10 minutes, only 4% wear a full set.
+3. **Balanced picks:** bots at 2× with an alt every 30 minutes keeps every band alive with a
+   working economy. Bots at 4× with an alt every 30 minutes gives a busier endgame (more level
+   50s for RvR and groups) with thinner low zones. Both are starting points for playtest.
+4. Assumptions: the owner hunts 75% of the time at even-con camps; the XP curve is fitted to
+   classic pacing (about 190 hours to 50 at 1×), not measured on this server. Measure real bot
+   leveling from the `AUTONOMOUS_XP_PROGRESS` log lines before tuning.
+
 ## Open questions
 
 - Final type list, names and time budgets.
