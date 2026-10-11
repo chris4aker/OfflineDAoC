@@ -494,6 +494,59 @@ time; rare drops about twice as common so farming can finish; crafter players wi
 main for income (crafter as an alt); stronger gold sinks (Exchange tax, repairs, consumables);
 and spawn capacity at 1,000 online.
 
+## Economy package study (2026-10-11): epic drops at every level and a richer crafter
+
+The owner's goals: "holy shit" items and sets from monsters at all levels; crafting as important
+as PvE; crafted gear a clear but costly shortcut over farming; crafters level more slowly but are
+richer than anyone except the top farmers. Same full-scale model (1,450 bot players, about 900
+Midgard bots online, 24 weeks of the owner's play, 2 seeds), with a package of changes
+(`econ2` in `persona_sim.py`; all numbers are assumptions):
+
+- **Named drops** (bonus 10–14, beats spellcraft's 8) and **epic drops** (bonus 15–20) at every
+  level; anything not worn is sold on the Exchange, at any level (alts buy them).
+- Rare drops twice as common; **crafted gear 1.3× pricier**, so a crafted template costs about
+  **half the farming time** (33 vs 65 hunting hours) once repairs and consumables are paid.
+- **Materials discount** for 99% (10%) and 100% (25%) items on the crafter's next purchase.
+- **Bounded realm commissions:** 30 NPC orders per hour for the realm at 3× materials.
+- **Repairs** (6% of income, done by a crafter 60% of the time), **consumables** (4%, half to an
+  alchemist), **salvage** (crafters buy junk loot for materials credit), a **masterpiece premium**
+  (+10% for 99%, +50% for 100%) and a **5% Exchange tax**.
+- Crafters keep a 15,000-gold cushion before spending on skill-ups.
+
+| At week 24 (bots 2×) | Old economy | **Package** | Package without commissions |
+|---|---|---|---|
+| Median gold: crafter players | 2,200 | **7,900** | 3,000 |
+| Median gold: other players | 23,400 | 20,300 | 20,300 |
+| Median gold: top 5% farmers (by Exchange sales) | 46,400 | **49,700** | 50,300 |
+| Top 5% farmers' Exchange income | 3,100 | **25,300** | 26,500 |
+| Level-50 characters with a full template | 10% | **16%** | 17% |
+| Templates bought / mixed / farmed | 36 / 17 / 0 | **42 / 33 / 6** | 45 / 36 / 7 |
+| Named drops / epic drops in 24 weeks | 0 / 0 | **1,670 / 217** | 1,660 / 219 |
+| Characters wearing a named or epic piece, levels 1–10 / 11–20 / 21–30 / 31–40 / 41–50 | 0 | **4% / 11% / 19% / 33% / 45%** | 0% / 12% / 16% / 32% / 44% |
+| Gold in the economy, hour 20 → 120 | +121% | +111% | +105% |
+| Crafter characters' mean level vs others | 38.5 vs 39.4 | 37.9 vs 39.3 | 38.1 vs 39.3 |
+
+(Bots at 4× behave the same way: crafters 7,500 vs others 22,100; 16 farmed templates.)
+
+What worked:
+- **Holy-shit drops exist at every level** and are rare: about 2 epics per server hour across a
+  realm of 900 online, and most characters below level 30 have never worn one.
+- **Farming became a real path:** the first fully farmed templates appear, and the top 5% of
+  farmers earn about 8× more from the Exchange. They are the richest group.
+- **Crafting got 3.6× richer,** mostly from realm commissions (without them, crafters stay poor).
+
+What did not:
+1. **Crafters are still poorer than ordinary hunters** (7,900 vs 20,300), not richer. The cause is
+   **too many crafters for the demand:** about 210 crafters share about 100 orders an hour, and 94%
+   of their forge time has nothing to make. Next: fewer crafters (about 8% of players), or crafter
+   players who keep a hunting main and craft on an alt, plus more commissions.
+2. **Gold still doubles in 24 weeks.** The new sinks are too small. Next: stronger sinks (higher
+   repair and consumable costs at high levels, guild and housing costs) or fewer coin drops.
+3. **Crafters barely level slower** (about 1.4 levels behind) because the established start dominates.
+4. **Named and epic pieces pile up at the top:** 45% of level 41–50 characters wear one by week
+   24. Either that is the endgame chase working, or high-level rates should be lower so they stay
+   special. The owner's call.
+
 ## Open questions
 
 - Final type list, names and time budgets.

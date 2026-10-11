@@ -31,3 +31,19 @@ for name, runs in d.items():
             tp.setdefault(s, []).append((v["n"], v["median_hours"]))
     print(" templates:", {s: (m([a for a, _ in v], 1), m([b for _, b in v if b is not None], 1)) for s, v in tp.items()}, "| shortcut math:", runs[0]["shortcut"])
     print(" me:", [r["me"] for r in runs])
+
+# economy package extras (wealth groups, levels, named/epic drops)
+print("\n== wealth, levels and holy-shit drops ==")
+for name, runs in d.items():
+    if "wealth" not in runs[0]:
+        continue
+    w = {k: m([r["wealth"][k] for r in runs]) for k in runs[0]["wealth"]}
+    lv = {k: m([r["levels"][k] for r in runs], 1) for k in runs[0]["levels"]}
+    S = lambda k: m([r["stats"].get(k, 0) for r in runs])
+    named = [S(f"named_band{i}") for i in range(5)]
+    epic = [S(f"epic_band{i}") for i in range(5)]
+    g20 = m([r["snaps"][1]["gold_total"] for r in runs]); g120 = m([r["snaps"][-1]["gold_total"] for r in runs])
+    wear = [m([r["snaps"][-1]["wearing_named_or_epic_by_band"][i] * 100 for r in runs]) for i in range(5)]
+    idle = m([r["stats"]["craft_idle_min"] / max(1, r["stats"]["craft_min"]) * 100 for r in runs])
+    print(f"{name}: wealth {w} | char levels {lv} | gold total h20->h120 {g20}->{g120} ({round(100 * (g120 / g20 - 1))}%) | "
+          f"named drops by band {named} | epic {epic} | % wearing named/epic by band {wear} | commissions {S('commissions_filled')} | crafter idle {idle}%")

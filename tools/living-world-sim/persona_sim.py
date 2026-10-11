@@ -54,6 +54,19 @@ RARE_PER_HOUR = 0.25                   # rare drops per hunting hour at level 45
 RARE_PER_HOUR_LOW = 0.08               # below level 45
 UPKEEP = 0.05                          # share of income lost to repairs, deaths, travel fees (sink)
 
+# ---- economy package "econ2" (owner's brainstorm, 2026-10-11); all ASSUMPTIONS ----
+NAMED_PER_HOUR = 0.03                  # signature drop from a named monster, any level: bonus 10-14 (beats spellcraft's 8)
+EPIC_PER_HOUR = 0.004                  # epic drop, any level: bonus 15-20
+EXCHANGE_TAX = 0.05                    # on Exchange sales and crafted orders (sink)
+REPAIR_SHARE = 0.06                    # of hunting income: gear wear, paid at town (to a crafter, or an NPC smith)
+CONSUMABLE_SHARE = 0.04                # of hunting income: potions, poisons, charges (half to alchemists, half sink)
+UPKEEP2 = 0.02                         # deaths, travel and other fees once repairs are separate
+COMMISSIONS_PER_HOUR = 30              # bounded realm commissions (NPC orders) for the whole realm
+COMMISSION_PAY = 3.0                   # x materials
+DISCOUNT_99, DISCOUNT_100, DISCOUNT_CAP = 0.10, 0.25, 0.40   # off the crafter's next materials purchase
+PREMIUM_99, PREMIUM_100 = 0.10, 0.50   # extra the buyer pays for a 99% or 100% piece
+SALVAGE_SHARE = 0.5                    # share of vendor-bound loot sold to a crafter for salvage instead
+
 
 def craft_quality(skill, recipe, rng):
     """The server's rule (AbstractCraftingSkill.GetQuality + GetItemCon)."""
@@ -107,6 +120,9 @@ class World:
         self.template_events = []         # (source, hours_from_50)
         self.snaps = []
         self.player_me = dict(level=1, xp=0.0, chars_at_50=0) if opts.get("player_xp") else None
+        self.E2 = bool(opts.get("econ2"))
+        self.online_crafters = []
+        self.commissions = 0
         self.make_population()
 
     # ----- population -----
@@ -208,11 +224,28 @@ class World:
                     self.stats["reached_50"] += 1
         inc = income_per_hour(L) * eff / 60
         self.gold(b, inc, "hunting")
-        self.gold(b, -inc * UPKEEP, "upkeep")
+        if self.E2:
+            self.gold(b, -inc * UPKEEP2, "upkeep")
+            b["repair_due"] = b.get("repair_due", 0.0) + inc * REPAIR_SHARE
+            b["consumables_due"] = b.get("consumables_due", 0.0) + inc * CONSUMABLE_SHARE
+        else:
+            self.gold(b, -inc * UPKEEP, "upkeep")
         if rng.random() < COMMON_LOOT_PER_HOUR / 60:
             item = dict(level=max(1, camp["level"]), q=rng.randint(85, 95), B=0, src="loot")
             if not self.equip(b, rng.randrange(SLOTS), item):
-                self.gold(b, 0.3 * mats_cost(item["level"]), "vendor_loot")
+                self.sell_junk(b, item["level"])
+        if self.E2:
+            for kind, rate, lo, hi in (("named", NAMED_PER_HOUR, 10, 14), ("epic", EPIC_PER_HOUR, 15, 20)):
+                if rng.random() < rate * self.o.get("named_mult", 1.0) * eff / 60:
+                    lvl = min(50, camp["level"])
+                    self.stats[kind + "_drops"] += 1
+                    self.stats[f"{kind}_band{min(4, (lvl - 1) // 10)}"] += 1
+                    item = dict(level=lvl, q=rng.randint(95, 100), B=rng.randint(lo, hi), src=kind)
+                    slot = rng.randrange(SLOTS)
+                    if self.equip(b, slot, item):
+                        self.check_template(b)
+                    else:
+                        self.list_item(b, slot, item)
         rare = (RARE_PER_HOUR if camp["level"] >= 45 else RARE_PER_HOUR_LOW) * self.o.get("rare_mult", 1.0)
         if rng.random() < rare * eff / 60:
             self.stats["rare_drops"] += 1
@@ -220,14 +253,62 @@ class World:
             slot = rng.randrange(SLOTS)
             if self.equip(b, slot, item):
                 self.check_template(b)
-            elif item["level"] >= 47 and item["B"] >= 8:
-                price = (mats_cost(50) * CRAFT_MARKUP * PRICE_MULT + spellcraft_cost(50, 8)) * 0.8 * item["B"] / 8
-                self.rare_market.append(dict(slot=slot, B=item["B"], q=item["q"], price=price, seller=b, t=self.t))
+            elif (item["level"] >= 47 or self.E2) and item["B"] >= 8:
+                self.list_item(b, slot, item)
             else:
-                self.gold(b, 0.3 * mats_cost(item["level"]), "vendor_loot")
+                self.sell_junk(b, item["level"])
         if rng.random() < LW.DEATH_PER_HOUR.get(c, 0.6) / 60 * (1.4 - 0.8 * fit):
             b["until"] += 8
             self.stats["deaths"] += 1
+
+    def sc_price(self, level):
+        return mats_cost(level) * CRAFT_MARKUP * PRICE_MULT + spellcraft_cost(level, 8)
+
+    def list_item(self, b, slot, item):
+        mult = {"rare": 0.8, "named": 1.3, "epic": 2.0}.get(item["src"], 0.8)
+        price = self.sc_price(item["level"]) * mult * item["B"] / 8
+        self.rare_market.append(dict(slot=slot, level=item["level"], B=item["B"], q=item["q"], price=price,
+                                     src=item["src"], seller=b, t=self.t))
+
+    def sell_junk(self, b, level):
+        if self.E2 and self.online_crafters and self.rng.random() < SALVAGE_SHARE:
+            c = self.rng.choice(self.online_crafters)
+            pay = 0.35 * mats_cost(level)
+            if c["player"]["gold"] >= pay:
+                self.gold(c, -pay, "salvage_bought")
+                self.gold(b, pay, "salvage_sold")
+                c["salvage_credit"] = c.get("salvage_credit", 0.0) + 0.7 * mats_cost(level)
+                return
+        self.gold(b, 0.3 * mats_cost(level), "vendor_loot")
+
+    def buy_from_market(self, b, m, slot):
+        self.rare_market.remove(m)
+        tax = m["price"] * EXCHANGE_TAX if self.E2 else 0.0
+        self.gold(b, -m["price"], "market_buy")
+        self.gold(m["seller"], m["price"] - tax, "market_sell")
+        if tax:
+            self.gold_out["exchange_tax"] += tax
+        m["seller"]["player"]["market_income"] = m["seller"]["player"].get("market_income", 0.0) + m["price"] - tax
+        self.stats["rare_market_sales"] += 1
+        self.stats["market_sales_" + m.get("src", "rare")] += 1
+        self.equip(b, slot, dict(level=m.get("level", 50), q=m["q"], B=m["B"], src=m.get("src", "market")))
+        self.check_template(b)
+
+    def pay_dues(self, b):
+        """Repairs and consumables, paid at a town visit. Part goes to an online crafter; the rest leaves the economy."""
+        c = self.rng.choice(self.online_crafters) if self.online_crafters else None
+        due = b.get("repair_due", 0.0)
+        if due > 0:
+            b["repair_due"] = 0.0
+            self.gold(b, -due, "repairs_paid")
+            if c is not None and self.rng.random() < 0.6:        # a crafter does the repair
+                self.gold(c, due, "repairs_earned")
+        due = b.get("consumables_due", 0.0)
+        if due > 0:
+            b["consumables_due"] = 0.0
+            self.gold(b, -due, "consumables_paid")
+            if c is not None:                                     # alchemist's margin; the rest is materials
+                self.gold(c, 0.5 * due, "consumables_earned")
 
     # ----- town: shopping and orders -----
     def shop(self, b):
@@ -235,6 +316,13 @@ class World:
         if L < 10:
             return
         if L < 50:
+            if self.E2 and self.rare_market:
+                # named and epic drops on the Exchange: alts and levelers buy them when affordable
+                for m in sorted(self.rare_market, key=lambda m: -m["B"]):
+                    if (m["seller"]["player"] is not p and L - 5 <= m["level"] <= L and m["price"] <= 0.4 * p["gold"]
+                            and self.piece_power(dict(level=m["level"], q=m["q"], B=m["B"]), L) > self.piece_power(b["gear"][m["slot"]], L)):
+                        self.buy_from_market(b, m, m["slot"])
+                        break
             # leveling gear: plain crafted pieces when a slot is empty or 5+ levels behind
             for slot, it in enumerate(b["gear"]):
                 if (it is None or it["level"] < L - 5) and not self.has_order(b, slot):
@@ -249,16 +337,13 @@ class World:
                 continue
             if self.has_order(b, slot):
                 continue
-            offers = [m for m in self.rare_market if m["slot"] == slot and m["seller"]["player"] is not p]
+            offers = [m for m in self.rare_market if m["slot"] == slot and m["seller"]["player"] is not p
+                      and m.get("level", 50) >= 47]
             best = min(offers, key=lambda m: m["price"], default=None)
-            sc_price = mats_cost(50) * CRAFT_MARKUP * PRICE_MULT + spellcraft_cost(50, 8)
-            if best and best["price"] <= sc_price and best["price"] <= 0.6 * p["gold"]:
-                self.rare_market.remove(best)
-                self.gold(b, -best["price"], "market_buy")
-                self.gold(best["seller"], best["price"], "market_sell")
-                self.stats["rare_market_sales"] += 1
-                self.equip(b, slot, dict(level=50, q=best["q"], B=best["B"], src="market"))
-                self.check_template(b)
+            sc_price = self.sc_price(50)
+            limit = sc_price * (2.5 if self.E2 else 1.0)          # epics are worth paying more for
+            if best and best["price"] <= limit and best["price"] <= 0.6 * p["gold"]:
+                self.buy_from_market(b, best, slot)
             elif sc_price <= 0.6 * p["gold"] * self.o.get("buy_appetite", 1.0):
                 self.place_order(b, slot, 50, 8, sc_price)
             break                                  # one purchase decision per visit
@@ -272,6 +357,20 @@ class World:
                                 guild=b["player"]["guild"], t=self.t))
         self.stats["orders_placed"] += 1
 
+    def buy_mats(self, b, cost):
+        if self.E2:
+            cost *= 1 - b.get("discount", 0.0)
+            b["discount"] = 0.0
+            credit = min(b.get("salvage_credit", 0.0), cost)
+            b["salvage_credit"] = b.get("salvage_credit", 0.0) - credit
+            self.stats["salvage_credit_used"] += credit
+            cost -= credit
+        self.gold(b, -cost, "materials")
+
+    def quality_reward(self, b, q):
+        if self.E2 and q >= 99:
+            b["discount"] = min(DISCOUNT_CAP, b.get("discount", 0.0) + (DISCOUNT_100 if q == 100 else DISCOUNT_99))
+
     # ----- crafting sessions -----
     def craft_session(self, b, minutes):
         rng, p = self.rng, b["player"]
@@ -283,7 +382,7 @@ class World:
                 cost = mats_cost(job["level"])
                 if p["gold"] < cost:
                     break
-                self.gold(b, -cost, "materials")
+                self.buy_mats(b, cost)
                 left -= CRAFT_MINUTES
                 if rng.random() < fail_chance(b["skill"], recipe):
                     self.stats["craft_failed"] += 1
@@ -291,11 +390,20 @@ class World:
                 self.gain_skill(b, recipe)
                 q = craft_quality(b["skill"], recipe, rng)
                 self.stats["masterpieces"] += q == 100
+                self.quality_reward(b, q)
                 self.orders.remove(job)
                 if job["bonus"]:
                     self.gold(b, -spellcraft_cost(job["level"], job["bonus"]), "spellcraft_gems")
-                self.gold(b, job["price"], "orders_earned")
+                tax = job["price"] * EXCHANGE_TAX if self.E2 else 0.0
+                self.gold(b, job["price"] - tax, "orders_earned")
+                if tax:
+                    self.gold_out["exchange_tax"] += tax
                 buyer = job["char"]
+                if self.E2 and q >= 99:
+                    extra = job["price"] * (PREMIUM_100 if q == 100 else PREMIUM_99)
+                    if buyer["player"]["gold"] >= extra:
+                        self.gold(buyer, -extra, "quality_premium_paid")
+                        self.gold(b, extra, "quality_premium")
                 same_guild = job["guild"] is not None and job["guild"] == p["guild"]
                 self.stats["orders_filled"] += 1
                 self.stats["orders_filled_in_guild"] += same_guild
@@ -303,17 +411,32 @@ class World:
                 self.equip(buyer, job["slot"], dict(level=job["level"], q=q, B=job["bonus"], src="crafted", by=b["id"]))
                 self.check_template(buyer)
                 continue
+            # no player order: a realm commission if any are posted (bounded NPC demand)
+            if self.E2 and self.commissions >= 1 and b["skill"] >= 200:
+                lvl = max(10, min(50, int(b["skill"]) // 20))
+                cost = mats_cost(lvl)
+                if p["gold"] >= cost:
+                    self.commissions -= 1
+                    self.buy_mats(b, cost)
+                    left -= CRAFT_MINUTES
+                    self.gain_skill(b, lvl * 20)
+                    q = craft_quality(b["skill"], lvl * 20, rng)
+                    self.quality_reward(b, q)
+                    self.gold(b, cost * COMMISSION_PAY, "commissions")
+                    self.stats["commissions_filled"] += 1
+                    continue
             # no order: skill-up crafting while the crafter can afford it (keeps a reserve)
             recipe = min(1000, int(b["skill"]) + 5)
             lvl = max(1, recipe // 20)
             cost = mats_cost(lvl)
             if b["skill"] >= 1000 or p["gold"] < cost + self.o.get("crafter_reserve", 2000):
                 break
-            self.gold(b, -cost, "materials")
+            self.buy_mats(b, cost)
             left -= CRAFT_MINUTES
             if rng.random() < fail_chance(b["skill"], recipe):
                 continue
             self.gain_skill(b, recipe)
+            self.quality_reward(b, craft_quality(b["skill"], recipe, rng)) if self.E2 else None
             self.gold(b, cost * SKILLUP_RESALE, "skillup_resale")
             self.stats["skillup_crafts"] += 1
         self.stats["craft_idle_min"] += left
@@ -388,6 +511,8 @@ class World:
     def decide(self, b):
         rng = self.rng
         if b["state"] == "town" and b.get("act") is None:
+            if self.E2:
+                self.pay_dues(b)
             self.shop(b)
         if b["crafter"] and rng.random() < 0.5:
             dur = rng.randint(30, 90)
@@ -423,6 +548,11 @@ class World:
         for t in range(hours * 60):
             self.t = t
             online = [p for p in self.players if p["online"] is not None]
+            if t % 5 == 0 and self.E2:
+                self.online_crafters = [p["online"] for p in online if p["online"]["crafter"]]
+            if t % 60 == 0 and self.E2:
+                self.commissions = min(2 * COMMISSIONS_PER_HOUR * self.o.get("commission_mult", 1.0),
+                                       self.commissions + COMMISSIONS_PER_HOUR * self.o.get("commission_mult", 1.0))
             if t % 5 == 0:
                 self.zone_pop = collections.Counter(p["online"]["zone"] for p in online if p["online"]["state"] == "hunt")
             for p in self.players:
@@ -503,7 +633,9 @@ class World:
             crafters=len(crafters), crafter_skill_median=(statistics.median(c["skill"] for c in crafters) if crafters else 0),
             legendary=sum(1 for c in crafters if c["skill"] >= 1000), skill_700_plus=sum(1 for c in crafters if c["skill"] >= 700),
             gold_total=round(sum(golds)), gold_median=round(statistics.median(golds)),
-            open_orders=len(self.orders), rare_listings=len(self.rare_market)))
+            open_orders=len(self.orders), rare_listings=len(self.rare_market),
+            wearing_named_or_epic_by_band=[round(sum(1 for c in active if a <= c["level"] <= a + 9 and any(it and it["src"] in ("named", "epic") for it in c["gear"]))
+                                                 / max(1, sum(1 for c in active if a <= c["level"] <= a + 9)), 3) for a in (1, 11, 21, 31, 41)]))
 
     def result(self):
         ev = self.template_events
@@ -514,13 +646,25 @@ class World:
         cr_players = {id(c["player"]) for c in crafters}
         gold_cr = [p["gold"] for p in self.players if id(p) in cr_players and not p["retired"]]
         gold_other = [p["gold"] for p in self.players if id(p) not in cr_players and not p["retired"]]
-        net50 = income_per_hour(50) * (1 - UPKEEP)
+        net50 = income_per_hour(50) * (1 - (UPKEEP2 + REPAIR_SHARE + CONSUMABLE_SHARE if self.E2 else UPKEEP))
         template_price = 7 * (mats_cost(50) * CRAFT_MARKUP * PRICE_MULT + spellcraft_cost(50, 8))
         drops_needed = 7 * sum(1 / k for k in range(1, 8)) / (5 / 9)      # coupon collector, B >= 8
         farm_hours = drops_needed / (RARE_PER_HOUR * self.o.get("rare_mult", 1.0))
         shortcut = dict(buy_hunting_hours=round(template_price / net50, 1), farm_hunting_hours=round(farm_hours, 1),
                         ratio=round(template_price / net50 / farm_hours, 2))
-        return dict(shortcut=shortcut, hourly=self.hour_rows, snaps=self.snaps, stats=dict(self.stats),
+        live = [p for p in self.players if not p["retired"]]
+        others = sorted((p for p in live if id(p) not in cr_players), key=lambda p: p.get("market_income", 0.0), reverse=True)
+        top = others[:max(1, len(others) // 20)]
+        og = sorted(p["gold"] for p in others)
+        wealth = dict(crafters_median=round(statistics.median(gold_cr)) if gold_cr else 0,
+                      others_median=round(statistics.median(og)) if og else 0,
+                      others_p95=round(og[int(0.95 * (len(og) - 1))]) if og else 0,
+                      top5pct_farmers_median=round(statistics.median(p["gold"] for p in top)),
+                      top5pct_farmers_market_income=round(statistics.median(p.get("market_income", 0.0) for p in top)))
+        cl = [c["level"] for c in crafters]
+        ol = [c["level"] for p in live for c in p["roster"] if not c["crafter"]]
+        levels = dict(crafter_chars_mean=round(statistics.mean(cl), 1) if cl else 0, other_chars_mean=round(statistics.mean(ol), 1))
+        return dict(shortcut=shortcut, wealth=wealth, levels=levels, hourly=self.hour_rows, snaps=self.snaps, stats=dict(self.stats),
                     gold_in=dict(self.gold_in), gold_out=dict(self.gold_out),
                     templates={s: dict(n=len(v), median_hours=(statistics.median(v) if v else None)) for s, v in by_src.items()},
                     gold_crafter_players=round(statistics.median(gold_cr)) if gold_cr else 0,
@@ -539,7 +683,13 @@ def run(seed, hours, opts):
     return w.run(hours)
 
 
+# price_mult 1.3 puts a crafted template at about half the farming time once repairs and consumables are paid;
+# crafters keep 15,000 gold before spending on skill-ups, so they stay rich instead of reinvesting everything.
+PACKAGE = dict(econ2=True, price_mult=1.3, rare_mult=2.0, crafter_reserve=15000)
 CASES = {
+    "package, bots 2x": dict(PACKAGE, bot_xp=2.0, player_xp=8),
+    "package, bots 4x": dict(PACKAGE, bot_xp=4.0, player_xp=8),
+    "package without commissions, bots 2x": dict(PACKAGE, bot_xp=2.0, player_xp=8, commission_mult=0.0),
     "bots 2x": dict(bot_xp=2.0, player_xp=8),
     "bots 4x": dict(bot_xp=4.0, player_xp=8),
     "bots 2x, crafted gear 2.5x pricier": dict(bot_xp=2.0, player_xp=8, price_mult=2.5),

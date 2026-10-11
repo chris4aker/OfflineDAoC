@@ -137,5 +137,8 @@ python3 tools/living-world-sim/summarize_persona.py out.json
   `summarize_xp.py out.json`). Options: `bot_xp` (bot_xp_rate) and `player_xp` (xp_rate).
 
 - `results/persona_120h.json`: the full-scale model, 24 weeks of the owner's play.
+- `results/persona_package_120h.json`: the economy package (`econ2`: named and epic drops, discounts,
+  realm commissions, repairs, consumables, salvage, masterpiece premium, Exchange tax). Run one case with
+  `PERSONA_ONLY="package, bots 2x" python3 tools/living-world-sim/persona_sim.py 1,2 120 out.json`.
 
 Summaries are in the roadmap ("Simulation findings" and "Trade study").
