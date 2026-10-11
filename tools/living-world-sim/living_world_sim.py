@@ -5,8 +5,11 @@ This is a design model, not the game. See README.md for assumptions and how to r
 Abstract agent model of Midgard autonomous gamebots over 20 game hours from a fresh
 start. Camps come from the repo's real CapnBry camp catalog. Numbers taken from the code:
 goal mix 60/40/0 (1-19), 40/40/20 (20-49); PvE tenure 45-120 min; group matchmaking
-timeout 20 min; trainer 0.28, craft 0.16, safe-town downtime 0.035; safer camps after
+timeout 20 min; train 90% and 15% town break at task boundaries (live rules); safer camps after
 2 deaths; dungeon preference 100/300/400 permille; outdoor camps weighted by live spawns.
+CORRECTION (2026-10-11): an earlier version also used the trainer 0.28 / craft 0.16 / downtime 0.035
+rules from AutonomousBotDecisionEngine.Choose, which no live code calls. They were replaced by the
+live between-task rules above, and bots no longer craft.
 Everything else (XP curve, death rates, travel times, capacity) is a labelled assumption.
 """
 import json, math, os, random, statistics, sys, collections
@@ -17,7 +20,10 @@ _DEFAULT_CATALOG = os.path.join(_HERE, "..", "..", "source", "server", "GameServ
                                 "autonomous", "data", "capnbry_classic_si_goals.json")
 CATALOG = sys.argv[1] if len(sys.argv) > 1 and sys.argv[1] else _DEFAULT_CATALOG
 SEEDS = [int(s) for s in sys.argv[2].split(",")] if len(sys.argv) > 2 and sys.argv[2] else [1, 2, 3, 4, 5]
-N_BOTS, HOURS = 300, 20
+N_BOTS = 300
+HOURS = int(os.environ.get("LWS_HOURS", "20"))   # 40 for the trade study
+sys.path.insert(0, _HERE)
+import lw_economy
 MIDGARD = {100, 125, 126, 127, 128, 129, 150, 151, 161, 249}
 DUNGEON_REGIONS = {125, 126, 127, 128, 129, 150, 161, 249}
 
@@ -77,11 +83,11 @@ ACT_MINUTES = dict(hunt=80, craft=60, social=40, explore=60)  # mean durations u
 
 ESTABLISHED_LEVELS = [(1, 10, 20), (11, 20, 20), (21, 30, 20), (31, 40, 20), (41, 50, 20)]  # assumption: even spread
 
-def make_bot(i, rng, personalities, scenario="fresh", strong=False):
+def make_bot(i, rng, personalities, scenario="fresh", strong=False, weights=None):
     budget = None
     if strong:
         names = list(STRONG_TYPES)
-        t = rng.choices(names, weights=[STRONG_TYPES[n][0] for n in names])[0]
+        t = rng.choices(names, weights=weights or [STRONG_TYPES[n][0] for n in names])[0]
         _, c, r, s_, p, ch, budget = STRONG_TYPES[t]
         j = lambda v: max(0, min(10, v + rng.randint(-2, 2)))
         traits = dict(cur=j(c), risk=j(r), soc=j(s_), pat=j(p), chat=j(ch))
@@ -101,7 +107,7 @@ def make_bot(i, rng, personalities, scenario="fresh", strong=False):
     return dict(id=i, type=t, tr=traits, level=level, xp=0.0, zone="Jordheim", region=100,
                 state="offline", until=(rng.randint(0, 60) if online else rng.randint(60, 240)), camp=None, group=None,
                 session_end=None, con_min=collections.Counter(),
-                inv=0.0, mats=0, train=0, can_craft=rng.random() < 0.5,
+                inv=0.0, mats=0, train=0, can_craft=False,   # no live caller for the Craft rule: today's bots never craft
                 deaths_at={}, visited={}, deaths=0, chats=0, kind="SoloPve",
                 rvr_min=0, grouped_min=0, town_min=0, active_min=0, budget=budget,
                 hunt_min=0, craft_min=0, social_min=0, explore_min=0, act=None)
@@ -157,17 +163,30 @@ def tenure(bot, rng, P):
     m = rng.randint(45, 120)
     return int(m * (0.6 + bot["tr"]["pat"] / 12.5)) if P else m
 
-def downtime_chance(bot, P):
-    if not P: return 0.035
-    return {"Casual": 0.20, "Socialite": 0.15, "Explorer": 0.06, "Leveler": 0.02, "Daredevil": 0.035, "Crafter": 0.035}[bot["type"]]
+def downtime_chance(bot, P, strong=False):
+    # LIVE rule (AutonomousTownDowntime): 15% chance of a 15-30 minute town break at each solo task boundary.
+    if not P: return 0.15
+    if strong: return 0.10   # time budgets already carry the personality's town time
+    return 0.15 * {"Casual": 2.0, "Socialite": 1.7, "Explorer": 0.6, "Leveler": 0.3, "Daredevil": 1.0}[bot["type"]]
 
 # ---------------- simulation ----------------
-def run(seed, P, scenario="fresh", strong=False):
+def run(seed, P, scenario="fresh", strong=False, econ=None, opts=None):
+    """econ: None (no gear model), "loot" (gear from drops and vendors only) or "craft" (crafting economy)."""
     rng = random.Random(seed)
+    opts = opts or {}
     camps = load_camps()
     zones = sorted({c["zone"] for c in camps})
     camps_by_band = {L: [c for c in camps if c["level"] - L <= 4 and c["level"] - L > -(4 + L // 10)] for L in range(1, 51)}
-    bots = [make_bot(i, rng, P, scenario, strong) for i in range(N_BOTS)]
+    weights = None
+    if strong and "crafter_share" in opts:
+        names = list(STRONG_TYPES); cs = opts["crafter_share"]; others = sum(STRONG_TYPES[n][0] for n in names if n != "Crafter")
+        weights = [cs if n == "Crafter" else STRONG_TYPES[n][0] * (100 - cs) / others for n in names]
+    bots = [make_bot(i, rng, P, scenario, strong, weights) for i in range(N_BOTS)]
+    E = None
+    if econ:
+        E = lw_economy.Econ(random.Random(seed * 7919 + 1), econ == "craft", opts)
+        E.by_id = {b["id"]: b for b in bots}
+        for b in bots: E.init_bot(b, scenario == "established")
     zone_info = {}
     for c in camps:
         z = zone_info.setdefault(c["zone"], dict(region=c["region"], levels=[], dungeon=c["dungeon"]))
@@ -222,11 +241,13 @@ def run(seed, P, scenario="fresh", strong=False):
                 eff = min(1.0, CAPACITY_UNITS / max(1, units))
                 gsize = gsizes[b["group"]] if b["group"] else 1
                 rate = XP_RATE.get(c, 0.3) * eff * (1.15 if gsize >= 2 else 1.0)
+                if E: rate *= 0.85 + 0.3 * b["fit"]; E.hunt_minute(b, camp["level"], eff)   # ASSUMPTION: gear helps
                 b["xp"] += rate / 60 / hours_to_level(b["level"])
                 b["inv"] += 22 / 60; b["mats"] += 1 / 60
                 if b["group"]: b["grouped_min"] += 1
                 b["con_min"][c] += 1; b["hunt_min"] += 1
                 pdeath = DEATH_PER_HOUR.get(c, 0.6) / 60 * (0.4 if gsize >= 2 else 1.0)
+                if E: pdeath *= 1.4 - 0.8 * b["fit"]
                 if rng.random() < pdeath:
                     b["deaths"] += 1; b["deaths_at"][camp["id"]] = b["deaths_at"].get(camp["id"], 0) + 1
                     b["until"] += 8
@@ -234,6 +255,7 @@ def run(seed, P, scenario="fresh", strong=False):
                 elif not P and rng.random() < 0.5 / 60: b["chats"] += 1
                 while b["xp"] >= 1 and b["level"] < 50:
                     b["xp"] -= 1; b["level"] += 1; b["train"] += 1
+                    if E: b["fit"] = E.fit(b)
                 if t >= b["until"] or b["inv"] >= 100:
                     if b["group"] is None or t >= b["until"]:
                         occupancy[camp["id"]] -= (1 if b["group"] is None or b["id"] == b["group"][1] else 0)
@@ -247,6 +269,7 @@ def run(seed, P, scenario="fresh", strong=False):
                 if P and rng.random() < b["tr"]["chat"] * 0.15 / 60: b["chats"] += 1
                 while b["xp"] >= 1 and b["level"] < 50:
                     b["xp"] -= 1; b["level"] += 1; b["train"] += 1
+                    if E: b["fit"] = E.fit(b)
                 if t >= b["until"]: b["state"] = "decide"
             elif b["state"] in ("town", "rvr"):
                 if b["state"] == "town":
@@ -255,31 +278,37 @@ def run(seed, P, scenario="fresh", strong=False):
                     elif b["act"] == "social": b["social_min"] += 1
                 else: b["rvr_min"] += 1
                 if P and b["state"] == "town" and rng.random() < b["tr"]["chat"] * 0.15 / 60: b["chats"] += 1
-                if t >= b["until"]: b["state"] = "decide"
+                if t >= b["until"]:
+                    if E and b["state"] == "town": E.town_visit(b, t, b["type"] == "Crafter")
+                    b["state"] = "decide"
             if b["state"] == "decide" and b["session_end"] is not None and t >= b["session_end"]:
                 b.update(state="offline", until=t + rng.randint(60, 240), session_end=None); continue
             if b["state"] == "decide":
                 # services first (mirrors AutonomousBotDecisionEngine.Choose order)
                 if b["inv"] >= 88:
                     b.update(state="town", until=t + 6 + 8, inv=0, zone="Jordheim", region=100); continue
-                if b["train"] > 0 and rng.random() < 0.28:
+                if b["train"] > 0 and rng.random() < 0.90:   # live: RollBetweenTaskPlan trains 90% of boundaries
                     b.update(state="town", until=t + 6 + 5, train=0, zone="Jordheim", region=100); continue
                 cc = 0.40 if (P and b["type"] == "Casual") else 0.16
                 if b["can_craft"] and b["mats"] >= 3 and rng.random() < cc:
                     b.update(state="town", until=t + 6 + 15, mats=0, zone="Jordheim", region=100); continue
                 in_town = b["zone"] == "Jordheim"
-                if in_town and rng.random() < downtime_chance(b, P):
-                    b.update(state="town", until=t + rng.randint(15, 30)); continue
+                if rng.random() < downtime_chance(b, P, strong):   # live: any solo task boundary
+                    b.update(state="town", until=t + (0 if in_town else 6) + rng.randint(15, 30), zone="Jordheim", region=100); continue
                 if P and not in_town and b["type"] in ("Casual", "Socialite") and rng.random() < 0.12:
                     b.update(state="town", until=t + 6 + rng.randint(15, 30), zone="Jordheim", region=100); continue
                 b["act"] = None
+                if E and b["level"] >= 8 and E.rng.random() < 0.12 and E.needy_slots(b):   # ASSUMPTION: shop at natural breaks
+                    b.update(state="town", until=t + 6 + 6, zone="Jordheim", region=100); continue
                 if strong:
                     w = [share / ACT_MINUTES[a] for share, a in zip(b["budget"], ("hunt", "craft", "social", "explore"))]
                     act = rng.choices(("hunt", "craft", "social", "explore"), weights=w)[0]
                     if act in ("craft", "social"):
                         dur = rng.randint(30, 90) if act == "craft" else rng.randint(20, 60)
                         b.update(state="town", act=act, until=t + (0 if b["zone"] == "Jordheim" else 6) + dur,
-                                 zone="Jordheim", region=100, mats=0 if act == "craft" else b["mats"]); continue
+                                 zone="Jordheim", region=100, mats=0 if act == "craft" else b["mats"])
+                        if E and act == "craft": E.craft_session(b, dur, t)
+                        continue
                     if act == "explore":
                         L = b["level"]
                         options = [z for z, zi in zone_info.items() if zi["min"] <= L + 6]
@@ -308,6 +337,19 @@ def run(seed, P, scenario="fresh", strong=False):
             if cands_alt:
                 b = rng.choice(cands_alt)
                 b.update(level=1, xp=0.0, deaths_at={}, visited={}, train=0, inv=0.0)
+                if E: E.reset_alt(b)
+        if E and t % 30 == 0: E.expire(t)
+        if E and (t // 60 + 1) % 10 == 0 and t % 60 == 59:
+            lv = sorted(b["level"] for b in bots)
+            cr = [b for b in bots if b["type"] == "Crafter"]
+            E.snap.append(dict(hour=t // 60 + 1, sets=E.sets(bots), p90_level=lv[int(.9 * (len(lv) - 1))],
+                               median_level=lv[len(lv) // 2],
+                               crafter_skill_mean=round(statistics.mean(b["skill"] for b in cr), 1) if cr else 0,
+                               crafter_skill_max=round(max((b["skill"] for b in cr), default=0), 1),
+                               crafter_level_mean=round(statistics.mean(b["level"] for b in cr), 1) if cr else 0,
+                               open_orders=len(E.orders), listings=len(E.listings),
+                               median_open_order_level=(sorted(o["level"] for o in E.orders)[len(E.orders) // 2] if E.orders else 0),
+                               mat_stock=[round(x) for x in E.mat_stock]))
         if t % 60 == 59:
             hunters = [b for b in bots if b["state"] == "hunt"]
             zc = collections.Counter(b["zone"] for b in hunters)
@@ -341,7 +383,29 @@ def run(seed, P, scenario="fresh", strong=False):
     q = lambda p: lv[int(p * (len(lv) - 1))]
     levels = dict(p10=q(.1), p50=q(.5), p90=q(.9), std=round(statistics.pstdev(lv), 1),
                   bands={f"{a}-{a+9}": sum(1 for x in lv if a <= x <= a + 9) for a in (1, 11, 21, 31, 41)})
-    return dict(hourly=hourly, types=types, levels=levels, zones_total=len(zones))
+    result = dict(hourly=hourly, types=types, levels=levels, zones_total=len(zones))
+    if E:
+        cr = [b for b in bots if b["type"] == "Crafter"]
+        others = [b for b in bots if b["type"] != "Crafter"]
+        st = E.stats
+        result["econ"] = dict(
+            snaps=E.snap, stats=dict(st),
+            band_orders=dict(E.band_orders), band_filled=dict(E.band_filled),
+            fill_wait_median_min=(statistics.median(E.fill_wait) if E.fill_wait else None),
+            n_crafters=len(cr),
+            crafts_per_crafter=round(statistics.mean(b["crafts"] for b in cr), 1) if cr else 0,
+            crafts_orders_per_crafter=round(statistics.mean(b["crafts_orders"] for b in cr), 1) if cr else 0,
+            crafts_stock_per_crafter=round(statistics.mean(b["crafts_stock"] for b in cr), 1) if cr else 0,
+            craft_idle_share=round(statistics.mean(b["craft_idle_min"] for b in cr) / max(1, statistics.mean(b["craft_min"] for b in cr) or 1), 2) if cr else 0,
+            crafter_gold=round(statistics.mean(b["gold"] for b in cr)) if cr else 0,
+            crafter_sales=round(statistics.mean(b["sales"] for b in cr)) if cr else 0,
+            other_gold=round(statistics.mean(b["gold"] for b in others)),
+            crafter_level=round(statistics.mean(b["level"] for b in cr), 1) if cr else 0,
+            other_level=round(statistics.mean(b["level"] for b in others), 1),
+            crafter_skill=round(statistics.mean(b["skill"] for b in cr), 1) if cr else 0,
+            crafted_bought_share=round(st["purchases_crafted"] / max(1, st["purchases"]), 3),
+            final_sets=E.sets(bots), final_open_orders=len(E.orders))
+    return result
 
 if __name__ == "__main__":
     out = {}

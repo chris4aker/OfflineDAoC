@@ -1,0 +1,130 @@
+
+=== fresh/baseline (5 seeds) ===
+  hours 17-20 online    : 300  range (300, 300)
+  hours 17-20 zones     : 11.15  range (10.5, 11.5)
+  hours 17-20 present_zones: 11.15  range (10.5, 11.5)
+  hours 17-20 evenness  : 0.517  range (0.474, 0.54)
+  hours 17-20 crowded   : 0.349  range (0.307, 0.411)
+  hours 17-20 town      : 0.142  range (0.132, 0.153)
+  hours 17-20 exploring : 0.0  range (0.0, 0.0)
+  hours 17-20 grouped   : 0.532  range (0.51, 0.556)
+  hours 17-20 mean_level: 24.604  range (24.483, 24.735)
+  hours 17-20 bots hunting within 3 levels of a level-5 player: 0
+  hours 17-20 bots hunting within 3 levels of a level-15 player: 0
+  hours 17-20 bots hunting within 3 levels of a level-25 player: 205.7
+  hours 17-20 bots hunting within 3 levels of a level-35 player: 0
+  hours 17-20 bots hunting within 3 levels of a level-45 player: 0
+  levels p10/p50/p90/std: [23.6, 25, 27, 1.24]
+  level bands: {'1-10': 0, '11-20': 0, '21-30': 300, '31-40': 0, '41-50': 0}
+  Baseline   {'level': 25.22, 'zones_seen': 6.46, 'deaths_per_h': 0.098, 'town_share': 0.144, 'grouped_share': 0.348, 'chats_per_h': 0.376, 'hunt_share': 0.752, 'craft_share': 0.0, 'social_share': 0.0, 'explore_share': 0.0, 'hard_share': 0.123}
+
+=== fresh/mild (5 seeds) ===
+  hours 17-20 online    : 300  range (300, 300)
+  hours 17-20 zones     : 11.9  range (10.25, 13.25)
+  hours 17-20 present_zones: 11.9  range (10.25, 13.25)
+  hours 17-20 evenness  : 0.619  range (0.591, 0.647)
+  hours 17-20 crowded   : 0.279  range (0.242, 0.303)
+  hours 17-20 town      : 0.161  range (0.133, 0.175)
+  hours 17-20 exploring : 0.0  range (0.0, 0.0)
+  hours 17-20 grouped   : 0.537  range (0.518, 0.551)
+  hours 17-20 mean_level: 25.222  range (25.1, 25.402)
+  hours 17-20 bots hunting within 3 levels of a level-5 player: 0
+  hours 17-20 bots hunting within 3 levels of a level-15 player: 0
+  hours 17-20 bots hunting within 3 levels of a level-25 player: 204.25
+  hours 17-20 bots hunting within 3 levels of a level-35 player: 0
+  hours 17-20 bots hunting within 3 levels of a level-45 player: 0
+  levels p10/p50/p90/std: [24, 26, 27.6, 1.34]
+  level bands: {'1-10': 0, '11-20': 0.2, '21-30': 299.8, '31-40': 0, '41-50': 0}
+  Leveler    {'level': 25.8, 'zones_seen': 7.06, 'deaths_per_h': 0.108, 'town_share': 0.114, 'grouped_share': 0.331, 'chats_per_h': 0.434, 'hunt_share': 0.785, 'craft_share': 0.0, 'social_share': 0.0, 'explore_share': 0.0, 'hard_share': 0.126}
+  Socialite  {'level': 25.66, 'zones_seen': 7.4, 'deaths_per_h': 0.09, 'town_share': 0.179, 'grouped_share': 0.383, 'chats_per_h': 1.206, 'hunt_share': 0.729, 'craft_share': 0.0, 'social_share': 0.0, 'explore_share': 0.0, 'hard_share': 0.142}
+  Casual     {'level': 25.54, 'zones_seen': 7.68, 'deaths_per_h': 0.08, 'town_share': 0.208, 'grouped_share': 0.359, 'chats_per_h': 0.946, 'hunt_share': 0.698, 'craft_share': 0.0, 'social_share': 0.0, 'explore_share': 0.0, 'hard_share': 0.165}
+  Daredevil  {'level': 26.7, 'zones_seen': 8.04, 'deaths_per_h': 0.094, 'town_share': 0.145, 'grouped_share': 0.363, 'chats_per_h': 0.934, 'hunt_share': 0.752, 'craft_share': 0.0, 'social_share': 0.0, 'explore_share': 0.0, 'hard_share': 0.193}
+  Explorer   {'level': 26.16, 'zones_seen': 8.44, 'deaths_per_h': 0.086, 'town_share': 0.135, 'grouped_share': 0.357, 'chats_per_h': 0.844, 'hunt_share': 0.754, 'craft_share': 0.0, 'social_share': 0.0, 'explore_share': 0.0, 'hard_share': 0.162}
+
+=== fresh/strong (5 seeds) ===
+  hours 17-20 online    : 300  range (300, 300)
+  hours 17-20 zones     : 13.35  range (13, 13.75)
+  hours 17-20 present_zones: 19.3  range (18.75, 20)
+  hours 17-20 evenness  : 0.687  range (0.674, 0.694)
+  hours 17-20 crowded   : 0.128  range (0.08, 0.16)
+  hours 17-20 town      : 0.286  range (0.261, 0.318)
+  hours 17-20 exploring : 0.12  range (0.104, 0.138)
+  hours 17-20 grouped   : 0.515  range (0.48, 0.542)
+  hours 17-20 mean_level: 22.744  range (22.54, 22.958)
+  hours 17-20 bots hunting within 3 levels of a level-5 player: 0.25
+  hours 17-20 bots hunting within 3 levels of a level-15 player: 9.5
+  hours 17-20 bots hunting within 3 levels of a level-25 player: 117.8
+  hours 17-20 bots hunting within 3 levels of a level-35 player: 0
+  hours 17-20 bots hunting within 3 levels of a level-45 player: 0
+  levels p10/p50/p90/std: [18.8, 24, 27, 3.42]
+  level bands: {'1-10': 2.4, '11-20': 46.2, '21-30': 251.4, '31-40': 0, '41-50': 0}
+  Leveler    {'level': 25.42, 'zones_seen': 6.92, 'deaths_per_h': 0.108, 'town_share': 0.174, 'grouped_share': 0.296, 'chats_per_h': 0.434, 'hunt_share': 0.693, 'craft_share': 0.031, 'social_share': 0.028, 'explore_share': 0.041, 'hard_share': 0.109}
+  Explorer   {'level': 22.44, 'zones_seen': 10.14, 'deaths_per_h': 0.116, 'town_share': 0.185, 'grouped_share': 0.144, 'chats_per_h': 0.882, 'hunt_share': 0.358, 'craft_share': 0.012, 'social_share': 0.064, 'explore_share': 0.407, 'hard_share': 0.137}
+  Socialite  {'level': 21.84, 'zones_seen': 6.78, 'deaths_per_h': 0.092, 'town_share': 0.392, 'grouped_share': 0.213, 'chats_per_h': 1.232, 'hunt_share': 0.416, 'craft_share': 0.042, 'social_share': 0.254, 'explore_share': 0.146, 'hard_share': 0.113}
+  Daredevil  {'level': 26.04, 'zones_seen': 7.8, 'deaths_per_h': 0.086, 'town_share': 0.197, 'grouped_share': 0.308, 'chats_per_h': 0.94, 'hunt_share': 0.657, 'craft_share': 0.017, 'social_share': 0.062, 'explore_share': 0.045, 'hard_share': 0.177}
+  Crafter    {'level': 18.62, 'zones_seen': 4.1, 'deaths_per_h': 0.07, 'town_share': 0.593, 'grouped_share': 0.122, 'chats_per_h': 0.592, 'hunt_share': 0.335, 'craft_share': 0.464, 'social_share': 0.068, 'explore_share': 0.031, 'hard_share': 0.081}
+
+=== established/baseline (5 seeds) ===
+  hours 17-20 online    : 196.65  range (194.25, 198.25)
+  hours 17-20 zones     : 20.0  range (19, 21)
+  hours 17-20 present_zones: 20.0  range (19, 21)
+  hours 17-20 evenness  : 0.762  range (0.734, 0.791)
+  hours 17-20 crowded   : 0.091  range (0.072, 0.139)
+  hours 17-20 town      : 0.09  range (0.08, 0.099)
+  hours 17-20 exploring : 0.0  range (0.0, 0.0)
+  hours 17-20 grouped   : 0.441  range (0.404, 0.489)
+  hours 17-20 mean_level: 25.248  range (24.777, 25.685)
+  hours 17-20 bots hunting within 3 levels of a level-5 player: 6.35
+  hours 17-20 bots hunting within 3 levels of a level-15 player: 16.3
+  hours 17-20 bots hunting within 3 levels of a level-25 player: 61.3
+  hours 17-20 bots hunting within 3 levels of a level-35 player: 9.6
+  hours 17-20 bots hunting within 3 levels of a level-45 player: 7.9
+  levels p10/p50/p90/std: [14, 24.6, 38.6, 9.48]
+  level bands: {'1-10': 18.4, '11-20': 50.2, '21-30': 172.2, '31-40': 33.4, '41-50': 25.8}
+  Baseline   {'level': 25.2, 'zones_seen': 3.78, 'deaths_per_h': 0.05, 'town_share': 0.075, 'grouped_share': 0.196, 'chats_per_h': 0.23, 'hunt_share': 0.457, 'craft_share': 0.0, 'social_share': 0.0, 'explore_share': 0.0, 'hard_share': 0.172}
+
+=== established/mild (5 seeds) ===
+  hours 17-20 online    : 193.65  range (191.75, 196.5)
+  hours 17-20 zones     : 19.8  range (19, 20.5)
+  hours 17-20 present_zones: 19.8  range (19, 20.5)
+  hours 17-20 evenness  : 0.797  range (0.755, 0.812)
+  hours 17-20 crowded   : 0.04  range (0.01, 0.058)
+  hours 17-20 town      : 0.092  range (0.087, 0.098)
+  hours 17-20 exploring : 0.0  range (0.0, 0.0)
+  hours 17-20 grouped   : 0.46  range (0.42, 0.506)
+  hours 17-20 mean_level: 25.84  range (25.459, 26.231)
+  hours 17-20 bots hunting within 3 levels of a level-5 player: 5.6
+  hours 17-20 bots hunting within 3 levels of a level-15 player: 17.2
+  hours 17-20 bots hunting within 3 levels of a level-25 player: 58.4
+  hours 17-20 bots hunting within 3 levels of a level-35 player: 13.85
+  hours 17-20 bots hunting within 3 levels of a level-45 player: 7.5
+  levels p10/p50/p90/std: [14, 25, 39.8, 9.7]
+  level bands: {'1-10': 17.4, '11-20': 48, '21-30': 165.6, '31-40': 40.8, '41-50': 28.2}
+  Leveler    {'level': 26.16, 'zones_seen': 3.84, 'deaths_per_h': 0.058, 'town_share': 0.053, 'grouped_share': 0.181, 'chats_per_h': 0.242, 'hunt_share': 0.478, 'craft_share': 0.0, 'social_share': 0.0, 'explore_share': 0.0, 'hard_share': 0.18}
+  Casual     {'level': 24.64, 'zones_seen': 4.18, 'deaths_per_h': 0.04, 'town_share': 0.12, 'grouped_share': 0.189, 'chats_per_h': 0.546, 'hunt_share': 0.406, 'craft_share': 0.0, 'social_share': 0.0, 'explore_share': 0.0, 'hard_share': 0.178}
+  Daredevil  {'level': 25.92, 'zones_seen': 4.42, 'deaths_per_h': 0.052, 'town_share': 0.071, 'grouped_share': 0.206, 'chats_per_h': 0.536, 'hunt_share': 0.454, 'craft_share': 0.0, 'social_share': 0.0, 'explore_share': 0.0, 'hard_share': 0.282}
+  Socialite  {'level': 26.74, 'zones_seen': 4.14, 'deaths_per_h': 0.046, 'town_share': 0.103, 'grouped_share': 0.208, 'chats_per_h': 0.702, 'hunt_share': 0.428, 'craft_share': 0.0, 'social_share': 0.0, 'explore_share': 0.0, 'hard_share': 0.204}
+  Explorer   {'level': 25.5, 'zones_seen': 4.64, 'deaths_per_h': 0.048, 'town_share': 0.065, 'grouped_share': 0.195, 'chats_per_h': 0.48, 'hunt_share': 0.459, 'craft_share': 0.0, 'social_share': 0.0, 'explore_share': 0.0, 'hard_share': 0.227}
+
+=== established/strong (5 seeds) ===
+  hours 17-20 online    : 190.25  range (185.25, 196.25)
+  hours 17-20 zones     : 17.6  range (16.75, 18)
+  hours 17-20 present_zones: 20.0  range (18.75, 20.75)
+  hours 17-20 evenness  : 0.789  range (0.767, 0.802)
+  hours 17-20 crowded   : 0.013  range (0.006, 0.018)
+  hours 17-20 town      : 0.185  range (0.168, 0.204)
+  hours 17-20 exploring : 0.076  range (0.064, 0.081)
+  hours 17-20 grouped   : 0.372  range (0.318, 0.452)
+  hours 17-20 mean_level: 23.559  range (23.352, 23.8)
+  hours 17-20 bots hunting within 3 levels of a level-5 player: 5.55
+  hours 17-20 bots hunting within 3 levels of a level-15 player: 16.2
+  hours 17-20 bots hunting within 3 levels of a level-25 player: 33.15
+  hours 17-20 bots hunting within 3 levels of a level-35 player: 7.2
+  hours 17-20 bots hunting within 3 levels of a level-45 player: 3.9
+  levels p10/p50/p90/std: [10, 23.2, 38, 10.42]
+  level bands: {'1-10': 33.2, '11-20': 73.8, '21-30': 134.2, '31-40': 37.4, '41-50': 21.4}
+  Leveler    {'level': 25.0, 'zones_seen': 3.76, 'deaths_per_h': 0.052, 'town_share': 0.097, 'grouped_share': 0.133, 'chats_per_h': 0.242, 'hunt_share': 0.415, 'craft_share': 0.019, 'social_share': 0.021, 'explore_share': 0.025, 'hard_share': 0.165}
+  Socialite  {'level': 22.14, 'zones_seen': 3.62, 'deaths_per_h': 0.036, 'town_share': 0.252, 'grouped_share': 0.098, 'chats_per_h': 0.72, 'hunt_share': 0.221, 'craft_share': 0.03, 'social_share': 0.177, 'explore_share': 0.09, 'hard_share': 0.161}
+  Daredevil  {'level': 24.04, 'zones_seen': 4.08, 'deaths_per_h': 0.05, 'town_share': 0.117, 'grouped_share': 0.145, 'chats_per_h': 0.546, 'hunt_share': 0.38, 'craft_share': 0.011, 'social_share': 0.048, 'explore_share': 0.036, 'hard_share': 0.257}
+  Explorer   {'level': 22.78, 'zones_seen': 6.06, 'deaths_per_h': 0.058, 'town_share': 0.111, 'grouped_share': 0.062, 'chats_per_h': 0.5, 'hunt_share': 0.188, 'craft_share': 0.01, 'social_share': 0.052, 'explore_share': 0.282, 'hard_share': 0.199}
+  Crafter    {'level': 21.36, 'zones_seen': 2.0, 'deaths_per_h': 0.032, 'town_share': 0.392, 'grouped_share': 0.059, 'chats_per_h': 0.376, 'hunt_share': 0.173, 'craft_share': 0.329, 'social_share': 0.04, 'explore_share': 0.017, 'hard_share': 0.117}

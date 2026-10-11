@@ -247,15 +247,22 @@ directions, not the exact numbers.**
 
 | At hours 17–20 | Today | Mild personalities | **Strong (time budgets)** |
 |---|---|---|---|
-| Fresh: level spread (std. dev.) | 1.3 | 1.3 | **3.6** |
+| Fresh: level spread (std. dev.) | 1.2 | 1.3 | **3.4** |
 | Fresh: bots in level 11–20 | 0 | 0 | **46** |
-| Fresh: zones with someone hunting or exploring | 11 | 11 | **19** |
-| Fresh: bots at overcrowded camps | 40% | 30% | **16%** |
-| Fresh: share of bots in town / exploring | 8% / 0% | 10% / 0% | **26% / 12%** |
-| Established: bots in level 1–10 | 16 | 16 | **33** |
-| Established: zones with someone present | 19 | 20 | **21** |
-| Established: bots at overcrowded camps | 12% | 5% | **2.5%** |
-| Established: hunters near a level-45 player | 9 | 10 | **6** |
+| Fresh: zones with someone hunting or exploring | 11 | 12 | **19** |
+| Fresh: bots at overcrowded camps | 35% | 28% | **13%** |
+| Fresh: share of bots in town / exploring | 14% / 0% | 16% / 0% | **29% / 12%** |
+| Established: bots in level 1–10 | 18 | 17 | **33** |
+| Established: zones with someone present | 20 | 20 | **20** |
+| Established: bots at overcrowded camps | 9% | 4% | **1.3%** |
+| Established: hunters near a level-45 player | 8 | 8 | **4** |
+
+**Correction (2026-10-11).** The first version of this table used some rules from
+`AutonomousBotDecisionEngine.Choose` (trainer trips, crafting trips, a 3.5% town break). The
+live bots do not call that function. The table above uses the live between-task rules
+instead (`AutonomousObjectiveAssignments`: train 90%, unload when the bag is nearly full, and
+a 15% chance of a 15–30 minute town break at each solo task boundary). The directions did not
+change; the numbers moved a little. Camp selection, which is live, was modeled correctly.
 
 Takeaways:
 
@@ -273,6 +280,73 @@ Takeaways:
 4. **Today, one zone (Munin Sound) holds a quarter of all hunters** in the established
    scenario. The catalog lists its camps across levels 7–48, which may be real or a data
    quirk; it needs checking in game.
+
+## Trade study (2026-10-11): do crafters make sets for others?
+
+**Today: no.** Autonomous bots never craft. Nothing gives them crafting skills (only real players'
+progress writes `SerializedCraftingSkills`), the "Craft" rule in `Choose` has no live caller, and no
+code makes an item for a bot. Bots do buy and sell through the Realm Exchange, but only loot and
+vendor goods. So every number below is about a **proposed** crafting economy, in the model of
+`tools/living-world-sim/lw_economy.py`.
+
+40 hours, 300 bots, 5 seeds. All economy numbers (drop rates, prices, material needs, quality
+formula, how gear changes leveling) are labelled assumptions. Compare rows; do not trust absolutes.
+"Full set" = all 7 slots filled with items within 5 levels of the bot. "Perfect" = full set, every
+piece quality 96 or better.
+
+| Fresh world, level 10+ bots at hour 40 | Full set | Crafted share of worn gear | Crafts per crafter | Crafter skill vs bots |
+|---|---|---|---|---|
+| A: today's rules, gear from loot only | 60% | 0% | n/a | n/a |
+| B: strong personalities, crafting does not exist | 62% | 0% | 0 | crafters idle: level 24 vs 30 |
+| **C: strong personalities + crafting economy** | **81%** | **16%** | **53** | skill 23, p90 bot level 33 |
+| F: B with scarce loot (40%) | 6% | 0% | 0 | n/a |
+| **D: C with scarce loot (40%)** | **26%** | **29%** | **51** | skill 22, p90 bot level 33 |
+| H: C with 8% crafters | 68% | 8% | 55 | skill 24 |
+| G: C with 25% crafters | 88% | 21% | 47 | skill 20 |
+| I: C with scarce materials (30%) | 63% | 3% | 16 | skill 7 |
+| Established world, scarce loot, no crafting | 2% | 0% | 0 | n/a |
+| **Established world, scarce loot, crafting** | **29%** | **42%** | **32** | skill 19, tracks their level |
+
+Takeaways:
+
+1. **Crafters do help others, and more so when loot is scarce.** With 40% loot, crafting lifts full
+   sets from 6% to 26% (fresh) and from 2% to 29% (established). With plentiful loot, crafters
+   add 18 points of full sets (62% to 81%) but supply only 16% of what is worn.
+2. **"Amazing perfect sets" do not appear in the first 40 hours.** Perfect sets: 0% in every
+   case, and fewer than 1 fully crafted set per 300 bots (3 to 6 in the scarce-loot cases).
+   Reason: quality depends on crafter skill versus item level, and crafters lag the bots who need
+   gear. At hour 40 the best crafter has skill 34 and the average 23, while bots are level 30 to 33.
+   Easy high-quality crafting (+6) did not change this. Crafters would need to be ahead of demand,
+   not behind it.
+3. **Crafters pay for their time in levels.** They finish about 6 levels behind others (24 vs 30),
+   because 55% of their time is crafting. In return they earn more gold than a crafter with
+   nothing to craft (1,170 vs 420), but less than hunters unless loot is scarce (established world:
+   crafters are the richest group).
+4. **Materials are a hard dependency.** At 30% material supply, crafting nearly stops (16 crafts
+   per crafter, skill 7). Hunters must sell materials to the Exchange, or crafters must hunt for
+   them. At the normal rate, stock piled up unused (about 20,000 units).
+5. **Demand outruns supply when crafters are few or skill lags.** With scarce loot, 60% of orders
+   went unfilled at 15% crafters. At 25% crafters, only 7% went unfilled in the plentiful-loot
+   case. Median wait for an order was about 5 hours, and a quarter to a third of crafted pieces
+   were never bought because the buyer had moved on or found gear elsewhere.
+6. **Crafting barely changes leveling speed in this model** (about 0.1 level over 40 hours). Gear
+   effects on XP and deaths are guesses. The payoff of a trade economy here is identity, economy
+   and reasons to interact, not speed.
+
+Design implications for a future milestone (not approved yet):
+- Start crafters with skill matched to demand, or give them a faster early skill curve, so
+  perfect gear exists for the levels bots are actually at.
+- Make material flow explicit: hunters sell materials at natural task breaks; crafters hunt a
+  little for rare ones.
+- Let orders carry a deadline and let crafters pick them by profit, with a visible Exchange
+  board, so waiting is not 5 hours.
+- Keep the owner's rules: real loot, real items, the Realm Exchange, selling only at natural
+  breaks, and gamebots earning their armor.
+
+Not modeled: which gear is actually best for a class, group buffs and dyes, price changes from
+supply and demand, crafters trading with each other, and how often live bots reach the
+Exchange. How often bots shop depends on live between-task visits, which this model only
+approximates.
 
 ## Open questions
 

@@ -47,10 +47,14 @@ python3 tools/living-world-sim/living_world_sim.py "" 1,2,3 out.json
 |---|---|
 | Goal mix 60/40/0 (levels 1–19), 40/40/20 (20–49), 20/40/40 (50) solo/group/RvR | `BotGoalSettings.Defaults` |
 | PvE tenure 45–120 min; group matchmaking timeout 20 min | `AutonomousObjectiveAssignments` |
-| Trainer 0.28, craft 0.16, safe-town downtime 0.035; services first | `AutonomousBotDecisionEngine.Choose` |
-| Safer (green) camps after 2 deaths at a camp | same |
-| Dungeon preference 100 / 300 / 400 permille (solo / group / group at 50) | same |
-| Outdoor camps weighted by live spawns (sightings used as the proxy) | `SelectWithinEnvironment` |
+| Train at 90% of task boundaries when points are unspent; unload when the bag is nearly full; 15% chance of a 15–30 min town break at each solo task boundary | `AutonomousObjectiveAssignments`, `AutonomousTownDowntime` |
+| Safer (green) camps after 2 deaths at a camp | `SelectSafestAvailableAfterDeath` (live) |
+| Dungeon preference 100 / 300 / 400 permille (solo / group / group at 50) | `SelectPveEnvironment` (live) |
+| Outdoor camps weighted by live spawns (sightings used as the proxy) | `SelectWithinEnvironment` (live) |
+
+**Not live, so not used:** the trainer 0.28 / craft 0.16 / downtime 0.035 rules in `AutonomousBotDecisionEngine.Choose`.
+Only tests call that function, and nothing runs its "Craft" result. Today's autonomous bots never craft.
+An earlier version of this simulator used those numbers; it was corrected on 2026-10-11.
 
 ### Assumptions (change these to test sensitivity)
 
@@ -90,6 +94,29 @@ python3 tools/living-world-sim/living_world_sim.py "" 1,2,3 out.json
 | near a level-X player | Bots hunting within 3 levels of X: who a player at that level would see |
 | per type | Average level, zones seen, deaths per hour, time shares, share of time on orange/red monsters |
 
-## Results recorded so far (2026-10-11, 5 seeds)
+## Crafting and trade study (40 hours)
 
-See the "Simulation findings" section of the roadmap.
+A separate layer, `lw_economy.py`, models a **proposed** crafting economy: loot, materials, crafting
+skill, orders, Exchange listings, gear quality and how gear changes leveling. It does not describe
+today's game. See the "Trade study" section of the roadmap.
+
+```bash
+python3 tools/living-world-sim/trade_study.py 1,2,3,4,5 out.json     # 11 cases, about 5 minutes
+TRADE_ONLY=C,D python3 tools/living-world-sim/trade_study.py 1,2,3 out.json   # chosen cases only
+python3 tools/living-world-sim/summarize_trade.py out.json            # summary table
+```
+
+Cases: A today's rules + loot only; B personalities without crafting; C personalities + crafting;
+D to I sensitivity (scarce loot, easy quality, 25% / 8% crafters, scarce materials);
+J and K an established world. Saved results are in `results/`.
+
+Assumptions in `lw_economy.py` are labelled `ASSUMPTION`: prices, drop rates, material needs,
+the quality formula, and the effect of gear on XP and deaths. The gear effect on leveling is a
+guess. Change them to test sensitivity.
+
+## Results recorded so far
+
+- `results/v2_20h_results.json`: the 20-hour personality study, corrected to the live rules.
+- `results/trade_40h_results.json`: the 40-hour trade study (5 seeds).
+
+Summaries are in the roadmap ("Simulation findings" and "Trade study").
