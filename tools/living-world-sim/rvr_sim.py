@@ -54,6 +54,10 @@ STEALTH_CAUGHT_PER_MIN = 0.002   # chance per minute an enemy roaming group catc
 WARNED_EVADE = 0.6           # PvE bots warned of a group in their zone escape this often (stealthers give no warning)
 RELIC_BONUS = 0.05           # power per relic held beyond your own two (classic relics gave +10% damage per type)
 RUN_BACK_MIN = 15            # after a death: release, respawn and travel back
+# ---- fixes under test (2026-10-11), each behind an option ----
+GUARD_FACTOR = {"border": 1.0, "middle": 0.6, "inner": 0.25}   # guarded_frontier: guards and patrols cut enemy reach by depth
+GUARD_PATROL_PER_MIN = 0.01  # guarded_frontier: chance per minute an enemy group deep in the inner zone loses members to guards
+REWARD = {"border": 2.0, "middle": 1.5, "inner": 1.2}       # proposed frontier PvE reward vs a home zone, by depth
 
 
 class World:
@@ -83,7 +87,8 @@ class World:
                 level = 50 if self.rng.random() < 0.5 else self.rng.randint(20, 49)
                 self.agents.append(dict(realm=r, role=role, nolifer=nolifer, level=level, rp=0.0, kills=0, deaths=0,
                                         online=nolifer, until=0 if nolifer else self.rng.randint(0, 240),
-                                        state="idle", busy_until=0, group=None, zone=None, active_min=0, rp_log=[]))
+                                        state="idle", busy_until=0, group=None, zone=None, active_min=0, rp_log=[],
+                                        role_rp=collections.Counter(), role_min=collections.Counter()))
         # PvE bots farming their own frontier (proposed content): per realm, a share of the level 35+ PvE population
         self.pve = []
         share = opts.get("frontier_pve_share", 0.08)
@@ -101,6 +106,7 @@ class World:
         self.stats = collections.Counter()
         self.hourly = []
         self.df_owner = None
+        self.role_rates = {}
         self.df_minutes = collections.Counter()
 
     # ----- helpers -----
@@ -119,8 +125,12 @@ class World:
     def available(self, realm, roles):
         return [a for a in self.agents if a["realm"] == realm and a["online"] and a["state"] == "idle" and a["role"] in roles]
 
-    def kill(self, victims, killers):
-        """Victims die; killers share realm points like the server formula."""
+    def add_rp(self, a, amount):
+        a["rp"] += amount
+        a["role_rp"][a["role"]] += amount
+
+    def kill(self, victims, killers, mult=1.0):
+        """Victims die; killers share realm points like the server formula (mult: small-group bonus under test)."""
         if not victims:
             return
         n = max(1, len(killers))
@@ -134,9 +144,16 @@ class World:
             val = rp_value(v["level"], realm_level(v["rp"]))
             for k in killers:
                 share = min(val / n, 2 * rp_value(k["level"], realm_level(k["rp"])))
-                k["rp"] += share * (1 + 0.125 * (n - 1))
+                self.add_rp(k, share * (1 + 0.125 * (n - 1)) * mult)
                 k["kills"] += 1 / n
             self.stats["rvr_deaths"] += 1
+
+    def small_bonus(self, killers, victims_side):
+        """Option smallgroup_rp: open-field kills by groups of 8 or fewer pay 1.5x, and outnumbered kills pay up to 2x more."""
+        if not self.o.get("smallgroup_rp") or not killers:
+            return 1.0
+        mult = 1.5 if len(killers) <= 8 else 1.0
+        return mult * min(2.0, max(1.0, len(victims_side) / len(killers)))
 
     def leave_group(self, a):
         g = a.get("group")
@@ -156,8 +173,8 @@ class World:
         win, lose, sw, sl = (A, B, sa, sb) if rng.random() < p else (B, A, sb, sa)
         lose_dead = [x for x in lose if rng.random() < rng.uniform(0.7, 1.0)]
         win_dead = [x for x in win if rng.random() < min(0.9, rng.uniform(0.1, 0.4) * sl / sw)]
-        self.kill(lose_dead, [x for x in win if x not in win_dead])
-        self.kill(win_dead, [x for x in lose if x not in lose_dead])
+        self.kill(lose_dead, [x for x in win if x not in win_dead], self.small_bonus(win, lose))
+        self.kill(win_dead, [x for x in lose if x not in lose_dead], self.small_bonus(lose, win))
         self.stats["fights"] += 1
         return win
 
@@ -339,6 +356,14 @@ class World:
                            and self.groups[h]["realm"] != g["realm"]]
                 if hunters and rng.random() < STEALTH_CAUGHT_PER_MIN * len(hunters):
                     self.kill(list(g["members"]), list(hunters[0]["members"]))
+            # guards and patrols in the inner zone wear down enemy groups (guarded_frontier)
+            if self.o.get("guarded_frontier") and zone[1] == "inner":
+                for gid in gids:
+                    g = self.groups.get(gid)
+                    if g and g["realm"] != zone[0] and rng.random() < GUARD_PATROL_PER_MIN * (1 if g["kind"] == "roam" else 0.5):
+                        lost = g["members"][: rng.randint(1, 2)]
+                        self.kill(list(lost), [])
+                        self.stats["guard_kills"] += len(lost)
             # hunters vs PvE bots farming that frontier
             hostile = [self.groups[g] for g in gids if g in self.groups and self.groups[g]["realm"] != zone[0]]
             if not hostile:
@@ -349,6 +374,8 @@ class World:
                     continue
                 for h in hostile:
                     p = STEALTH_KILL_PER_MIN if h["kind"] == "stealth" else SPOT_PER_MIN
+                    if self.o.get("guarded_frontier"):
+                        p *= GUARD_FACTOR[pb["ring"]]
                     if rng.random() < p:
                         if h["kind"] == "roam" and warned and rng.random() < WARNED_EVADE:
                             self.stats["pve_escapes"] += 1
@@ -358,8 +385,29 @@ class World:
                         self.stats[f"pve_deaths_{pb['ring']}"] += 1
                         lvl = 45
                         for k in h["members"]:
-                            k["rp"] += rp_value(lvl, 0) / len(h["members"]) * (1 + 0.125 * (len(h["members"]) - 1))
+                            self.add_rp(k, rp_value(lvl, 0) / len(h["members"]) * (1 + 0.125 * (len(h["members"]) - 1)))
                         break
+
+    def maybe_switch_role(self, a):
+        """Option adaptive_roles: half the time at login, re-pick a role weighted by base share x the realm's recent RP per hour."""
+        if not self.o.get("adaptive_roles") or self.rng.random() < 0.5:
+            return
+        rates = self.role_rates.get(a["realm"])
+        if not rates:
+            return
+        roles = [r for r, _ in ROLE_SHARES]
+        w = [share * max(1.0, rates.get(r, 1.0)) for r, share in ROLE_SHARES]
+        a["role"] = self.rng.choices(roles, weights=w)[0]
+
+    def update_role_rates(self):
+        self.role_rates = {}
+        for realm in REALMS:
+            rates = {}
+            for role, _ in ROLE_SHARES:
+                rp = sum(a["role_rp"][role] for a in self.agents if a["realm"] == realm)
+                mins = sum(a["role_min"][role] for a in self.agents if a["realm"] == realm)
+                rates[role] = rp / max(1, mins / 60)
+            self.role_rates[realm] = rates
 
     # ----- sessions -----
     def sessions(self):
@@ -374,10 +422,14 @@ class World:
                 elif not a["online"]:
                     a["online"] = True
                     a["until"] = t + rng.randint(120, 300)
+                    self.maybe_switch_role(a)
             if a["state"] == "dead" and t >= a["busy_until"]:
                 a["state"] = "idle"
             if a["online"]:
                 a["active_min"] += 1
+                a["role_min"][a["role"]] += 1
+            if a["nolifer"] and t % 180 == 0 and a["state"] == "idle":
+                self.maybe_switch_role(a)
         for pb in self.pve:
             if pb["dead_until"] <= t:
                 pb["minutes"] += 1
@@ -389,6 +441,8 @@ class World:
             self.siege_tick()
             if t % 10 == 0:
                 self.form_groups()
+            if t % 60 == 0 and t > 0:
+                self.update_role_rates()
             self.roam_tick()
             counts = {r: sum(1 for k in self.keeps if k["owner"] == r and k["kind"] == "keep") for r in REALMS}
             top = max(counts.values())
@@ -432,7 +486,25 @@ class World:
             grp = [p for p in self.pve if p["ring"] == ring]
             mins = sum(p["minutes"] for p in grp)
             pve[ring] = dict(bots=len(grp), deaths_per_hour=round(sum(p["deaths"] for p in grp) / max(1, mins / 60), 3))
+        for ring in RINGS:
+            grp = [p for p in self.pve if p["ring"] == ring]
+            alive = sum(p["minutes"] for p in grp) / max(1, len(grp) * hours * 60)
+            pve[ring]["alive_share"] = round(alive, 3)
+            pve[ring]["value_vs_home"] = round(REWARD[ring] * alive, 2)
         out["frontier_pve"] = pve
+        shares, rates = {}, {}
+        for r in REALMS:
+            mins = collections.Counter()
+            rp = collections.Counter()
+            for a in self.agents:
+                if a["realm"] == r:
+                    mins.update(a["role_min"])
+                    rp.update(a["role_rp"])
+            tot = sum(mins.values()) or 1
+            shares[r] = {k: round(mins[k] / tot, 3) for k, _ in ROLE_SHARES}
+            rates[r] = {k: round(rp[k] / max(1, mins[k] / 60)) for k, _ in ROLE_SHARES}
+        out["role_time_share"] = shares
+        out["role_rp_per_hour"] = rates
         return out
 
 
@@ -445,9 +517,19 @@ SCENARIOS = {
 }
 
 
+FIX_SCENARIOS = {
+    "baseline (balanced)": dict(),
+    "adaptive roles, no fix": dict(adaptive_roles=True),
+    "small-group RP bonus + adaptive roles": dict(smallgroup_rp=True, adaptive_roles=True),
+    "guarded, graded frontier": dict(guarded_frontier=True),
+    "both fixes + adaptive roles": dict(smallgroup_rp=True, adaptive_roles=True, guarded_frontier=True),
+}
+ACTIVE = FIX_SCENARIOS if os.environ.get("RVR_SET") == "fix" else SCENARIOS
+
+
 def _job(a):
     name, seed, hours = a
-    return name, seed, World(seed, SCENARIOS[name]).run(hours)
+    return name, seed, World(seed, ACTIVE[name]).run(hours)
 
 
 if __name__ == "__main__":
@@ -455,6 +537,6 @@ if __name__ == "__main__":
     hours = int(sys.argv[2]) if len(sys.argv) > 2 else 60
     out = sys.argv[3] if len(sys.argv) > 3 else "rvr_results.json"
     with Pool(2) as pool:
-        done = pool.map(_job, [(n, s, hours) for n in SCENARIOS for s in seeds])
-    json.dump({n: [r for nn, s, r in done if nn == n] for n in SCENARIOS}, open(out, "w"))
+        done = pool.map(_job, [(n, s, hours) for n in ACTIVE for s in seeds])
+    json.dump({n: [r for nn, s, r in done if nn == n] for n in ACTIVE}, open(out, "w"))
     print("saved", out)

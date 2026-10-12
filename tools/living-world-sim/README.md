@@ -159,5 +159,6 @@ python3 tools/living-world-sim/summarize_rvr.py out.json
   main and a crafter alt (`crafter_alt`), and banking half of net crafting profit.
 
 - `results/rvr_120h.json`: the RvR model, 5 scenarios, 120 server hours.
+- `results/rvr_fix_120h.json`: RvR fixes (`RVR_SET=fix`): adaptive roles, small-group RP bonus, guarded and graded frontier.
 
 Summaries are in the roadmap ("Simulation findings" and "Trade study").

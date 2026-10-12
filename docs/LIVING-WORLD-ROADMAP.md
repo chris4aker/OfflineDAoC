@@ -730,6 +730,37 @@ Takeaways:
 6. **Realm ranks are a long climb** at the default `rp_rate` of 1. RR5 is out of reach in 24 weeks
    even for no-lifers. The owner can tune `rp_rate`, which already exists.
 
+### RvR fix run (2026-10-11): small-group realm points and a guarded, graded frontier
+
+Same model (balanced realms, 120 server hours, 3 seeds), with three options (`RVR_SET=fix`):
+- **Adaptive roles:** at half of their logins, bots re-pick siege, roam or stealth, weighted by
+  their realm's recent RP per hour.
+- **Small-group RP bonus:** open-field kills by groups of 8 or fewer pay 1.5×, and outnumbered kills
+  pay up to 2× more.
+- **Guarded, graded frontier:** guards and patrols cut enemy reach to 60% in middle zones and 25% in
+  inner zones, and wear down enemy groups deep inside. Proposed frontier PvE rewards are 2.0× a home
+  zone at the border, 1.5× in the middle and 1.2× inner.
+
+| | Baseline | Adaptive roles only | + small-group bonus | Guarded frontier only | **Both fixes + adaptive roles** |
+|---|---|---|---|---|---|
+| Time in sieges / roaming / stealth | 46% / 44% / 11% | **64% / 30% / 7%** | 52% / 42% / 6% | 46% / 44% / 11% | 55% / 40% / 5% |
+| RP per hour: siege / roam / stealth | 1,280 / 500 / 330 | 1,480 / 440 / 350 | 1,280 / **740** / 340 | 1,260 / 510 / 230 | 1,350 / **740** / 240 |
+| Open-field fights per hour | 33 | **18** | 31 | 33 | 29 |
+| Frontier PvE deaths/hour: border / middle / inner | 0.81 / 0.78 / 0.73 | 0.52 / 0.50 / 0.44 | 0.53 / 0.50 / 0.44 | 0.80 / 0.47 / 0.17 | **0.47 / 0.27 / 0.09** |
+| Frontier PvE value vs a home zone: border / middle / inner | 1.68 / 1.27 / 1.02 | 1.78 / 1.35 / 1.09 | 1.78 / 1.34 / 1.09 | 1.69 / 1.35 / 1.15 | **1.80 / 1.41 / 1.17** |
+
+Takeaways:
+1. **Left alone, bots drift into the zerg:** with adaptive roles, siege time rises from 46% to 64%,
+   roaming falls to 30%, and open-field fights drop from 33 to 18 an hour. This is the classic
+   collapse, and it makes the frontier quieter.
+2. **A small-group bonus holds roaming at about 40%** and keeps the fights (about 30 an hour), with
+   roaming paying about 740 RP an hour instead of 440.
+3. **A guarded frontier grades the danger:** with both fixes, frontier PvE deaths are about one
+   every 2 hours at the border, one every 4 hours in the middle and one every 11 hours inner.
+   Every ring is worth more than home PvE, and the border pays most.
+4. **Stealthers shrink to about 5%** under these fixes (guards hurt them and their pay is lowest). If
+   stealth hunting is wanted as a play style, it needs its own reward.
+
 ## Open questions
 
 - Final type list, names and time budgets.
