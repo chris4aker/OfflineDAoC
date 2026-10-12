@@ -59,9 +59,9 @@ whether it is actually live in a played install, which has not been checked unle
 |---|---|---|
 | Port HearthDAoC quest indicators, epic chains and restored spawns (old M3) | 0.35 ships 448 classic 1.65/SI quests including class epics, red map markers, the Quest Guide, and period monster populations; 0.36 adds 940 quest reward items | **Dropped.** Compare HearthDAoC item by item only for specific missing quests or spawns. |
 | Personality-voiced chat with a safety blocklist (old M2) | `AutonomousBotChat` (lines assembled from parts), `AutonomousBotChatCoordinator` (short, rare conversations), `AutonomousChatIntentModel` (small classifier for player questions), `AutonomousChatKnowledge` (places and spells), `RealmEventBanter` | **Shrunk:** add personality flavor to the existing chat. No blocklist: nothing is generated freely, all text is pre-written. |
-| Named and epic drops at every level | `Managers/RandomObjectGeneration/AtlasROGManager` (random items, 95–99% quality, stat weights as `atlas_rog` settings), already used by bounty and quest rewards | **Extend:** drop rules for named monsters on top of the generator |
+| Named and epic drops at every level | `Managers/RandomObjectGeneration/AtlasROGManager` (random items, 95–99% quality, stat weights as `atlas_rog` settings). **Live on every monster** through `ROGMobGenerator`: about 24% per solo yellow kill (data check, 2026-10-11). Named monsters in levels 1–50 have almost no fixed signature loot. | **Extend:** loot tables on existing named spawns in levels 1–50; **decide** the random-drop rate first (it competes with crafting) |
 | PvE reasons in every zone | **Bounty Masters** (`scripts/quests/Bounty`): repeatable hunts of named monster types and epic named spawns across the home realm, dungeons and DF; equipment and XP rewards; map markers | **Extend** bounties to every level band and later to the frontier |
-| Frontier PvE reasons | Atlas daily, weekly and monthly quests (`scripts/quests/AtlasQuests`), e.g. "kill 25 yellow-or-higher monsters in any RvR zone" (levels 10–50; XP, coin, a random item and a jewel). Their givers create themselves at startup when `load_quests` is on. Also `rvr_zones_xp_rate`. | **Check first:** whether the givers appear in the 0.35 world, and whether these Atlas-era quests fit the classic feel (owner's call) |
+| Frontier PvE reasons | Atlas daily, weekly and monthly quests (`scripts/quests/AtlasQuests`), e.g. "kill 25 yellow-or-higher monsters in any RvR zone" (levels 10–50; XP, coin, a random item and a jewel). Their givers create themselves at startup when `load_quests` is on. Also `rvr_zones_xp_rate`. | **Check first:** the givers are **not** in the 0.35 world database (data check), so they most likely don't appear; one look in game settles it. Whether these Atlas-era quests fit the classic feel is the owner's call. **Also:** the 12 frontier zones already hold about 4,400 monsters, most of them levels 20–50, with named ones; bots' camp catalog just doesn't include them. |
 | Bots crafting | `AutonomousBotDecisionEngine` has a "craft at a station with owned materials" activity (16% with 3+ material stacks), but nothing calls `Choose` | **Wire up and finish** the existing activity |
 | Luxury spending | Housing, consignment merchants, market search (`market_fee_percent` 20) | Bots spend through the **real** housing system |
 | RvR warnings | `GameWideAnnouncements`, `RealmEventNotices` (siege, relic and raid lines on screen) | **Extend** with frontier-danger warnings |
@@ -75,7 +75,17 @@ whether it is actually live in a played install, which has not been checked unle
 - personalities and time budgets (stefanrows' design is the reference);
 - RvR group doctrines, danger memory and observe-before-engaging (from stefanrows);
 - the crafter economy: commissions, discounts and an Exchange tax (no fee was found on the Realm Exchange);
-- a guarded, depth-graded frontier with PvE camps for bots.
+- a guarded, depth-graded frontier with PvE camps for bots (the monsters exist; the camps for bots
+  are new).
+
+**Data check (2026-10-11):** the release's world database was checked against the simulators'
+guesses. See [LIVING-WORLD-DATA-CHECK-2026-10-11.md](LIVING-WORLD-DATA-CHECK-2026-10-11.md). The
+biggest results:
+- random magic items drop from every monster, which the persona models left out, so their crafting
+  income is overstated;
+- named monsters in levels 1–50 have almost no signature loot;
+- the frontier is 4 zones per realm (the RvR model used 5) and already full of monsters;
+- practice-craft sellback is 50% unless `crafting_adjust_product_price` is turned on.
 
 ## Vision
 
@@ -864,8 +874,10 @@ Takeaways:
 - Epic and named drops: how rare at levels 41–50?
 - Relic bonus: keep 10% per relic, lower it, or cap it?
 - Can the owner's PC run about 3,000 bots online at once? (Load test before building features.)
+- Gear flow: keep Atlas-rate random magic drops (about 24% per solo kill; plentiful gear, weaker
+  crafting), or lower them toward classic rates so crafted gear matters?
 - Are the Atlas daily, weekly and monthly quest givers (for example Herou at Svasud Faste) actually
-  in the 0.35 world? (Check in game or in the database.)
+  in the 0.35 world? They are not in the database; one look in game settles it.
 - Do those Atlas-era quests fit the classic feel, or should frontier PvE reasons come only from
   extended Bounty Masters and named monsters?
 - Should the Realm Exchange get a fee? None was found in the code; the housing market search

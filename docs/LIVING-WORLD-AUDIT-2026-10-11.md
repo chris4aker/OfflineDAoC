@@ -52,7 +52,7 @@ Nothing in this audit changed the game, started a server, or touched a played in
 | Realm points (pre-1.81 formula) and the realm-rank table | `AutonomousBotRealmPointRewards`, `GamePlayer.REALMPOINTS_FOR_LEVEL` | Matches (after the audit fix) |
 | Relic bonus 10% per enemy relic | `relic_owning_bonus` | Matches (after the audit fix) |
 | Bot groups track roles (tank, healer…) | `AutonomousBotGroupCoordinator` (`BotPveGroupRole`) | Exists; **not modeled** in the simulators |
-| Bots' PvE camp catalog has no frontier zones | `data/capnbry_classic_si_goals.json` | Confirmed: frontier PvE for bots would be new content |
+| Bots' PvE camp catalog has no frontier zones | `data/capnbry_classic_si_goals.json` | Confirmed. The data check later found about 4,400 monsters already in the 12 frontier zones, so the camps for bots are new but the monsters are not |
 | Today's bots never craft | No live caller for `AutonomousBotDecisionEngine.Choose`; only players' progress writes crafting skills | Confirmed |
 
 **Assumptions that are not verified** (they drive the numbers; calibrate before relying on them):
@@ -182,3 +182,22 @@ each milestone.
 **Not compared:** HearthDAoC item by item; the forks that could not be identified.
 
 The roadmap's "What the base already has" section holds the full table.
+
+## 8. Data check (added later the same day)
+
+The release's world database was read in the cloud workspace and compared with the simulators. The
+full results are in [LIVING-WORLD-DATA-CHECK-2026-10-11.md](LIVING-WORLD-DATA-CHECK-2026-10-11.md).
+
+**Corrections to the models:**
+- **Random magic item drops are live on every monster.** They run about 24% per solo yellow kill, and
+  the persona models left them out, so crafting income is overstated.
+- **The frontier is 4 zones per realm, not 5.** The keep count of 7 plus 2 relic castles was right.
+- **Practice-craft sellback is 50%** in the release settings. The 95% rule needs
+  `crafting_adjust_product_price` turned on.
+
+**Confirmed:** the cost of crafting materials scales with monster coin in the shape the economy model
+assumed.
+
+**What changes for the reported results:**
+- The persona models' crafting-income results are overstated until they are rerun with random drops.
+- The RvR model needs a rerun with 4 zones per realm.
