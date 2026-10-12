@@ -47,6 +47,12 @@ where a later study or the audit overtook one, it says so at its heading. The au
 - How rare epics should stay at the top.
 - Relic bonus size.
 
+**First code (2026-10-11):** XP by level range is written on the branch `feature/xp-by-level-range`.
+It adds the settings `xp_rate_by_level` and `bot_xp_rate_by_level`, off by default, with a helper
+script and [a how-to](https://github.com/chris4aker/OfflineDAoC/blob/feature/xp-by-level-range/docs/XP-BY-LEVEL-RANGE.md).
+- **Automated:** the build and all tests pass on GitHub.
+- **In-game:** not yet checked.
+
 **Next step:** move from simulation to real code on the owner's PC: set up the build, load-test
 1,000 bots per realm, and calibrate the models from real logs before building features.
 

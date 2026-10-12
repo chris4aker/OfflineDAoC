@@ -21,7 +21,8 @@ Nothing in this audit changed the game, started a server, or touched a played in
   co-author attribution.
 - **Automatic build (GitHub Actions):** every push to `trade-sim` built and passed the tests.
   - The number of tests that ran was never confirmed: run logs could not be read from the cloud
-    workspace.
+    workspace. **Later the same day:** a CI step now reports counts as notices. On
+    `feature/xp-by-level-range`, 2,674 of 2,674 server tests ran and passed.
   - About 47 test classes that need installed game files are excluded on purpose
     (`.github/ci-excluded-tests.txt`).
 - **Player data:** none committed. There is no database, `account.txt`, logs or credentials. The
