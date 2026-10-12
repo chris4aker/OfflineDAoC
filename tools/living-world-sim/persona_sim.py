@@ -78,7 +78,21 @@ COMMISSIONS_PER_HOUR = 30              # bounded realm commissions (NPC orders) 
 COMMISSION_PAY = 3.0                   # x materials
 DISCOUNT_99, DISCOUNT_100, DISCOUNT_CAP = 0.10, 0.25, 0.40   # off the crafter's next materials purchase
 PREMIUM_99, PREMIUM_100 = 0.10, 0.50   # extra the buyer pays for a 99% or 100% piece
-SALVAGE_SHARE = 0.5                    # share of vendor-bound loot sold to a crafter for salvage instead
+# Random magic items (data check 2026-10-11): ROGMobGenerator is live on every monster. A solo kill of a
+# blue/yellow monster rolls a class item at 14% + 10% solo bonus = 24% (AtlasMobLoot.cs); group kills roll
+# per member at 14% minus 3 above level 27 and 3 more above 40. Strength: CapUtility gives about
+# (level - 7) x 0.8-1.05 utility, floor 15.
+KILLS_PER_HOUR = 40                    # ASSUMPTION: solo kills per hunting hour (not measured)
+ROG_SOLO = 0.24
+ROG_SELL_KILLS = 0.55                  # a random item sells for about 0.55 of a same-level kill's coin
+ROG_UTIL_PER_B = 35 / 8                # ASSUMPTION: a full spellcrafted piece (B = 8) is about 35 utility
+
+
+def rog_group_chance(level):
+    return (14 - (3 if level > 27 else 0) - (3 if level > 40 else 0)) / 100.0
+
+
+SALVAGE_SHARE = 0.5                   # share of vendor-bound loot sold to a crafter for salvage instead
 
 
 def craft_quality(skill, recipe, rng):
@@ -238,7 +252,8 @@ class World:
         if not b["templated"] and self.template_complete(b):
             b["templated"] = True
             srcs = collections.Counter(it["src"] for it in b["gear"])
-            source = "bought" if srcs["crafted"] + srcs["market"] >= 5 else "farmed" if srcs["rare"] >= 5 else "mixed"
+            source = ("bought" if srcs["crafted"] + srcs["market"] >= 5 else
+                      "farmed" if srcs["rare"] + srcs["rog"] + srcs["named"] + srcs["epic"] >= 5 else "mixed")
             start = b["reached_50"] if b["reached_50"] is not None and b["reached_50"] >= 0 else 0
             self.template_events.append((source, round((self.t - start) / 60, 1)))
 
@@ -291,6 +306,26 @@ class World:
                         self.check_template(b)
                     else:
                         self.list_item(b, slot, item)
+        if self.o.get("rog"):
+            # random class items from ordinary kills; "rog_value" is how much of the utility is useful to this
+            # character (random stat lines: some are wasted for a template)
+            kills = KILLS_PER_HOUR * eff * (1.5 if b.get("group") else 1.0) / 60
+            chance = rog_group_chance(camp["level"]) if b.get("group") else ROG_SOLO
+            if c == "grey":
+                chance = 0.0
+            if rng.random() < kills * chance:
+                lvl = min(50, camp["level"])
+                util = max(15, (lvl - 7) * rng.uniform(0.80, 1.05))
+                B = int(util / ROG_UTIL_PER_B * self.o["rog_value"])
+                self.stats["rog_drops"] += 1
+                item = dict(level=lvl, q=rng.randint(95, 99), B=B, src="rog")
+                if self.equip(b, rng.randrange(SLOTS), item):
+                    self.stats["rog_equipped"] += 1
+                    self.check_template(b)
+                else:
+                    # vendor value: Money.SetAutoPrice(level, quality) / 8, sold at item_sell_ratio 50%, is about
+                    # 0.55 of the same-level monster's average coin drop (about 1.15 gold vs 2.07 gold at level 50)
+                    self.gold(b, ROG_SELL_KILLS * income_per_hour(L) / KILLS_PER_HOUR, "rog_vendor")
         rare = (RARE_PER_HOUR if camp["level"] >= 45 else RARE_PER_HOUR_LOW) * self.o.get("rare_mult", 1.0)
         if rng.random() < rare * eff / 60:
             self.stats["rare_drops"] += 1
@@ -890,6 +925,11 @@ V4 = dict(PLAN, skillup_resale=0.9, join_spread_hours=60, nolifers=4, crafter_ba
           player_rotation=True, player_xp_curve=SHAPED_PLAYER, bot_xp_curve=SHAPED_BOTS)
 CASES = {
     "v4 shaped XP": dict(V4),
+    # data check (2026-10-11): random magic items from every kill, kept at the current rate by the owner.
+    # rog_value is the useful share of a random item's utility (weak: many wasted stat lines; strong: most useful)
+    "v4 baseline (current code)": dict(V4),
+    "v4 + random drops, weak items": dict(V4, rog=True, rog_value=0.6),
+    "v4 + random drops, strong items": dict(V4, rog=True, rog_value=0.85),
     "v4 flat XP (you 10x, bots 5x)": dict(V4, player_xp_curve=[(1, 50, 10.0)], bot_xp_curve=[(1, 50, 5.0)]),
     "v4 shaped XP, no grouping": dict(V4, grouping=False),
     # crafter spending fix: no cheap-craft loophole, salvage only when needed (code change applies to all v4 cases)

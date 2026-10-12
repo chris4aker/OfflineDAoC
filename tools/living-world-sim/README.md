@@ -124,9 +124,20 @@ python3 tools/living-world-sim/persona_sim.py 1,2 120 out.json      # 4 cases, a
 python3 tools/living-world-sim/summarize_persona.py out.json
 ```
 
+**Random magic drops** (option `rog`, from the 2026-10-11 data check):
+- **What it models:** class items from ordinary kills at the server's rates (24% per solo kill, group
+  rolls per member) and strength (`CapUtility`). Unused items sell for about 0.55 of a kill's coin.
+- **`rog_value`:** the useful share of a random item's utility (0.6 "weak", 0.85 "strong").
+- **Assumptions:** `KILLS_PER_HOUR` 40 and `ROG_UTIL_PER_B` (35 utility = one spellcrafted piece).
+- **Cases:** `v4 baseline (current code)`, `v4 + random drops, weak items`,
+  `v4 + random drops, strong items`.
+- **Note:** `summarize_persona.py` fails on v4 results because `near_me` is empty when the owner rotates
+  characters; the roadmap tables were made with a small inline script.
+
 ## Three-realm RvR model (`rvr_sim.py`)
 
-Keeps, relics, the server's siege scheduler and caps, roaming groups, stealthers, realm points (pre-1.81
+The real classic layout from the world database: 4 frontier zones per realm (border 1, middle 1, inner 2),
+with 7 keeps and 2 relic castles. Keeps, relics, the server's siege scheduler and caps, roaming groups, stealthers, realm points (pre-1.81
 formula), Darkness Falls access, and PvE bots farming their own frontier (proposed content).
 
 ```bash
@@ -158,7 +169,10 @@ python3 tools/living-world-sim/summarize_rvr.py out.json
 - `results/persona_v4_crafteralt_120h.json` and `persona_v4_crafterfix2_120h.json`: crafter players with a hunting
   main and a crafter alt (`crafter_alt`), and banking half of net crafting profit.
 
-- `results/rvr_120h.json`: the RvR model, 5 scenarios, 120 server hours.
-- `results/rvr_fix_120h.json`: RvR fixes (`RVR_SET=fix`): adaptive roles, small-group RP bonus, guarded and graded frontier.
+- `results/persona_v4_rog_120h.json`: model v4 with and without random magic drops (2 seeds).
+- `results/rvr_120h.json`: the RvR model, 5 scenarios, 120 server hours, on the real 4-zone frontier
+  (regenerated after the data check).
+- `results/rvr_fix_120h.json`: RvR fixes (`RVR_SET=fix`): adaptive roles, small-group RP bonus, guarded and
+  graded frontier (also regenerated on the 4-zone layout).
 
 Summaries are in the roadmap ("Simulation findings" and "Trade study").

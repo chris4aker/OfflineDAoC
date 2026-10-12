@@ -161,6 +161,13 @@ Monster spawns with capitalized names (a rough "named" filter that can include a
 
 ## What to change next
 
+**Status (later the same day):**
+- **The owner decided to keep the current random-drop rate.**
+- **Items 1 and 3 are done.** Both models were rerun; the roadmap's "Rerun with the data-check
+  corrections" section has the results.
+- **Item 2 is settled** by that decision.
+
+
 1. **Add random item drops to the persona model** and rerun the v4 economy case. Expect lower
    crafter income and a smaller premium for crafted sets.
 2. **Decide the gear-flow policy (owner):**

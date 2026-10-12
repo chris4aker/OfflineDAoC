@@ -199,5 +199,8 @@ full results are in [LIVING-WORLD-DATA-CHECK-2026-10-11.md](LIVING-WORLD-DATA-CH
 assumed.
 
 **What changes for the reported results:**
-- The persona models' crafting-income results are overstated until they are rerun with random drops.
-- The RvR model needs a rerun with 4 zones per realm.
+- The persona models' crafting-income results were overstated without random drops.
+- The RvR model needed a rerun with 4 zones per realm.
+
+Both reruns were done the same day; the roadmap's "Rerun with the data-check corrections" section has the
+results. The owner decided to keep the current random-drop rate.

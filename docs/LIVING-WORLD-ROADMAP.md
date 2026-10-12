@@ -28,16 +28,22 @@ where a later study or the audit overtook one, it says so at its heading. The au
   - a bot-only luxury sink that buys real things (houses, horse routes, dyes);
   - an Exchange tax on trades only;
   - named and epic drops at every level;
-  - crafted, spellcrafted gear costing about half the time of farming drops.
+  - crafted, spellcrafted gear costing about half the time of farming drops;
+  - **random magic drops stay at the current (Atlas) rate** (decided after the data check). The
+    rerun shows this halves demand for crafted gear, so crafting has to matter through other
+    things: commissions, repairs, consumables, siege, and goods only crafters make.
 - **RvR:**
   - keep the three realms' bot counts equal;
-  - build a guarded, depth-graded frontier with PvE worth the trip (new content);
+  - build a guarded, depth-graded frontier with PvE worth the trip (the monsters exist; camps for
+    bots and the guards are new);
   - no small-group RP bonus for now;
   - watch the relic bonus for snowballing.
 
 **Still open:**
-- Apprentice commissions for typical crafters (crafting income is winner-take-most).
-- A reward for stealth hunting.
+- Apprentice commissions for typical crafters (crafting income is winner-take-most, and random drops
+  halve gear orders).
+- A reward for stealth hunting. Less pressing after the rerun: with the real 4-zone frontier,
+  stealthers earn about as much as siegers.
 - How rare epics should stay at the top.
 - Relic bonus size.
 
@@ -706,6 +712,8 @@ Takeaways:
 
 ## Model v4 (2026-10-11): shaped XP, the owner's 9 characters, grouping, no-lifers
 
+> **Economy numbers overstated:** this model left out random magic drops. See "Rerun with the data-check corrections". The XP, company and grouping results are unaffected.
+
 The owner's direction:
 - **9 characters**, 3 per realm, with a favored main in each realm.
 - **Do not skip low levels:** keep 1–35 worth exploring, and compress the 35–50 grind instead.
@@ -781,6 +789,8 @@ crafters sharing the same work.
 
 ## RvR study (2026-10-11, corrected by the audit): three realms, keeps, relics, roaming, frontier PvE
 
+> **Superseded:** this model used 5 frontier zones per realm; the real frontier has 4. See "Rerun with the data-check corrections" for the current numbers.
+
 **What already exists in the server (read from the code, not playtested here):**
 - **Bot RvR objectives:** regroup, hunt enemies, defend a keep under attack, and assault keeps
   (`AutonomousRvrDirector`).
@@ -843,6 +853,8 @@ Takeaways:
 
 ### RvR fix run (2026-10-11, corrected by the audit)
 
+> **Superseded** by the 4-zone rerun below.
+
 Options (`RVR_SET=fix`):
 - **Adaptive roles:** at half of their logins, bots re-pick their role weighted by their realm's
   recent RP per hour.
@@ -867,6 +879,91 @@ Takeaways:
 4. **Stealthers earn the least** and shrink when guards are added. Stealth hunting needs its own
    reward if it should stay a common play style.
 
+## Rerun with the data-check corrections (2026-10-11)
+
+After the [data check](LIVING-WORLD-DATA-CHECK-2026-10-11.md), both models were corrected and rerun.
+The owner chose to keep random magic drops at the current rate.
+
+### Economy: random magic drops added (`persona_sim.py`, v4, 120 hours, 2 seeds)
+
+**What the model now includes:**
+- Random class items from ordinary kills: 24% per solo kill, group rolls per member as in the server.
+  - Strength from the server's utility cap.
+  - Sold at about 0.55 of a kill's coin when not used.
+- **Assumptions:**
+  - 40 kills per hunting hour, not measured;
+  - a spellcrafted piece is worth about 35 utility;
+  - "weak" and "strong" cases: 60% or 85% of a random item's utility is useful.
+
+| | Before (no random drops) | Random drops, weak items | Random drops, strong items |
+|---|---|---|---|
+| Crafted-gear orders | 6,015 | 3,159 (-47%) | 2,920 (-51%) |
+| Crafters' income from orders | 5.1 M | 2.6 M | 2.2 M |
+| Median gold: crafter players / others | 3,250 / 12,010 | 4,551 / 17,316 | 4,164 / 16,848 |
+| Bots reaching level 50 | 613 | 650 | 662 |
+| Level-50 sets completed from drops (median hours at 50) | 30 (37 h) | 28 (36 h) | 89 (16 h) |
+| Sets completed mostly from bought crafted gear | 0 | 0 | 0 |
+
+**Takeaways:**
+1. **Random drops roughly halve the demand for crafted gear.** Leveling slots fill themselves, so bots
+   order far fewer pieces.
+2. **Everyone else gets about 40% richer**, and crafters stay at about a quarter of others' median gold.
+   The winner-take-most pattern is unchanged.
+3. **Whether drops replace crafted level-50 sets depends on how useful random stat lines are.**
+   - With strong items, finished sets come three times as often and three times as fast.
+   - With weak items, nothing changes at level 50.
+   - This is the biggest unknown; in-game logs of what bots actually wear will settle it.
+4. **Even before this change, no bot finished a set mostly from bought crafted gear.** The "crafted
+   set as a costly shortcut" never happened in the model.
+5. **What follows for "crafting as important as PvE":** with the current drop rate, crafting needs
+   value that drops can't supply:
+   - commissions (including apprentice orders);
+   - repairs, potions, poisons and arrows;
+   - siege engines;
+   - spellcrafting on top of found items;
+   - dyes and housing goods.
+
+### RvR: the real 4-zone frontier (`rvr_sim.py`, 120 hours, 3 seeds)
+
+| Per hour, balanced 1000/1000/1000 | Before (5 zones) | Now (4 zones) |
+|---|---|---|
+| Open-field fights / RvR deaths | 34 / 243 | 51 / 309 |
+| Sieges / keep flips | 2.1 / 1.1 | 2.1 / 1.2 |
+| Relic captures | 0.07 | 0.06 |
+| RP per active hour: siege / roam / stealth | 464 / 461 / 324 | 463 / 634 / 463 |
+| Ranks after 24 weeks: RR2+ / RR3+ | 88% / about 10% | 89% / 18% |
+| Frontier PvE deaths per hour: border / middle / inner (unguarded) | 0.79 / 0.79 / 0.73 | 1.46 / 1.51 / 0.37 |
+
+**Fix options on the 4-zone layout:**
+
+| | Baseline | Adaptive roles | + small-group bonus | Guarded frontier | Both + adaptive roles |
+|---|---|---|---|---|---|
+| Time in sieges / roaming / stealth | 46% / 44% / 11% | 27% / 61% / 12% | 19% / 71% / 9% | 46% / 44% / 11% | 19% / 73% / 8% |
+| RP per hour: siege / roam / stealth | 463 / 634 / 463 | 316 / 738 / 439 | 277 / 1,202 / 455 | 446 / 637 / 367 | 271 / 1,195 / 356 |
+| Open-field fights per hour | 51 | 84 | 104 | 51 | 109 |
+| Frontier PvE deaths/hour: border / middle / inner | 1.46 / 1.51 / 0.37 | 1.62 / 1.71 / 0.42 | 1.40 / 1.50 / 0.36 | **1.46 / 0.92 / 0.09** | 1.25 / 0.84 / 0.08 |
+| Frontier PvE value vs home: border / middle / inner | 1.49 / 1.11 / 1.10 | 1.45 / 1.07 / 1.09 | 1.51 / 1.11 / 1.11 | **1.49 / 1.23 / 1.18** | 1.55 / 1.26 / 1.18 |
+
+**Takeaways (these replace the earlier RvR takeaways):**
+1. **The real frontier is more crowded.** Fewer zones mean groups meet more: about 51 fights an hour
+   instead of 34.
+2. **Roaming now pays about 1.4× more than sieges.** Left to choose, bots drift to 61% roaming.
+   - A small-group bonus is still not wanted: it would cut sieges to 19% of RvR time.
+   - This result depends on the meeting rate, which is an assumption.
+3. **Stealthers earn about as much as siegers** (463 RP an hour), so a separate stealth reward is less
+   needed.
+4. **Relics still snowball:**
+   - in two of three balanced runs one realm ended with all 6 relics;
+   - Hibernia held Darkness Falls 56% of the time in the balanced case;
+   - with Hibernia at 750 bots, it holds Darkness Falls 16% of the time; a 15% underdog bonus lifts
+     that to 37%.
+5. **The unguarded frontier is too deadly** in the border and middle zones (about 1.5 deaths an
+   hour).
+   - The guarded, graded design brings the middle to 0.92 and the inner zones to 0.09.
+   - The border stays dangerous, which is the intended graded feel.
+   - Every ring stays worth more than home PvE.
+6. **Ranks:** RR3 is reached by about 18% of RvR bots after 24 weeks. No bot reaches RR4.
+
 ## Open questions
 
 - Apprentice commissions: should typical crafters earn a living, or is winner-take-most right?
@@ -874,8 +971,8 @@ Takeaways:
 - Epic and named drops: how rare at levels 41–50?
 - Relic bonus: keep 10% per relic, lower it, or cap it?
 - Can the owner's PC run about 3,000 bots online at once? (Load test before building features.)
-- Gear flow: keep Atlas-rate random magic drops (about 24% per solo kill; plentiful gear, weaker
-  crafting), or lower them toward classic rates so crafted gear matters?
+- How useful are random drops' stat lines in practice (weak or strong case)? In-game logs of what
+  bots wear will tell. (The drop rate itself is decided: keep the current rate.)
 - Are the Atlas daily, weekly and monthly quest givers (for example Herou at Svasud Faste) actually
   in the 0.35 world? They are not in the database; one look in game settles it.
 - Do those Atlas-era quests fit the classic feel, or should frontier PvE reasons come only from

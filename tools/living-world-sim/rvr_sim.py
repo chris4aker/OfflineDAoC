@@ -63,18 +63,19 @@ class World:
         self.rng = random.Random(seed)
         self.o = opts
         self.t = 0
-        self.zones = [(r, ring, i) for r in REALMS for ring, n in (("border", 2), ("middle", 2), ("inner", 1)) for i in range(n)]
-        # keeps: 7 per frontier (border 1 each, middle 2 each, inner 1) + 2 relic keeps in the inner zone
+        # real classic layout (world database, 2026-10-11): per realm 4 zones -- border 1 (1 keep, plus the enemy
+        # portal keeps), middle 1 (4 keeps), inner 2 (1 keep + 1 relic castle each): 7 keeps + 2 relic castles
+        self.zones = [(r, ring, i) for r in REALMS for ring, n in (("border", 1), ("middle", 1), ("inner", 2)) for i in range(n)]
         self.keeps = []
         for r in REALMS:
             for z in self.zones:
                 if z[0] != r:
                     continue
-                n = {"border": 1, "middle": 2, "inner": 1}[z[1]]
+                n = {"border": 1, "middle": 4, "inner": 1}[z[1]]
                 for i in range(n):
                     self.keeps.append(dict(id=f"{r}-{z[1]}{z[2]}-{i}", frontier=r, zone=z, kind="keep", owner=r, cooldown=0))
             for i in range(2):
-                self.keeps.append(dict(id=f"{r}-relic-{i}", frontier=r, zone=(r, "inner", 0), kind="relic", owner=r, cooldown=0,
+                self.keeps.append(dict(id=f"{r}-relic-{i}", frontier=r, zone=(r, "inner", i), kind="relic", owner=r, cooldown=0,
                                        relic_home=r, relic_holder=r))
         self.agents = []
         for r in REALMS:
