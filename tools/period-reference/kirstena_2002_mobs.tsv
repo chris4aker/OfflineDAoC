@@ -1,0 +1,1689 @@
+# Monster tables from Kirstena's Atlas (2001-2003, (c) Kirstena), read from the moose.at mirror on 2026-10-12.
+# Facts only (names, levels, types as printed; the maps credit "Illia's Beastiary" and Prima's Atlas). The maps are not copied here.
+# Text was extracted from the PDFs by an automated reader, so single entries can carry transcription errors.
+zone	map_date	dungeon_note	name	level_low	level_high	type
+Darkness Falls	5-18-2002	alb	Ambassador Mannam	65	65	NPC
+Darkness Falls	5-18-2002	alb	Angelic Visage	99	99	Monster
+Darkness Falls	5-18-2002	alb	Apprentice Necyomancer	18	23	Necyomancer
+Darkness Falls	5-18-2002	alb	Archived Souls	40	40	Undead
+Darkness Falls	5-18-2002	alb	Archivist Borath	40	40	NPC
+Darkness Falls	5-18-2002	alb	Avernal Quasit	32	37	Quasit
+Darkness Falls	5-18-2002	alb	Behemoth	99	99	Monster
+Darkness Falls	5-18-2002	alb	Cambion	52	57	Demon
+Darkness Falls	5-18-2002	alb	Chamberlain	79	79	NPC
+Darkness Falls	5-18-2002	alb	Chosian	55	61	Demon
+Darkness Falls	5-18-2002	alb	Chthonian Crawler	60	63	Crawler
+Darkness Falls	5-18-2002	alb	Chthonic Knight Absax	70	70	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Aciel	62	62	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Azea	70	70	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Babyzu	62	65	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Carnivon	65	70	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Exal	68	68	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Exte	60	60	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Ezpeth	66	66	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Fonath	74	74	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Gaapoler	72	72	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Haag	72	72	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Ibeko	60	60	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Marbos	68	68	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Obarus	60	60	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Olov	74	74	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Prosel	69	69	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Ronoro	66	66	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Tamuel	74	74	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Ukobat	66	66	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Vosoes	72	72	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Zaeber	68	68	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Zafan	64	64	Knight
+Darkness Falls	5-18-2002	alb	Chthonic Knight Zagel	70	70	Knight
+Darkness Falls	5-18-2002	alb	Clinging Soul	42	42	Undead
+Darkness Falls	5-18-2002	alb	Commander Abgar	69	69	Monster
+Darkness Falls	5-18-2002	alb	Condemned Necyomancer	48	53	Necyomancer
+Darkness Falls	5-18-2002	alb	Cursed Necyomancer	42	46	Necyomancer
+Darkness Falls	5-18-2002	alb	Deamhaness	32	36	Demon
+Darkness Falls	5-18-2002	alb	Demoniac Familiar	15	40	Familiar
+Darkness Falls	5-18-2002	alb	Director Kobil	50	50	NPC
+Darkness Falls	5-18-2002	alb	Duke Aypol	75	75	Duke
+Darkness Falls	5-18-2002	alb	Duke Bimure	75	75	Duke
+Darkness Falls	5-18-2002	alb	Duke Eligar	75	75	Duke
+Darkness Falls	5-18-2002	alb	Duke Satori	75	75	Duke
+Darkness Falls	5-18-2002	alb	Earl Fenex	71	71	Earl
+Darkness Falls	5-18-2002	alb	Earl Glassalab	71	71	Earl
+Darkness Falls	5-18-2002	alb	Earl Ipostian	71	71	Earl
+Darkness Falls	5-18-2002	alb	Earl Vone	71	71	Earl
+Darkness Falls	5-18-2002	alb	Essence Shredder	54	62	Shredder
+Darkness Falls	5-18-2002	alb	Experienced Necyomancer	36	43	Necyomancer
+Darkness Falls	5-18-2002	alb	Gatekeeper Dommel	79	79	Gatekeeper
+Darkness Falls	5-18-2002	alb	Grand Chancellor Adremal	79	79	NPC
+Darkness Falls	5-18-2002	alb	Grumoz Demon	10	11	Demon
+Darkness Falls	5-18-2002	alb	High Lord Baelerdoth	77	77	High Lord
+Darkness Falls	5-18-2002	alb	Hopeless Soul	50	50	Undead
+Darkness Falls	5-18-2002	alb	Inquisitor Famuel	74	74	Inquisitor
+Darkness Falls	5-18-2002	alb	Inquisitor Haimir	68	68	Inquisitor
+Darkness Falls	5-18-2002	alb	Inquisitor Hellos	64	64	Inquisitor
+Darkness Falls	5-18-2002	alb	Inquisitor Irawn	60	60	Inquisitor
+Darkness Falls	5-18-2002	alb	Inquisitor Kireasil	74	74	Inquisitor
+Darkness Falls	5-18-2002	alb	Inquisitor Morrian	62	62	Inquisitor
+Darkness Falls	5-18-2002	alb	Inquisitor Nej	68	68	Inquisitor
+Darkness Falls	5-18-2002	alb	Inquisitor Yonzael	74	74	Inquisitor
+Darkness Falls	5-18-2002	alb	Inquisitor Yor	68	68	Inquisitor
+Darkness Falls	5-18-2002	alb	Lecherous Gress	40	43	Monster
+Darkness Falls	5-18-2002	alb	Legion	83	83	Boss
+Darkness Falls	5-18-2002	alb	Lieutenant Persun	68	68	NPC
+Darkness Falls	5-18-2002	alb	Lilispawn	29	34	Demon
+Darkness Falls	5-18-2002	alb	Mahr	55	61	Demon
+Darkness Falls	5-18-2002	alb	Marquis Dortaleon	73	73	Marquis
+Darkness Falls	5-18-2002	alb	Marquis Focalleste	73	73	Marquis
+Darkness Falls	5-18-2002	alb	Marquis Haurian	73	73	Marquis
+Darkness Falls	5-18-2002	alb	Marquis Scottiax	73	73	Marquis
+Darkness Falls	5-18-2002	alb	Marquis Valupa	73	73	Marquis
+Darkness Falls	5-18-2002	alb	Molochian Tempter	40	50	Tempter
+Darkness Falls	5-18-2002	alb	Mutilator Axa'al	70	72	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Axalnam	68	69	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Axtanax	60	60	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Konapher	74	74	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Laicanroth	63	63	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Lazorous	64	64	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Marbozer	68	68	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Nianax	62	62	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Novinrac	64	64	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Okabi	60	60	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Oprionach	74	74	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Phaxazis	66	66	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Samiol	74	74	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Uxybab	68	68	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Vorazax	72	72	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Vozoaz	72	72	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Xaabaro	68	68	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Xagalith	70	77	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Xakanos	64	64	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Xazbalor	70	70	Mutilator
+Darkness Falls	5-18-2002	alb	Mutilator Zurabo	60	60	Mutilator
+Darkness Falls	5-18-2002	alb	Naburite Drinker	47	56	Naburite
+Darkness Falls	5-18-2002	alb	Necyomancer	30	36	Necyomancer
+Darkness Falls	5-18-2002	alb	Nightmare	61	65	Demon
+Darkness Falls	5-18-2002	alb	Pale Guardian	72	72	Monster
+Darkness Falls	5-18-2002	alb	Plated Fiend	25	30	Demon
+Darkness Falls	5-18-2002	alb	Prince Asmoien	78	78	Prince
+Darkness Falls	5-18-2002	alb	Princess Nahemah	71	76	Princess
+Darkness Falls	5-18-2002	alb	Rocot	36	42	Monster
+Darkness Falls	5-18-2002	alb	Soultorn Albion Alerion Knight	43	43	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Albion Eagle Knight	38	42	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Albion Guardian	28	31	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Albion Myrmidon	33	33	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Albion Phoenix Knight	40	44	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Albion Protector	25	28	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Hibernian Cosantoir	30	30	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Hibernian Grove Protector	36	36	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Hibernian Raven Ardent	38	42	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Hibernian Savant	28	30	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Hibernian Silver Hand	40	44	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Hibernian Thunderer	43	43	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Hibernian Wayfarer	25	27	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Norse Einherjar	50	55	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Norse Flammen Herra	43	43	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Norse Flammen Vakten	33	33	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Norse Isen Herra	43	43	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Norse Isen Vakten	30	33	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Norse Skiltvakten	28	30	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Norse Stormur Vakten	38	42	Soultorn
+Darkness Falls	5-18-2002	alb	Soultorn Norse Vakten	25	27	Soultorn
+Darkness Falls	5-18-2002	alb	Succubus	57	63	Demon
+Darkness Falls	5-18-2002	alb	Tormented Necyomancer	46	50	Necyomancer
+Darkness Falls	5-18-2002	alb	Umbral Aegis	63	68	Monster
+Darkness Falls	5-18-2002	alb	Umbrood Warrior	59	65	Demon
+Darkness Falls	5-18-2002	alb	Young Necyomancer	24	29	Necyomancer
+Avalon Marsh	8-20-2002	alb	Bloodfish	3	3	Animal
+Avalon Marsh	8-20-2002	alb	Bloody-Bones	7	8	Undead
+Avalon Marsh	8-20-2002	alb	Bogman	3	4	Humanoid
+Avalon Marsh	8-20-2002	alb	Bogman Fisher	9	9	Humanoid
+Avalon Marsh	8-20-2002	alb	Bogman Gatherer	8	8	Humanoid
+Avalon Marsh	8-20-2002	alb	Bogman Grappler	5	5	Humanoid
+Avalon Marsh	8-20-2002	alb	Bogman Hunter	11	11	Humanoid
+Avalon Marsh	8-20-2002	alb	Bogman Trapper	10	10	Humanoid
+Avalon Marsh	8-20-2002	alb	Carrion Crab	2	2	Animal
+Avalon Marsh	8-20-2002	alb	Dark Bishop Burhoff	17	17	Undead
+Avalon Marsh	8-20-2002	alb	Death Grip Vines	7	8	Plant
+Avalon Marsh	8-20-2002	alb	Dread Lord Aryon	15	15	Undead
+Avalon Marsh	8-20-2002	alb	Ghostly Knight	8	10	Undead
+Avalon Marsh	8-20-2002	alb	Ghoul Footman	17	17	Undead
+Avalon Marsh	8-20-2002	alb	Ghoul Knight	18	19	Undead
+Avalon Marsh	8-20-2002	alb	Ghoul Lord	19	22	Undead
+Avalon Marsh	8-20-2002	alb	Giant Water Leaper	15	15	Animal
+Avalon Marsh	8-20-2002	alb	Giant Wolf	15	17	Animal
+Avalon Marsh	8-20-2002	alb	Marsh Scrag	11	13	Giant
+Avalon Marsh	8-20-2002	alb	Marsh Worm	9	11	Animal
+Avalon Marsh	8-20-2002	alb	Mist Monster	16	16	Monster
+Avalon Marsh	8-20-2002	alb	Mist Sprite	6	6	Monster
+Avalon Marsh	8-20-2002	alb	Mouldering Corpse	3	3	Undead
+Avalon Marsh	8-20-2002	alb	Muck Snake	1	1	Reptile
+Avalon Marsh	8-20-2002	alb	Mud Golem	14	15	Elemental
+Avalon Marsh	8-20-2002	alb	Outcast Rogue	1	1	Humanoid
+Avalon Marsh	8-20-2002	alb	Phantom Page	4	5	Undead
+Avalon Marsh	8-20-2002	alb	Phantom Squire	6	7	Undead
+Avalon Marsh	8-20-2002	alb	Quicksand	16	16	Elemental
+Avalon Marsh	8-20-2002	alb	Rot Worm	5	5	Animal
+Avalon Marsh	8-20-2002	alb	Rotting Skeleton	1	1	Undead
+Avalon Marsh	8-20-2002	alb	Scraek	12	13	Demon
+Avalon Marsh	8-20-2002	alb	Scrag	8	8	Giant
+Avalon Marsh	8-20-2002	alb	Scragling	6	6	Giant
+Avalon Marsh	8-20-2002	alb	Scrawny Bogman	2	2	Humanoid
+Avalon Marsh	8-20-2002	alb	Shambler	12	13	Plant
+Avalon Marsh	8-20-2002	alb	Skeleton	2	2	Undead
+Avalon Marsh	8-20-2002	alb	Slime Lizard	1	1	Reptile
+Avalon Marsh	8-20-2002	alb	Small Bear	4	4	Animal
+Avalon Marsh	8-20-2002	alb	Spirit	6	6	Undead
+Avalon Marsh	8-20-2002	alb	Swamp Rat	4	4	Animal
+Avalon Marsh	8-20-2002	alb	Swamp Slime	3	3	Plant
+Avalon Marsh	8-20-2002	alb	Wandering Spirit	9	11	Undead
+Avalon Marsh	8-20-2002	alb	Water Leaper	8	10	Animal
+Avalon Marsh	8-20-2002	alb	Will o' Wisp	9	11	Magical
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Adder	7	7	Reptile
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Aithne Con	11	11	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Ant Drone	2	2	Insect
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Bandit	5	7	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Bandit Leader	11	11	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Bandit Lieutenant	9	10	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Bandit Messenger	9	9	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Bandit Thaumaturge	8	10	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Black Wolf	3	3	Animal
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Black Wolf Pup	1	1	Animal
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Borwyr the Cursed	12	12	Undead
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Boulderling	9	9	Monster
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Brownie Grassrunner	7	7	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Brownie Nomad	8	11	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Cilydd Difwych	12	12	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Convert Guard	10	12	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Cutpurse	4	4	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Decayed Zombie	3	3	Undead
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Devout Filidh	8	9	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Dragon Ant Drone	8	8	Insect
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Dragon Ant Queen	10	10	Insect
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Dragon Ant Soldier	7	7	Insect
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Dragon Ant Worker	5	5	Insect
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Dwarven Priest	12	14	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Emerald Snake	5	5	Reptile
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Faerie Bell-Wether	5	5	Monster
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Faerie Mischief-Maker	3	3	Monster
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Faerie Wolf-Crier	4	4	Monster
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Fielath	12	12	Demon
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Filidh	7	8	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Filidh Sacrificer	9	11	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Giant Ant	1	1	Insect
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Giant Frog	3	4	Animal
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Gray Wolf	4	4	Animal
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Gray Wolf Pup	1	1	Animal
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Grumoz Demon	10	11	Monster
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Gwulin	10	12	Monster
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Highwayman	7	7	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Hugrath Wormly	8	8	Undead
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Lady Leana	7	7	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Large Skeleton	5	5	Undead
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Manes Demon	7	8	Monster
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Mulgrut Maggot	5	5	Undead
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Poacher	4	4	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Poacher Leader	5	5	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Putrid Zombie	4	4	Undead
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	River Drake Hatchling	3	3	Monster
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	River Drakeling	5	5	Monster
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	River Sprite	6	6	Elemental
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Rotting Zombie	5	6	Undead
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Shale	10	11	Elemental
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Skeleton	2	2	Undead
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Small Bear	4	4	Animal
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Snake	3	3	Reptile
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Spriggarn	2	2	Elemental
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Spriggarn Elder	3	3	Elemental
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Undead Filidh	5	7	Undead
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Warrior Ant	3	3	Insect
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Weak Skeleton	1	1	Undead
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Wild Boar	6	6	Animal
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Wild Sow	2	2	Animal
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Ygwrch Gyrg	6	7	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Young Cutpurse	3	3	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Young Poacher	3	3	Humanoid
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Zombie Boar	5	5	Undead
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Zombie Farmer	7	7	Undead
+Camelot Hills	8-20-2002	alb; Tomb of Mithra 7-17; DF 20-50	Zombie Sow	4	4	Undead
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Ant Drone	2	2	Insect
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Arachneida	11	11	Insect
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Ashen Fellwood	16	23	Plant
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Black Lion	30	30	Animal
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Black Lioness	30	30	Animal
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Bloated Spider	10	11	Insect
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Creeping Crud	2	2	Plant
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Dappled Lynx	2	3	Animal
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Devout Filidh	8	9	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Disturbed Presence	12	13	Undead
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Druid	11	19	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Druid Sacrificer	20	21	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Dryad	7	9	Monster
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Dryad Invert	9	9	Monster
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Dryad Twig	1	1	Monster
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Ebony Fellwood	13	14	Plant
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Filidh	7	8	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Filidh Sacrificer	9	11	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Forest Bear	7	9	Animal
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Forest Bear Cub	3	3	Animal
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Forest Cat	16	16	Animal
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Forest Lion	6	6	Animal
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Forest Snake	3	3	Reptile
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Granddaddy Longlegs	11	11	Insect
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Green Witch	15	15	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Grizzletooth	21	21	Animal
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Lake Adder	10	10	Reptile
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Oakman	7	9	Plant
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Ormgarth	6	7	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Outcast Rogue	1	1	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Pixie	6	7	Elemental
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Pixie Queen	15	15	Elemental
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Pixie Scout	8	8	Elemental
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Putrid Zombie	4	4	Undead
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Rotting Skeleton	1	1	Undead
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Scrawny Red Lion	3	3	Animal
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Skeleton	2	2	Undead
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Spirit	6	6	Undead
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Spriggarn Ambusher	15	15	Elemental
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Spriggarn Howler	16	16	Elemental
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Spriggarn Waylayer	14	14	Elemental
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Swamp Rat	4	4	Animal
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Sylvan Goblin	5	5	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Sylvan Goblin Chief	16	17	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Sylvan Goblin Hunter	6	9	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Sylvan Goblin Magician	10	10	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Sylvan Goblin Warrior	9	12	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Sylvan Goblin Whelp	3	3	Humanoid
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Tree Spider	2	2	Insect
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Tree Spirit	6	6	Undead
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Weak Skeleton	1	1	Undead
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Will o' Wisp	9	11	Magical
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Wood Ogre Berzerker	14	15	Giant
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Wood Ogre Lord	16	16	Giant
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Wood Ogre Mystic	11	11	Giant
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Wood Ogre Scourge	12	13	Giant
+Campacorentin Forest	8-20-2002	alb; Keltoi Fogou 19-28	Wood Ogre Seer	14	14	Giant
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Arisus Princeps	30	30	Undead
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Brice Yarley	40	40	Humanoid
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Brother Jarrel	19	19	Undead
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Brown Bear	15	15	Animal
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Bucca	23	24	Monster
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Byron Yarley	40	40	Humanoid
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Cliff Spider	18	21	Insect
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Cliff Spiderling	14	14	Insect
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Cornish Frog	13	13	Animal
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Cornwall Drake	40	44	Monster
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Cornwall Hunter	23	27	Humanoid
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Elder Beech	23	28	Plant
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Ghostly Cleric	12	12	Undead
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Ghostly Paladin	12	13	Undead
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Giant Rooter	30	34	Animal
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Giant Skeleton	27	28	Undead
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Greater Boogey	35	41	Humanoid
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	John Yarley	40	40	Humanoid
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Lesser Telamon	44	44	Magical
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Lone Wolf	20	20	Animal
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Moor Boogey	27	31	Humanoid
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Moor Den Mother	17	17	Animal
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Moor Pack Leader	15	15	Animal
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Moor Wolf	14	14	Animal
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Patrick Yarley	40	40	Humanoid
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Roman Ghost	15	15	Undead
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Roman Spirit	12	12	Undead
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Skeletal Centurion	21	21	Undead
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Skeletal Legionnaire	18	20	Undead
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Small Skeletal Centurion	17	17	Undead
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Small Skeletal Legionnaire	14	16	Undead
+Cornwall	8-21-2002	alb; Catacombs of Carvoda 24-42	Veteran Guardsman Esmond	45	45	Guard
+Dartmoor	9-7-2002	alb	Agidad	55	55	?
+Dartmoor	9-7-2002	alb	Borimo	53	53	?
+Dartmoor	9-7-2002	alb	Brac	45	45	?
+Dartmoor	9-7-2002	alb	Braen	45	45	?
+Dartmoor	9-7-2002	alb	Brannoc	47	47	?
+Dartmoor	9-7-2002	alb	Clud	47	47	?
+Dartmoor	9-7-2002	alb	Clywd	49	49	?
+Dartmoor	9-7-2002	alb	Dartmoor Pony	34	36	Animal
+Dartmoor	9-7-2002	alb	Draconic Ancilla	50	50	?
+Dartmoor	9-7-2002	alb	Golestandt	80	80	Reptile
+Dartmoor	9-7-2002	alb	Granite Giant	36	40	Giant
+Dartmoor	9-7-2002	alb	Granite Giant Earthmagi	65	65	Giant
+Dartmoor	9-7-2002	alb	Granite Giant Elder	62	64	Giant
+Dartmoor	9-7-2002	alb	Granite Giant Gatherer	42	46	Giant
+Dartmoor	9-7-2002	alb	Granite Giant Herdsman	39	43	Giant
+Dartmoor	9-7-2002	alb	Granite Giant Oracle	62	64	Giant
+Dartmoor	9-7-2002	alb	Granite Giant Outlooker	51	55	Giant
+Dartmoor	9-7-2002	alb	Granite Giant Pounder	52	58	Giant
+Dartmoor	9-7-2002	alb	Granite Giant Reinforcer	65	65	Giant
+Dartmoor	9-7-2002	alb	Granite Giant Stonecaller	45	49	Giant
+Dartmoor	9-7-2002	alb	Granite Giant Stonelord	57	61	Giant
+Dartmoor	9-7-2002	alb	Granite Giant Stonemender	65	65	Giant
+Dartmoor	9-7-2002	alb	Granite Giant Stoneshaper	48	52	Giant
+Dartmoor	9-7-2002	alb	Granite Knocker	47	47	?
+Dartmoor	9-7-2002	alb	Greenhorn Poacher	25	31	Humanoid
+Dartmoor	9-7-2002	alb	Grimbuld	51	51	?
+Dartmoor	9-7-2002	alb	Moran the Mighty	73	73	Monster
+Dartmoor	9-7-2002	alb	Ruthless Brigand	39	43	Humanoid
+Dartmoor	9-7-2002	alb	Stonecrush Demolisher	51	55	Giant
+Dartmoor	9-7-2002	alb	Stonecrush Excavator	45	49	Giant
+Dartmoor	9-7-2002	alb	Stonecrush Rockgrinder	48	52	Giant
+Forest Sauvage	8-22-2002	alb	Ancient Basilisk	21	21	Reptile
+Forest Sauvage	8-22-2002	alb	Ashen Fellwood	16	23	Plant
+Forest Sauvage	8-22-2002	alb	Aspen Fellwood	23	23	Plant
+Forest Sauvage	8-22-2002	alb	Black Poplar Fellwood	26	26	Plant
+Forest Sauvage	8-22-2002	alb	Black Willow Fellwood	20	20	Plant
+Forest Sauvage	8-22-2002	alb	Death Stalker	16	17	Animal
+Forest Sauvage	8-22-2002	alb	Downy Fellwood	24	24	Plant
+Forest Sauvage	8-22-2002	alb	Ebony Fellwood	13	14	Plant
+Forest Sauvage	8-22-2002	alb	Ettin Shaman	11	14	Giant
+Forest Sauvage	8-22-2002	alb	Forest Adder	16	19	Reptile
+Forest Sauvage	8-22-2002	alb	Forest Ettin	12	16	Giant
+Forest Sauvage	8-22-2002	alb	Forest Giant	18	21	Giant
+Forest Sauvage	8-22-2002	alb	Forest Hunter	21	24	Humanoid
+Forest Sauvage	8-22-2002	alb	Forest Merchant	26	26	Humanoid
+Forest Sauvage	8-22-2002	alb	Forest Messanger	15	15	Humanoid
+Forest Sauvage	8-22-2002	alb	Forest Runner	20	20	Humanoid
+Forest Sauvage	8-22-2002	alb	Forest Stalker	27	27	Humanoid
+Forest Sauvage	8-22-2002	alb	Forest Tracker	15	15	Humanoid
+Forest Sauvage	8-22-2002	alb	Forester	31	31	Humanoid
+Forest Sauvage	8-22-2002	alb	Gold Oaken Fellwood	33	33	Plant
+Forest Sauvage	8-22-2002	alb	Grimwood	46	50	Undead
+Forest Sauvage	8-22-2002	alb	Hornbeam Fellwood	27	27	Plant
+Forest Sauvage	8-22-2002	alb	Master Hunter	33	33	Humanoid
+Forest Sauvage	8-22-2002	alb	Oaken Fellwood	18	18	Plant
+Forest Sauvage	8-22-2002	alb	Silver Oaken Fellwood	31	31	Plant
+Forest Sauvage	8-22-2002	alb	White Willow Fellwood	21	21	Plant
+Forest Sauvage	8-22-2002	alb	Young Forest Runner	10	10	Humanoid
+Hadrian's Wall	8-28-2002	alb	Albion Waylayer	35	35	Humanoid
+Hadrian's Wall	8-28-2002	alb	Cait Sidhe	48	56	Undead
+Hadrian's Wall	8-28-2002	alb	Cave Fairy	40	46	Magical
+Hadrian's Wall	8-28-2002	alb	Celtic Lich	50	50	Undead
+Hadrian's Wall	8-28-2002	alb	Hibernian Waylayer	35	35	Humanoid
+Hadrian's Wall	8-28-2002	alb	Hill Troll	39	41	Humanoid
+Hadrian's Wall	8-28-2002	alb	Legionnaire	30	36	Undead
+Hadrian's Wall	8-28-2002	alb	Midgard Waylayer	35	35	Humanoid
+Hadrian's Wall	8-28-2002	alb	Pictish Druid	40	42	Humanoid
+Hadrian's Wall	8-28-2002	alb	Pictish Warrior	40	44	Humanoid
+Hadrian's Wall	8-28-2002	alb	Piper Fairy	52	56	Magical
+Hadrian's Wall	8-28-2002	alb	Priestess	40	44	Humanoid
+Hadrian's Wall	8-28-2002	alb	Stone Sentinel	48	50	Magical
+Hadrian's Wall	8-28-2002	alb	Templar	50	54	Humanoid
+Hadrian's Wall	8-28-2002	alb	Tunneler	37	37	Reptile
+Llyn Barfog	8-20-2002	alb	Alfanc	26	27	?
+Llyn Barfog	8-20-2002	alb	Black Bear	16	21	?
+Llyn Barfog	8-20-2002	alb	Bwgan	22	25	Humanoid
+Llyn Barfog	8-20-2002	alb	Bwgan Elder	24	24	Humanoid
+Llyn Barfog	8-20-2002	alb	Bwgan Fisherman	23	27	Humanoid
+Llyn Barfog	8-20-2002	alb	Bwgan Hunter	22	23	Humanoid
+Llyn Barfog	8-20-2002	alb	Bwgwl	29	33	Undead
+Llyn Barfog	8-20-2002	alb	Cwn Annwn	20	22	?
+Llyn Barfog	8-20-2002	alb	Cythraul	20	33	?
+Llyn Barfog	8-20-2002	alb	Diamondback Toad	50	55	?
+Llyn Barfog	8-20-2002	alb	Gwr-Drwgiaid	15	17	Undead
+Llyn Barfog	8-20-2002	alb	Legendary Afanc	50	65	Giant
+Llyn Barfog	8-20-2002	alb	Undead Monk	30	34	Undead
+Llyn Barfog	8-20-2002	alb	Welsh Hobgoblin	17	19	Humanoid
+Llyn Barfog	8-20-2002	alb	Welsh Hobgoblin Chief	20	20	Humanoid
+Llyn Barfog	8-20-2002	alb	Wicked Cythraul	20	33	Undead
+Lyonesse	9-7-2002	alb	Bean-Nighe	50	54	Undead
+Lyonesse	9-7-2002	alb	Bone Snapper	63	63	Insect
+Lyonesse	9-7-2002	alb	Cailleach Guard	60	66	Magical
+Lyonesse	9-7-2002	alb	Cailleach Priest	64	67	Magical
+Lyonesse	9-7-2002	alb	Cailleach Uragaig	70	70	Magical
+Lyonesse	9-7-2002	alb	Danaoin Clerk	35	39	Undead
+Lyonesse	9-7-2002	alb	Danaoin Commander	60	60	Undead
+Lyonesse	9-7-2002	alb	Danaoin Farmer	44	46	Undead
+Lyonesse	9-7-2002	alb	Danaoin Fisherman	40	42	Undead
+Lyonesse	9-7-2002	alb	Danaoin Lieutenant	58	58	Undead
+Lyonesse	9-7-2002	alb	Danaoin Priest	42	44	Undead
+Lyonesse	9-7-2002	alb	Danaoin Sailor	44	46	Undead
+Lyonesse	9-7-2002	alb	Danaoin Soldier	50	54	Undead
+Lyonesse	9-7-2002	alb	Dunter	30	34	Undead
+Lyonesse	9-7-2002	alb	Gabriel Hound	40	48	Monster
+Lyonesse	9-7-2002	alb	Giant Lizard	36	38	Reptile
+Lyonesse	9-7-2002	alb	Greater Telamon	54	54	Magical
+Lyonesse	9-7-2002	alb	Hamadryad	30	38	Plant
+Lyonesse	9-7-2002	alb	Lesser Telamon	44	44	Magical
+Lyonesse	9-7-2002	alb	Medial Telamon	49	49	Magical
+Lyonesse	9-7-2002	alb	Moorlich	48	52	Undead
+Lyonesse	9-7-2002	alb	Ossuary Guardian	48	48	Undead
+Lyonesse	9-7-2002	alb	Peallaidh	35	46	Humanoid
+Lyonesse	9-7-2002	alb	Pygmy Goblin	43	43	Humanoid
+Lyonesse	9-7-2002	alb	Pygmy Goblin Tangler	45	45	Humanoid
+Lyonesse	9-7-2002	alb	Witherwoode	57	57	Plant
+Lyonesse	9-7-2002	alb	Woodeworm	55	55	Animal
+North Black Mountains	8-20-2002	alb	Bear	8	8	Animal
+North Black Mountains	8-20-2002	alb	Cutpurse	4	4	Humanoid
+North Black Mountains	8-20-2002	alb	Dragon Ant Drone	8	8	Insect
+North Black Mountains	8-20-2002	alb	Dragon Ant Queen	10	10	Insect
+North Black Mountains	8-20-2002	alb	Dragon Ant Soldier	7	7	Insect
+North Black Mountains	8-20-2002	alb	Dragon Ant Worker	5	5	Insect
+North Black Mountains	8-20-2002	alb	Dryad	7	9	Monster
+North Black Mountains	8-20-2002	alb	Forest Chief	19	19	Humanoid
+North Black Mountains	8-20-2002	alb	Forest Smuggler	17	17	Humanoid
+North Black Mountains	8-20-2002	alb	Forest Tracker	15	15	Humanoid
+North Black Mountains	8-20-2002	alb	Giant Spider	6	8	Insect
+North Black Mountains	8-20-2002	alb	Goblin	8	10	Humanoid
+North Black Mountains	8-20-2002	alb	Goblin Scout	7	7	Humanoid
+North Black Mountains	8-20-2002	alb	Goblin Warrior	8	8	Humanoid
+North Black Mountains	8-20-2002	alb	Gray Warg	9	11	Animal
+North Black Mountains	8-20-2002	alb	Hill Avenger	12	12	Humanoid
+North Black Mountains	8-20-2002	alb	Hill Chief	14	14	Humanoid
+North Black Mountains	8-20-2002	alb	Hill Guard	11	11	Humanoid
+North Black Mountains	8-20-2002	alb	Hill Shaman	12	12	Humanoid
+North Black Mountains	8-20-2002	alb	Hill Warrior	10	10	Humanoid
+North Black Mountains	8-20-2002	alb	Large Boulderling	11	12	Monster
+North Black Mountains	8-20-2002	alb	Pixie	6	7	Elemental
+North Black Mountains	8-20-2002	alb	Pixie Scout	8	8	Elemental
+North Black Mountains	8-20-2002	alb	Red Dwarf Chief	10	10	Humanoid
+North Black Mountains	8-20-2002	alb	Rock Elemental	11	12	Elemental
+North Black Mountains	8-20-2002	alb	Undead Druid	8	10	Undead
+Pennine Mountains	8-19-2002	alb	Angry Bwca	46	47	?
+Pennine Mountains	8-19-2002	alb	Barguest	57	58	Undead
+Pennine Mountains	8-19-2002	alb	Boggart	45	54	Humanoid
+Pennine Mountains	8-19-2002	alb	Brown Drakeling	34	36	Monster
+Pennine Mountains	8-19-2002	alb	Cliff Crawler	42	45	Insect
+Pennine Mountains	8-19-2002	alb	Cockatrice	42	44	Reptile
+Pennine Mountains	8-19-2002	alb	Cyhraeth	50	51	Undead
+Pennine Mountains	8-19-2002	alb	Ellyll Guard	49	51	Humanoid
+Pennine Mountains	8-19-2002	alb	Ellyll Sage	50	53	Humanoid
+Pennine Mountains	8-19-2002	alb	Ellyll Villager	45	45	Humanoid
+Pennine Mountains	8-19-2002	alb	Ellyll Windchaser	47	50	Humanoid
+Pennine Mountains	8-19-2002	alb	Ellyllon Champion	53	57	Humanoid
+Pennine Mountains	8-19-2002	alb	Freybug	35	41	Humanoid
+Pennine Mountains	8-19-2002	alb	Gnarled Fellwood	45	52	Plant
+Pennine Mountains	8-19-2002	alb	Great Boar	42	46	Animal
+Pennine Mountains	8-19-2002	alb	Great Brown Drake	55	59	Monster
+Pennine Mountains	8-19-2002	alb	Grimwood Keeper	43	47	Undead
+Pennine Mountains	8-19-2002	alb	Gytrash	35	38	Undead
+Pennine Mountains	8-19-2002	alb	Hoary Worm	53	55	Reptile
+Pennine Mountains	8-19-2002	alb	Knotted Fellwood	43	46	Plant
+Pennine Mountains	8-19-2002	alb	Mountain Grim	35	39	Undead
+Pennine Mountains	8-19-2002	alb	Padfoot	51	54	Undead
+Pennine Mountains	8-19-2002	alb	Pendrake	48	48	Undead
+Pennine Mountains	8-19-2002	alb	Ravenclan Giant	50	51	Giant
+Pennine Mountains	8-19-2002	alb	Scorned Bwca	32	32	?
+Pennine Mountains	8-19-2002	alb	Tylwyth Teg Hunteress	43	45	Humanoid
+Pennine Mountains	8-19-2002	alb	Tylwyth Teg Ranger	46	47	Humanoid
+Pennine Mountains	8-19-2002	alb	Tylwyth Teg Rover	41	42	Humanoid
+Pennine Mountains	8-19-2002	alb	Western Basilisk	49	50	Reptile
+Pennine Mountains	8-19-2002	alb	Worm	39	43	Reptile
+Pennine Mountains	8-19-2002	alb	Young Brown Drake	47	47	Monster
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Abagu	14	15	Giant
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Aged Basilisk	19	19	Reptile
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Bandit	5	7	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Bandit Lieutenant	9	10	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Bandit Thaumaturge	8	10	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Basilisk	15	15	Reptile
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Black Dog	9	10	Animal
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Brownie Grassrunner	7	7	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Brownie Nomad	8	11	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Brownie Rover	12	12	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Carrion Drake	8	9	Monster
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Druid	11	19	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Druid Sacrificer	20	21	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Druid Seer	19	20	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Faerie Frog	28	30	Animal
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Ghostwalker's Apprentice	11	11	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Grass Snake	5	5	Reptile
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Green Ghast	12	14	Undead
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Grove Nymph	10	18	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Grunk	24	24	Giant
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Gwulin	10	12	Monster
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Huge Boar	18	19	Animal
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Pseudo Basilisk	12	12	Reptile
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Red Adder	10	10	Reptile
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	River Racer	7	7	Reptile
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Salisbury Giant	18	22	Giant
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Shade of Ambrosius Aurelianus	40	40	Undead
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Skeletal Centurion	21	21	Undead
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Skeletal Legionnaire	18	20	Undead
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Slave	11	11	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Slave Master	13	17	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Slave Master Bodyguard	15	15	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Slaver	12	15	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Slythcur	11	12	Drake
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Small Skeletal Legionnaire	14	16	Undead
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Spriggarn Ambusher	15	15	Elemental
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Spriggarn Howler	16	16	Elemental
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Spriggarn Waylayer	14	14	Elemental
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Tomb Raider	16	17	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Tomb Raider Commander	18	20	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Tomb Raider Digger	10	13	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Tomb Raider Scout	13	15	Humanoid
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Undead Druid	8	10	Undead
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Undead Filidh	5	7	Undead
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Wandering Spirit	9	11	Undead
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	White Horse	17	21	Animal
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Wild Mare	9	9	Animal
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Wild Stallion	10	10	Animal
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Wind Mephit	14	14	Monster
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Yell Hound	15	16	Animal
+Salisbury Plains	8-20-2002	alb; Stonehenge Barrows 36-50	Young Bear	10	10	Animal
+Snowdonia	8-22-2002	alb	Angry Bwca	45	47	Humanoid
+Snowdonia	8-22-2002	alb	Arawnite Headhunter	36	38	Humanoid
+Snowdonia	8-22-2002	alb	Arawnite Shamaness	34	35	Humanoid
+Snowdonia	8-22-2002	alb	Arawnite Warrior	34	35	Humanoid
+Snowdonia	8-22-2002	alb	Bwca	24	26	Humanoid
+Snowdonia	8-22-2002	alb	Cath Paluc	47	47	Monster
+Snowdonia	8-22-2002	alb	Cheshire	25	25	Animal
+Snowdonia	8-22-2002	alb	Cyclops	41	42	Giant
+Snowdonia	8-22-2002	alb	Cyhraeth	50	51	Undead
+Snowdonia	8-22-2002	alb	Ellyll Froglord	51	54	Humanoid
+Snowdonia	8-22-2002	alb	Ellyll Windchaser	47	50	Humanoid
+Snowdonia	8-22-2002	alb	Eye of Arawn	43	43	Monster
+Snowdonia	8-22-2002	alb	Faerie Frog	28	30	Animal
+Snowdonia	8-22-2002	alb	Faint Grim	20	21	Undead
+Snowdonia	8-22-2002	alb	Fitful Bwca	35	36	Humanoid
+Snowdonia	8-22-2002	alb	Giant Boar	34	35	Animal
+Snowdonia	8-22-2002	alb	Giant Lizard	36	38	Reptile
+Snowdonia	8-22-2002	alb	Great Boar	42	46	Animal
+Snowdonia	8-22-2002	alb	Grunge	45	45	Animal
+Snowdonia	8-22-2002	alb	Hollow Man	39	41	Humanoid
+Snowdonia	8-22-2002	alb	Howling Knifeman	26	27	Humanoid
+Snowdonia	8-22-2002	alb	Howling Maiden	24	26	Humanoid
+Snowdonia	8-22-2002	alb	Large Rock Bounder	45	46	Animal
+Snowdonia	8-22-2002	alb	Ravenclan Giant	50	51	Giant
+Snowdonia	8-22-2002	alb	Scorned Bwca	32	34	Humanoid
+Snowdonia	8-22-2002	alb	Shadowhunter	39	41	Animal
+Snowdonia	8-22-2002	alb	Shadowhunter She-Wolf	42	43	Animal
+Snowdonia	8-22-2002	alb	Small Rock Bounder	22	23	Animal
+Snowdonia	8-22-2002	alb	Snowdon Grim	36	38	Undead
+Snowdonia	8-22-2002	alb	Sprawling Arachnid	34	35	Insect
+Snowdonia	8-22-2002	alb	Tylwyth Teg Hunteress	43	45	Humanoid
+Snowdonia	8-22-2002	alb	Tylwyth Teg Ranger	46	47	Humanoid
+Snowdonia	8-22-2002	alb	Tylwyth Teg Rover	41	42	Humanoid
+Snowdonia	8-22-2002	alb	Worry Wort	32	32	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Ant Drone	2	2	Insect
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Bandit	5	7	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Bear Cub	2	2	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Black Wolf	3	3	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Black Wolf Pup	1	1	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Boar Piglet	1	1	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Boulder Imp	7	7	Monster
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Boulderling	9	9	Monster
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Bullyboy	5	6	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Cutpurse	4	4	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Devout Filidh	8	9	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Dwarf Brawler	3	4	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Dwarf Pillager	4	5	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Dwarf Raider	5	6	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Eel	2	2	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Filidh	7	8	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Filidh Sacrificer	9	11	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Forest Lion	6	6	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Giant Ant	1	1	Insect
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Giant Frog	3	4	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Giant Spider	6	8	Insect
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Goblin	8	10	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Goblin Fisherman	4	6	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Goblin Lookout	8	8	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Goblin Lord	11	11	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Goblin Scout	7	7	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Goblin Shaman	9	10	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Goblin Warrior	8	8	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Highwayman	7	7	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Large Ant	2	3	Insect
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Moldy Skeleton	2	2	Undead
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Nain Dwarf	9	9	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Puny Skeleton	1	1	Undead
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Red Dwarf Bandit	6	8	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Red Dwarf Matron	6	8	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Red Dwarf Thief	5	7	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Red Dwarf Youth	5	5	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Red Lion	3	3	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Robber	1	3	Humanoid
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Rock Imp	3	5	Monster
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Skeleton	2	2	Undead
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Slith	4	4	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Slith Broodling	2	3	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Small Bear	4	4	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Small Gray Wolf	3	3	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Snake	3	3	Reptile
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Spriggarn	2	2	Elemental
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Undead Goblin Chief	6	6	Undead
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Undead Goblin Fisherman	4	4	Undead
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Undead Goblin Warrior	5	5	Undead
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Weak Skeleton	1	1	Undead
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Wild Sow	2	2	Animal
+South Black Mountains	8-20-2002	alb; Tepok's Mine 16-21	Young Cutpurse	3	3	Humanoid
+Catacombs of Carvoda		alb dungeon	Actarius	31	31	Undead
+Catacombs of Carvoda		alb dungeon	Aquilifer	31	31	Undead
+Catacombs of Carvoda		alb dungeon	Centurio Manipularis	31	31	Undead
+Catacombs of Carvoda		alb dungeon	Centurio Pilus Posterior	31	31	Undead
+Catacombs of Carvoda		alb dungeon	Centurio Primus Ordines	31	31	Undead
+Catacombs of Carvoda		alb dungeon	Centurio Primus Pilus	32	32	Undead
+Catacombs of Carvoda		alb dungeon	Cohorstalis	30	30	Undead
+Catacombs of Carvoda		alb dungeon	Decurion	31	31	Undead
+Catacombs of Carvoda		alb dungeon	Draconarius	31	31	Undead
+Catacombs of Carvoda		alb dungeon	Dux	32	32	Undead
+Catacombs of Carvoda		alb dungeon	Forgotten Emporer	35	35	Undead
+Catacombs of Carvoda		alb dungeon	Imaginifer	31	31	Undead
+Catacombs of Carvoda		alb dungeon	Immunis	29	29	Undead
+Catacombs of Carvoda		alb dungeon	Legatio	33	33	Undead
+Catacombs of Carvoda		alb dungeon	Legionarius	29	29	Undead
+Catacombs of Carvoda		alb dungeon	Magister	32	32	Undead
+Catacombs of Carvoda		alb dungeon	Manipularis	30	30	Undead
+Catacombs of Carvoda		alb dungeon	Optio	31	31	Undead
+Catacombs of Carvoda		alb dungeon	Praefectus	32	32	Undead
+Catacombs of Carvoda		alb dungeon	Praetor	31	31	Undead
+Catacombs of Carvoda		alb dungeon	Praetorian Guard	33	33	Undead
+Catacombs of Carvoda		alb dungeon	Princep	32	32	Undead
+Catacombs of Carvoda		alb dungeon	Signifier	31	31	Undead
+Catacombs of Carvoda		alb dungeon	Singular	33	33	Undead
+Catacombs of Carvoda		alb dungeon	Tribune	32	32	Undead
+Catacombs of Carvoda		alb dungeon	Tribunus Laticlavicus	33	33	Undead
+Catacombs of Carvoda		alb dungeon	Vigilis	29	29	Undead
+Keltoi Fogou	8-20-2002	alb dungeon	Beven	23	23	Humanoid
+Keltoi Fogou	8-20-2002	alb dungeon	Dai	25	25	Humanoid
+Keltoi Fogou	8-20-2002	alb dungeon	Gremlin	20	21	Humanoid
+Keltoi Fogou	8-20-2002	alb dungeon	Gwern	24	25	Monster
+Keltoi Fogou	8-20-2002	alb dungeon	Keltoi Banisher	24	27	Humanoid
+Keltoi Fogou	8-20-2002	alb dungeon	Keltoi Eremite	22	24	Humanoid
+Keltoi Fogou	8-20-2002	alb dungeon	Keltoi Familiar	24	26	Animal
+Keltoi Fogou	8-20-2002	alb dungeon	Keltoi Initiate	19	21	Humanoid
+Keltoi Fogou	8-20-2002	alb dungeon	Keltoi Novitiate	20	20	Humanoid
+Keltoi Fogou	8-20-2002	alb dungeon	Keltoi Recluse	25	28	Humanoid
+Keltoi Fogou	8-20-2002	alb dungeon	Keltoi Ritualist	23	23	Humanoid
+Keltoi Fogou	8-20-2002	alb dungeon	Keltoi Spiritualist	27	28	Humanoid
+Keltoi Fogou	8-20-2002	alb dungeon	Keltoi Visionary	23	24	Humanoid
+Keltoi Fogou	8-20-2002	alb dungeon	Meurig	23	23	Humanoid
+Keltoi Fogou	8-20-2002	alb dungeon	Muryan Emmisary	25	25	Animal
+Stonehenge Barrows	8-20-2002	alb dungeon	Barrow Wight	43	44	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Creeping Ooze	42	42	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Dark Fire	42	42	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Decayed Barbarian	40	40	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Decayed Barbarian Chieftain	42	42	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Decaying Tomb Raider	36	36	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Deep Goblin	42	42	Humanoid
+Stonehenge Barrows	8-20-2002	alb dungeon	Deep Goblin Blighter	43	43	Humanoid
+Stonehenge Barrows	8-20-2002	alb dungeon	Echo of Life	41	41	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Ectoplasm	41	41	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Fallen Warrior	41	41	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Fiery Fiend	41	43	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Ghoulic Viper	42	42	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Glowing Goo	36	36	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Grave Goblin	40	40	Humanoid
+Stonehenge Barrows	8-20-2002	alb dungeon	Grave Goblin Crueler	43	43	Humanoid
+Stonehenge Barrows	8-20-2002	alb dungeon	Grave Goblin Shaman	38	38	Humanoid
+Stonehenge Barrows	8-20-2002	alb dungeon	King's Wight	50	50	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Megalith Wight	46	46	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Megalithic Terror	49	49	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Pendragon Ardent	48	48	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Phantom	47	47	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Reanimated Foe	37	38	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Redbone Skeleton	37	37	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Repentant Follower	37	37	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Sacrificial Soul	43	43	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Saxonbone Skeleton	40	40	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Skeletal Druid	44	44	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Skeletal Druidess	44	44	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Skeletal High Priestess	46	46	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Soul Harvester	41	41	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Spectral Essence	46	47	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Spectral Wizard	47	47	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Spiritual Advisor	48	48	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Tomb Keeper	41	41	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Tomb Wight	42	42	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Undead Retainer	36	37	Undead
+Stonehenge Barrows	8-20-2002	alb dungeon	Vigilant Soul	46	46	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Anilius	13	15	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Bleeder	8	9	Drake
+Tomb of Mithra	8-20-2002	alb dungeon	Botched Sacrifice	10	12	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Chilled Presence	10	11	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Dreadful Cadaver	8	8	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Decaying Spirit	6	7	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Disturbed Presence	12	13	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Doomed Minion	9	10	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Erisus	13	13	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Fading Spirit	7	8	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Fallen Paladin	12	12	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Favonius Facilis	13	15	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Forgotten Promise	9	9	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Ghost Miner	11	12	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Lingering Shade	7	8	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Living Entombed	10	12	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Menacing Presense	12	13	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Mindless Minion	8	10	Humanoid
+Tomb of Mithra	8-20-2002	alb dungeon	Spiteful Wraith	11	12	Undead
+Tomb of Mithra	8-20-2002	alb dungeon	Virilus	13	13	Undead
+Bog of Cullen	8-17-2002	hib	Alp Luachra	29	31	Magical
+Bog of Cullen	8-17-2002	hib	Amadan Touched	29	34	Humanoid
+Bog of Cullen	8-17-2002	hib	Badh	46	49	?
+Bog of Cullen	8-17-2002	hib	Banshee	46	49	Undead
+Bog of Cullen	8-17-2002	hib	Black Badger	36	40	?
+Bog of Cullen	8-17-2002	hib	Black Wraith	50	54	Undead
+Bog of Cullen	8-17-2002	hib	Bog Crawler	38	39	Insect
+Bog of Cullen	8-17-2002	hib	Bog Creeper	40	43	Insect
+Bog of Cullen	8-17-2002	hib	Bog Frog	39	42	Animal
+Bog of Cullen	8-17-2002	hib	Bog Pike	25	25	Animal
+Bog of Cullen	8-17-2002	hib	Cluricaun	22	24	?
+Bog of Cullen	8-17-2002	hib	Corpan Side	39	41	Magical
+Bog of Cullen	8-17-2002	hib	Giant Ant	21	24	?
+Bog of Cullen	8-17-2002	hib	Greater Luch	24	27	?
+Bog of Cullen	8-17-2002	hib	Irewood Greenbark	40	40	?
+Bog of Cullen	8-17-2002	hib	Irewood Sapling	21	22	?
+Bog of Cullen	8-17-2002	hib	Lesser Banshee	35	39	Undead
+Bog of Cullen	8-17-2002	hib	Merman	36	39	Magical
+Bog of Cullen	8-17-2002	hib	Morass Leech	34	36	?
+Bog of Cullen	8-17-2002	hib	Pooka	52	57	?
+Bog of Cullen	8-17-2002	hib	Savage Fishing Bear	50	51	?
+Bog of Cullen	8-17-2002	hib	Siabra Archmagi	54	56	Humanoid
+Bog of Cullen	8-17-2002	hib	Siabra Guardian	54	59	Humanoid
+Bog of Cullen	8-17-2002	hib	Siabra Lookout	31	31	?
+Bog of Cullen	8-17-2002	hib	Siabra Mireguard	40	43	Humanoid
+Bog of Cullen	8-17-2002	hib	Siabra Seeker	28	31	Humanoid
+Bog of Cullen	8-17-2002	hib	Siabra Wayguard	46	47	Humanoid
+Bog of Cullen	8-17-2002	hib	Siabra Waylayer	26	27	Humanoid
+Bog of Cullen	8-17-2002	hib	Swamp Hopper	36	37	?
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Aughisky	31	33	Magical
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Bantam Spectre	17	17	?
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Bocan	15	15	Undead
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Changeling	11	11	Magical
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Cliff Beetle	31	37	Insect
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Cliff Dweller	36	38	Humanoid
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Cliff Dweller Hunter	37	38	Humanoid
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Cliff Dweller Spearman	38	40	Humanoid
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Cliff Hanger	36	39	Insect
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Fetch	15	15	Magical
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Fog Phantom	21	23	?
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Fog Wraith	28	30	Undead
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Fury Sprite	17	18	?
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Gale	16	18	Elemental
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Ghoulie	20	22	Undead
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Giant Beetle	20	21	Insect
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Grass Sheerie	18	21	?
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Greater Zephyr	31	33	Elemental
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Grovewood	38	42	Plant
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Hillock Changeling	35	37	?
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Juvenile Megafelid	35	38	?
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Koalinth Slinker	34	38	Humanoid
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Lesser Zephyr	23	24	Elemental
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Mist Wraith	27	28	Undead
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Rock Sheerie	18	21	?
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Siabra Distorter	17	19	Humanoid
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Tidal Sheerie	35	38	Elemental
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Vehement Guardian	40	40	Monster
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Vindictive Bocan	20	22	?
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Wild Lucradan	9	11	Magical
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Wraith Sprite	27	28	Magical
+Cliffs of Moher	6-16-2002	hib; Koalinth Tribal Caverns 20-30	Zephyr Wraith	29	32	Undead
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Amadan Touched	29	34	Humanoid
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Anger Sprite	11	13	Magical
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Bantam Spectre	14	14	?
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Changeling	11	11	Magical
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Dorbal	29	34	Undead
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Eirebug	4	5	Insect
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Faerie Beetle	17	17	Insect
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Fishing Bear Forager	13	14	Animal
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Fog Wraith	28	30	Undead
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Ghostly Siabra	11	15	Undead
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Grumoz Demon	12	12	?
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Hill Toad	5	7	Animal
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Irewood	29	31	Plant
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Irewood Sapling	21	22	Plant
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Large Frog	0	1	Animal
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Manes Demon	9	11	?
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Moss Sheerie	10	12	Elemental
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Mudman	2	4	Elemental
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Murgar	35	35	Animal
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Pookha	30	33	Magical
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Rowdy	4	8	Humanoid
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Skeletal Minion	3	4	Undead
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Skeletal Pawn	1	2	Undead
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Spraggon	3	5	Elemental
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Spraggonoll	7	9	Elemental
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Streaming Wisp	21	24	Elemental
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Villanous Youth	2	3	Humanoid
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Walking Rock	22	25	Elemental
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Water Beetle	6	9	Insect
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Water Beetle Collector	4	5	Insect
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Wild Crouch	5	6	Magical
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Wind Ghoul	7	8	Undead
+Connacht	6-16-2002	hib; Muire Tomb 12-20; DF 25-50	Windaille	6	7	Undead
+Cruachan Gorge	6-14-2002	hib	Aughisky	31	33	Magical
+Cruachan Gorge	6-14-2002	hib	Bird-Eating Frog	20	22	Animal
+Cruachan Gorge	6-14-2002	hib	Bocaidhe	27	29	Magical
+Cruachan Gorge	6-14-2002	hib	Casolith	45	45	Demon
+Cruachan Gorge	6-14-2002	hib	Cruach Imp	33	35	Demon
+Cruachan Gorge	6-14-2002	hib	Curmudgeon Ratoner	31	33	Humanoid
+Cruachan Gorge	6-14-2002	hib	Empyrean Sentinel	26	29	Magical
+Cruachan Gorge	6-14-2002	hib	Faeghoul	34	36	Undead
+Cruachan Gorge	6-14-2002	hib	Fee Lion	25	27	Animal
+Cruachan Gorge	6-14-2002	hib	Ghoulie	20	22	Undead
+Cruachan Gorge	6-14-2002	hib	Giant Ant	21	29	Insect
+Cruachan Gorge	6-14-2002	hib	Giant Beetle	20	21	Insect
+Cruachan Gorge	6-14-2002	hib	Gorge Rat	30	31	Animal
+Cruachan Gorge	6-14-2002	hib	Graugach	32	33	Magical
+Cruachan Gorge	6-14-2002	hib	Gray Spectre	22	24	Undead
+Cruachan Gorge	6-14-2002	hib	Hill Hound	18	20	Animal
+Cruachan Gorge	6-14-2002	hib	Ire Wolf	25	27	Animal
+Cruachan Gorge	6-14-2002	hib	Irewood	29	31	Plant
+Cruachan Gorge	6-14-2002	hib	Irewood Greenbark	40	40	Plant
+Cruachan Gorge	6-14-2002	hib	Juvenile Megafelid	35	38	Animal
+Cruachan Gorge	6-14-2002	hib	Mad Changeling	26	28	Magical
+Cruachan Gorge	6-14-2002	hib	Megafelid	39	42	Animal
+Cruachan Gorge	6-14-2002	hib	Mist Wraith	27	28	Undead
+Cruachan Gorge	6-14-2002	hib	Moss Maiden	24	25	Humanoid
+Cruachan Gorge	6-14-2002	hib	Mountain Mephit	20	23	Demon
+Cruachan Gorge	6-14-2002	hib	Pookha	33	35	Magical
+Cruachan Gorge	6-14-2002	hib	Roan Stepper	29	32	Animal
+Cruachan Gorge	6-14-2002	hib	Sett Dweller	27	31	Animal
+Cruachan Gorge	6-14-2002	hib	Siabra Raider	37	39	Humanoid
+Cruachan Gorge	6-14-2002	hib	Siabra Waylayer	26	27	Humanoid
+Cruachan Gorge	6-14-2002	hib	Squabbler	28	30	Animal
+Cruachan Gorge	6-14-2002	hib	Streaming Wisp	21	24	Elemental
+Cruachan Gorge	6-14-2002	hib	Thistle	32	32	Insect
+Cruachan Gorge	6-14-2002	hib	Torc	34	37	Animal
+Cruachan Gorge	6-14-2002	hib	Torcan	31	33	Animal
+Cruachan Gorge	6-14-2002	hib	Vindictive Bocan	20	22	Undead
+Cursed Forest	7-14-2002	hib	Banshee	57	64	?
+Cursed Forest	7-14-2002	hib	Black Wraith	50	58	Undead
+Cursed Forest	7-14-2002	hib	Far Dorocha	48	58	Magical
+Cursed Forest	7-14-2002	hib	Finliath	58	69	Undead
+Cursed Forest	7-14-2002	hib	Forest Poacher	50	58	Humanoid
+Cursed Forest	7-14-2002	hib	Formorian	49	53	?
+Cursed Forest	7-14-2002	hib	Formorian Annag	57	60	?
+Cursed Forest	7-14-2002	hib	Formorian Grabeye	57	60	?
+Cursed Forest	7-14-2002	hib	Formorian Grencher	54	60	?
+Cursed Forest	7-14-2002	hib	Gan Ceanach	50	55	?
+Cursed Forest	7-14-2002	hib	Giant Isus	58	61	Giant
+Cursed Forest	7-14-2002	hib	Gorborchend	54	59	?
+Cursed Forest	7-14-2002	hib	Grand Pooka	57	60	Humanoid
+Cursed Forest	7-14-2002	hib	Granny	48	55	Undead
+Cursed Forest	7-14-2002	hib	Leprechaun	48	51	Magical
+Cursed Forest	7-14-2002	hib	Levian-Al	50	59	Animal
+Cursed Forest	7-14-2002	hib	Mindworm	57	68	Animal
+Cursed Forest	7-14-2002	hib	Pooka	50	64	Humanoid
+Cursed Forest	7-14-2002	hib	Savage Fishing Bear	50	59	Animal
+Cursed Forest	7-14-2002	hib	Spectral Manslayer	50	55	Undead
+Cursed Forest	7-14-2002	hib	Unearthed Cave Bear	49	59	Animal
+Emain Macha	6-14-2002	hib	Amadan Touched	29	34	Humanoid
+Emain Macha	6-14-2002	hib	Bananach	37	37	?
+Emain Macha	6-14-2002	hib	Black Badger	37	37	?
+Emain Macha	6-14-2002	hib	Corpan Side	37	37	?
+Emain Macha	6-14-2002	hib	Cruach Imp	33	35	Demon
+Emain Macha	6-14-2002	hib	Fachan	46	50	?
+Emain Macha	6-14-2002	hib	Giant Isus	52	55	?
+Emain Macha	6-14-2002	hib	Gorborchend	46	50	?
+Emain Macha	6-14-2002	hib	Granny	46	51	?
+Emain Macha	6-14-2002	hib	Grogan	46	51	?
+Emain Macha	6-14-2002	hib	Grovewood	37	45	Plant
+Emain Macha	6-14-2002	hib	Hillock Changeling	37	37	?
+Emain Macha	6-14-2002	hib	Irewood Greenbark	40	40	Plant
+Emain Macha	6-14-2002	hib	Leprechaun	48	50	Magical
+Emain Macha	6-14-2002	hib	Loghery Man	46	46	Humanoid
+Emain Macha	6-14-2002	hib	Megafelid	37	43	?
+Emain Macha	6-14-2002	hib	Mindworm	52	52	?
+Emain Macha	6-14-2002	hib	Phaeghoul	37	37	?
+Emain Macha	6-14-2002	hib	Sett Dweller	27	31	Animal
+Emain Macha	6-14-2002	hib	Sett Matriarch	41	41	Animal
+Emain Macha	6-14-2002	hib	Sett Matron	35	38	Animal
+Emain Macha	6-14-2002	hib	Sett Protector	32	33	Animal
+Emain Macha	6-14-2002	hib	Sett Youngling	20	24	Animal
+Emain Macha	6-14-2002	hib	Torc	34	37	Animal
+Emain Macha	6-14-2002	hib	Torcan	31	33	Animal
+Lough Derg	6-16-2002	hib	Anger Sprite	11	13	Magical
+Lough Derg	6-16-2002	hib	Annoying Lucradan	0	1	Humanoid
+Lough Derg	6-16-2002	hib	Badger	9	12	Animal
+Lough Derg	6-16-2002	hib	Bristle	12	14	Animal
+Lough Derg	6-16-2002	hib	Clubmoss Sheerie	18	20	Elemental
+Lough Derg	6-16-2002	hib	Curmudgeon Crab-catcher	15	18	Humanoid
+Lough Derg	6-16-2002	hib	Curmudgeon Fighter	16	18	Humanoid
+Lough Derg	6-16-2002	hib	Curmudgeon Harvester	9	11	Humanoid
+Lough Derg	6-16-2002	hib	Curmudgeon Poacher	15	15	Humanoid
+Lough Derg	6-16-2002	hib	Curmudgeon Skinner	10	11	Humanoid
+Lough Derg	6-16-2002	hib	Curmudgeon Trapper	11	12	Humanoid
+Lough Derg	6-16-2002	hib	Dew Sheerie	16	19	Elemental
+Lough Derg	6-16-2002	hib	Eirebug	4	5	Insect
+Lough Derg	6-16-2002	hib	Feccan	2	3	Humanoid
+Lough Derg	6-16-2002	hib	Feckless Lucradan	4	4	Magical
+Lough Derg	6-16-2002	hib	Fishing Bear Forager	13	14	Animal
+Lough Derg	6-16-2002	hib	Ghastly Siabra	15	16	Undead
+Lough Derg	6-16-2002	hib	Ghostly Siabra	11	15	Undead
+Lough Derg	6-16-2002	hib	Grass Sheerie	13	15	Elemental
+Lough Derg	6-16-2002	hib	Grass Spirit	1	1	Undead
+Lough Derg	6-16-2002	hib	Great Scourge	32	35	Giant
+Lough Derg	6-16-2002	hib	Gurite Assailer	23	24	Humanoid
+Lough Derg	6-16-2002	hib	Hill Toad	5	7	Animal
+Lough Derg	6-16-2002	hib	Lough Wolf	7	9	Animal
+Lough Derg	6-16-2002	hib	Lough Wolf Cadger	2	3	Animal
+Lough Derg	6-16-2002	hib	Lugradan Whelp	4	6	Magical
+Lough Derg	6-16-2002	hib	Lunantishee	8	9	Magical
+Lough Derg	6-16-2002	hib	Mad Sprite	10	10	Monster
+Lough Derg	6-16-2002	hib	Minor Changeling	1	2	Magical
+Lough Derg	6-16-2002	hib	Moss Sheerie	10	12	Elemental
+Lough Derg	6-16-2002	hib	Mudman	2	4	Elemental
+Lough Derg	6-16-2002	hib	Nofier	23	25	Undead
+Lough Derg	6-16-2002	hib	Orchard Nipper	3	4	Magical
+Lough Derg	6-16-2002	hib	Parthanan	17	18	Demon
+Lough Derg	6-16-2002	hib	Primrose	10	10	Magical
+Lough Derg	6-16-2002	hib	Rat Boy	3	3	Magical
+Lough Derg	6-16-2002	hib	Red Wolfhound	10	13	Animal
+Lough Derg	6-16-2002	hib	Roane Companion	12	15	Magical
+Lough Derg	6-16-2002	hib	Roane Maiden	12	13	Magical
+Lough Derg	6-16-2002	hib	Rock Sheerie	18	21	Elemental
+Lough Derg	6-16-2002	hib	Rowdy	4	8	Humanoid
+Lough Derg	6-16-2002	hib	Sheevra Skirmisher	13	15	Humanoid
+Lough Derg	6-16-2002	hib	Siabra Enchanter	12	12	Humanoid
+Lough Derg	6-16-2002	hib	Siabra Fury	13	15	Humanoid
+Lough Derg	6-16-2002	hib	Skeletal Minion	3	4	Undead
+Lough Derg	6-16-2002	hib	Skeletal Pawn	1	2	Undead
+Lough Derg	6-16-2002	hib	Small Freshwater Crab	15	18	Animal
+Lough Derg	6-16-2002	hib	Spraggon	3	5	Elemental
+Lough Derg	6-16-2002	hib	Spraggonite	5	6	Elemental
+Lough Derg	6-16-2002	hib	Straw	7	7	?
+Lough Derg	6-16-2002	hib	Streaming Wisp	21	24	Elemental
+Lough Derg	6-16-2002	hib	Summoner	5	5	Magical
+Lough Derg	6-16-2002	hib	Veil Wisp	11	13	Magical
+Lough Derg	6-16-2002	hib	Villanous Youth	2	3	Humanoid
+Lough Derg	6-16-2002	hib	Water Beetle	6	9	Insect
+Lough Derg	6-16-2002	hib	Water Beetle Collector	4	5	Insect
+Lough Derg	6-16-2002	hib	Whistler	10	10	Magical
+Lough Derg	6-16-2002	hib	Wild Crouch	5	6	Magical
+Lough Derg	6-16-2002	hib	Wild Lucradan	9	11	Magical
+Lough Derg	6-16-2002	hib	Young Badger	6	6	Animal
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Alp Luachra	29	31	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Amadan Touched	29	34	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Black Badger	36	40	Animal
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Black Wraith	50	54	Undead
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Cluricaun	22	24	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Corpan Side	39	41	Magical
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Curmudgeon Fighter	16	18	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Curmudgeon Poacher	15	15	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Curmudgeon Scout	15	17	Humanoid
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Dampwood Mite	24	24	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Deamhan Aeir	34	37	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Deamhan Hound	40	42	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Dew Sheerie	16	19	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Dullahan	48	51	Undead
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Faerie Beetle	17	17	Insect
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Faerie Horse	18	23	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Far Darrig	46	48	Magical
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Fishing Bear	18	21	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Ghoulie	20	22	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Giant Ant	21	29	Insect
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Gray Spectre	22	24	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Greater Luch	24	27	Animal
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Gurite Assailer	23	24	Humanoid
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Gurite Footpad	16	17	Humanoid
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Gurite Piller	18	19	Humanoid
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Gurite Raider	37	39	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Gurite Waylayer	26	27	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Hill Hound	18	20	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Irewolf	25	27	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Irewood Greenbark	40	40	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Irewood Sapling	21	22	Plant
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Large Eirebug	9	11	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Large Luch	18	21	Animal
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Large Red Wolfhound	17	19	Animal
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Lhiannan-Sidhe	49	49	Magical
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Luch Catcher	25	28	Animal
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Merman	23	25	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Merucha	30	30	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Parthanan	19	23	Elemental
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Pooka	50	52	Humanoid
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Rage Wolf	31	32	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Red Wolfhound	10	13	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Savage Fishing Bear	50	51	?
+Lough Gur	8-17-2002	hib; Treibh Caillte 27-36	Siog Piller	18	19	Humanoid
+Shannon Estuary	5-16-2002	hib	Annoying Lucradan	0	1	Humanoid
+Shannon Estuary	5-16-2002	hib	Aod	16	17	Humanoid
+Shannon Estuary	5-16-2002	hib	Beach Rat	0	1	Animal
+Shannon Estuary	5-16-2002	hib	Blue Bilk	28	28	?
+Shannon Estuary	5-16-2002	hib	Eriu Fiscere	13	15	Humanoid
+Shannon Estuary	5-16-2002	hib	Eriu Waylayer	24	28	Humanoid
+Shannon Estuary	5-16-2002	hib	Far Liath	31	32	Undead
+Shannon Estuary	5-16-2002	hib	Feccan	2	4	Humanoid
+Shannon Estuary	5-16-2002	hib	Fishing Bear	18	21	Animal
+Shannon Estuary	5-16-2002	hib	Haunted Driftwood	1	1	Undead
+Shannon Estuary	5-16-2002	hib	Hill Toad	5	7	Animal
+Shannon Estuary	5-16-2002	hib	Ire Wolf	25	27	Animal
+Shannon Estuary	5-16-2002	hib	Large Frog	0	1	Animal
+Shannon Estuary	5-16-2002	hib	Lesser Zephyr	23	24	Elemental
+Shannon Estuary	5-16-2002	hib	Merman	23	25	Magical
+Shannon Estuary	5-16-2002	hib	Merrow	20	22	Humanoid
+Shannon Estuary	5-16-2002	hib	Mudman	2	4	Elemental
+Shannon Estuary	5-16-2002	hib	Ollipheist	34	37	Reptile
+Shannon Estuary	5-16-2002	hib	Rat Boy	3	3	Magical
+Shannon Estuary	5-16-2002	hib	Rowdy	4	8	Humanoid
+Shannon Estuary	5-16-2002	hib	Sand Crab	0	1	Insect
+Shannon Estuary	5-16-2002	hib	Sandman	1	2	Elemental
+Shannon Estuary	5-16-2002	hib	Siabra	12	13	Humanoid
+Shannon Estuary	5-16-2002	hib	Siabra Ambusher	19	19	Humanoid
+Shannon Estuary	5-16-2002	hib	Siabra Henter	19	22	Humanoid
+Shannon Estuary	5-16-2002	hib	Siabra Kedger	16	18	Humanoid
+Shannon Estuary	5-16-2002	hib	Skeletal Pawn	1	2	Undead
+Shannon Estuary	5-16-2002	hib	Spraggon	3	5	Elemental
+Shannon Estuary	5-16-2002	hib	Water Badger	21	23	Animal
+Shannon Estuary	5-16-2002	hib	Water Beetle	6	9	Insect
+Shannon Estuary	5-16-2002	hib	Weldo	4	4	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Annoying Luchradan	0	1	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Badger	9	12	Animal
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Bodachan Sabhaill	2	4	Elemental
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Clurican Trip	8	9	Monster
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Deamhan Aeir	34	37	Demon
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Deamhan Creig	17	18	Demon
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Deamhan Hound	40	42	Demon
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Dew Sheerie	16	19	Elemental
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Eirebug	4	5	Insect
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Faerie Drake	20	22	Drake
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Feccan	2	3	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Feckless Lucradan	4	4	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Gray Spectre	22	24	Undead
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Hill Hound	18	20	Animal
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Hill Toad	5	7	Animal
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Large Eirebug	9	11	Insect
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Large Frog	0	1	Animal
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Lough Wolf	7	9	Animal
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Luricaduane	6	7	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Miner Cucugar	13	14	Monster
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Moss Sheerie	10	12	Elemental
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Mountain Mephit	20	23	Demon
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Mudman	2	4	Elemental
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Rock Clipper	21	23	Insect
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Rock Sheerie	18	21	Elemental
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Rockbiter	37	37	Elemental
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Rowdy	4	8	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Seireadan	4	4	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Sheevra Archer	14	14	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Sheevra Chieftain	15	16	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Sheevra Skirmisher	13	15	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Sheevra Swordsman	11	13	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Siabra	12	13	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Siabra Miner	13	14	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Silvermine Badger	22	23	Animal
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Silvermine Sentry	39	39	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Small Walking Rock	2	3	Elemental
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Spraggon	3	5	Elemental
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Spraggonale	21	23	Elemental
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Spraggonoll	7	9	Elemental
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Villanous Youth	2	3	Humanoid
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Walking Rock	22	25	Elemental
+Silvermine Mountains	5-2-2002	hib; Spraggon Den 15-24	Water Beetle Collector	4	5	Insect
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Anger Sprite	11	13	Magical
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Barca	10	12	Magical
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Empyrean Elder	41	44	?
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Empyrean Guardian	34	38	?
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Empyrean Keeper	23	25	?
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Empyrean Orb	10	10	Magical
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Empyrean Overseer	37	39	?
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Empyrean Sentinal	26	29	?
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Empyrean Watcher	16	18	Magical
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Empyrean Wisp	13	15	Magical
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Faerie Drake	20	22	?
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Faerie Horse	18	23	?
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Faerie Steed	19	24	Animal
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Fearan	14	16	Elemental
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Fee Lion	25	27	?
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Fury Sprite	14	16	Magical
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Grass Sheerie	13	15	Elemental
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Gurite Footpad	16	17	Humanoid
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Little Water Goblin	2	2	Humanoid
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Mad Changeling	26	28	?
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Mist Sheerie	20	21	Elemental
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Primrose	10	10	Magical
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Rage Wolf	32	33	?
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Siog Footpad	15	17	?
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Siog Piller	18	19	Humanoid
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Siog Seeker	28	31	?
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Tangua	18	21	Magical
+Valley of Bri Leith	6-16-2002	hib; Coruscating Mines 30-40	Veil Wisp	11	13	Magical
+Muire Tomb	6-4-2002	hib dungeon	Alsandair Muire	18	18	Humanoid
+Muire Tomb	6-4-2002	hib dungeon	Beare Muire	17	17	Humanoid
+Muire Tomb	6-4-2002	hib dungeon	Carrion Scorpionida	16	18	Insect
+Muire Tomb	6-4-2002	hib dungeon	Conaire Muire	18	20	Humanoid
+Muire Tomb	6-4-2002	hib dungeon	Crypt Spider	11	16	Insect
+Muire Tomb	6-4-2002	hib dungeon	Death Worm	16	17	Insect
+Muire Tomb	6-4-2002	hib dungeon	Hellhag	16	16	Humanoid
+Muire Tomb	6-4-2002	hib dungeon	Kacey Muire	17	19	Humanoid
+Muire Tomb	6-4-2002	hib dungeon	Muire Lady in Waiting	16	18	Humanoid
+Muire Tomb	6-4-2002	hib dungeon	Muire Man-at-Arms	16	18	Humanoid
+Muire Tomb	6-4-2002	hib dungeon	Mummy Hag	12	16	Undead
+Muire Tomb	6-4-2002	hib dungeon	Murkman	16	17	Elemental
+Muire Tomb	6-4-2002	hib dungeon	Scorpionida Regina	18	18	Insect
+Muire Tomb	6-4-2002	hib dungeon	Suitor Spirit	16	18	Undead
+Muire Tomb	6-4-2002	hib dungeon	Tomb Creeper	12	17	Humanoid
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Army Ant Soldier	8	8	Insect
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Army Ant Worker	6	6	Insect
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Black Mauler Juvenile	5	5	Animal
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Carrion Lizard	3	3	Reptile
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Cursed Sword	8	9	Undead
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Darksong	9	9	Monster
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Dryad Sprig	4	4	Elemental
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Envy Drakeling	9	9	Drake
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Escaped Thrall	3	3	Humanoid
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Fragile Skeleton	3	3	Undead
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Giant Water Strider	6	6	Insect
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Green Serpent	2	2	Reptile
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Jabrylla	8	9	Magical
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Klippa	11	11	Animal
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Morra	6	6	Animal
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Mourn	9	9	Monster
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Nordic Dirge	6	6	Undead
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Olag	12	12	Humanoid
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Phantom Hound	3	4	Undead
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Plague Rat	9	9	Animal
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Plague Rat Scout	8	8	Animal
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Rattling Skeleton	1	1	Undead
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Riv	12	12	Animal
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Roaming Dirge	8	8	Undead
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Roaming Thrall	7	7	Humanoid
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Rock Crab	7	7	Insect
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Rugged Dwarven Pony	4	4	Animal
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Silverscale Drakeling	9	9	Drake
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Smiera-Gatto	4	4	Animal
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Soft-shelled Crab	1	1	Insect
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Spindly Rock Crab	9	9	Insect
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Svartmoln	8	8	Animal
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Sveawolf Mother	5	5	Animal
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Sword Holder	10	10	Undead
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Tawny Lynx	8	8	Animal
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Tomte Skirmisher	8	8	Humanoid
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Tomte Thug	5	5	Humanoid
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Water Strider	6	6	Insect
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Wayward Ghoul	4	4	Undead
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Whirlwind	6	6	Humanoid
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Wiley	12	12	Humanoid
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Wood-Eater Scout	5	5	Insect
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Wood-Eater Soldier	6	6	Insect
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Wood-Eater Worker	4	4	Insect
+East Svealand	5-17-2002	mid; Nisse's Lair 8-21	Young Lynx	2	2	Animal
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Army Ant Worker	6	6	Insect
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Black Mauler Juvenile	5	5	Animal
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Davnis	15	15	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Drowned Soul	3	3	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Dryad Sprig	4	4	Elemental
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Dryad Sprout	3	3	Elemental
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Escaped Thrall	3	3	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Fressen	16	16	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Green Serpent	2	2	Reptile
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Haunt	7	7	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Hobgoblin Biter	6	6	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Hobgoblin Pincher	4	4	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Hobgoblin Prowler	8	8	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Hobgoblin Snagger	2	2	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Hobgoblin Snake-Finder	1	1	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Host of the Earth	6	6	Elemental
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Host of the Wind	7	7	Elemental
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Huldu Lurker	2	2	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Huldu Outcast	1	1	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Huldu Scout	4	4	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Huldu Stalker	5	5	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Ick	12	12	Insect
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Jordande	8	10	Elemental
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Kraken	24	25	Monster
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Little Water Goblin	2	2	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Meandering Spirit	1	1	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Nacken	10	11	Monster
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Perfidious Pook	10	10	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Phantom Hound	3	4	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Pine Imp	6	7	Magical
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Queen Major	7	7	Insect
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Rattling Skeleton	1	1	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Rugged Dwarven Pony	4	4	Animal
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Sapherd	5	5	Plant
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Scavenger	1	1	Animal
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Scout Argyle	15	15	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Seithr Orb	9	9	Magical
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Skeletal Oarsman	5	5	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Skeletal Seafarer	4	4	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Smiera-Gatto	4	4	Animal
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Spectral Hog	2	2	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Spook	6	6	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Styrimathr Ygna	7	8	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Svartalf Guard	15	15	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Svartalf Outcast	8	8	Humanoid
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Undead Explorer	3	3	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Undead Scout	15	15	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Undead Woodcarver	4	4	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Vefyn	10	10	Elemental
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Vidalf	11	11	Elemental
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Wayward Ghoul	4	4	Undead
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Wee Wolf	5	5	Animal
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Wind Wisp	9	9	Elemental
+Gotar	5-17-2002	mid; Cursed Tomb 18-28	Wood Imp	5	5	Magical
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Alina	19	19	Humanoid
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Arachite Greensilk	5	5	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Arachite Hatchling	1	1	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Arachite Priest	15	16	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Arachite Shadowslinker	13	15	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Arachite Weblasher	14	16	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Arakane	10	10	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Black Mauler Juvenile	5	5	Animal
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Black Rixtas	17	17	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Canan	20	20	Monster
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Carrion Crawler	6	6	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Carrion Eater	7	7	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Corpse Eater	11	16	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Dark Hound	17	18	Animal
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Death Spider	18	18	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Decaying Norseman	10	10	Undead
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Decaying Troll	10	10	Undead
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Dreadkane Dwarfeater	17	17	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Dryad Sprig	4	4	Elemental
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Dryad Sprout	3	3	Elemental
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Entrancing Dirge	21	21	Undead
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Envy Drakeling	9	9	Drake
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Ghost Light	7	7	Magical
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Giant Bull Frog	1	1	Animal
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Gray Worg	10	10	Animal
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Great Tingler	16	19	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Green Serpent	2	2	Reptile
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Haunt	7	7	Undead
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Hobgoblin Biter	6	6	Humanoid
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Hobgoblin Pincher	4	4	Humanoid
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Hobgoblin Prowler	8	8	Humanoid
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Hobgoblin Prankster	3	3	Humanoid
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Kobold Dirge	15	15	Undead
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Lone Weeping Willow	12	13	Plant
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Minor Werewolf Noble	18	20	Magical
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Mora Dancer	14	18	Magical
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Mora Rider	15	19	Magical
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Njessi	25	25	Drake
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Phantom Hound	3	4	Undead
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Pine Imp	6	7	Magical
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Priest Thaxtix	18	18	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Ridgeback Worg	11	17	Animal
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Roaming Dirge	8	8	Undead
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Sapherd	5	5	Plant
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Shadow	10	11	Magical
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Sharpfang Worg	12	14	Animal
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Shrieking Willow	18	20	Plant
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Soul Sinker	16	16	Magical
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Soul Slinker	17	18	Reptile
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Spectral Bayer	14	15	Undead
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Svartalf Chanter	12	16	Humanoid
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Svartalf Hunter	16	17	Humanoid
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Svartalf Outcast	8	8	Humanoid
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Svartalf Predator	16	16	Humanoid
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Svartalf Sorcerer	15	15	Humanoid
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Svartalf Watcher	13	13	Humanoid
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Svartskogsfru	18	19	Undead
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Taldos	12	12	Undead
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Tingler	12	12	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Tingler Webmother	19	19	Insect
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Venomspitter	11	17	Reptile
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Weeping Willow	11	12	Plant
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Werewolf	17	17	Magical
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Widower	23	24	Monster
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Wind Wisp	9	9	Elemental
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Wood Imp	5	5	Magical
+Myrkwood Forest	5-18-2002	mid; Spindelhalla 33-45	Young Envy Drake	20	22	Reptile
+Muspelheim	5-16-2002	mid	Acrid Ghoul	29	29	Undead
+Muspelheim	5-16-2002	mid	Ashen Spirit	19	24	?
+Muspelheim	5-16-2002	mid	Ashmonger	23	28	?
+Muspelheim	5-16-2002	mid	Brika	30	30	Animal
+Muspelheim	5-16-2002	mid	Burnt Skeletal Sentry	21	23	Undead
+Muspelheim	5-16-2002	mid	Charred Skeletal Commander	26	29	Undead
+Muspelheim	5-16-2002	mid	Charred Skeletal Warrior	23	28	Undead
+Muspelheim	5-16-2002	mid	Cinder Drake	28	29	Drake
+Muspelheim	5-16-2002	mid	Dverge Crackler	28	31	?
+Muspelheim	5-16-2002	mid	Dverge Fire-Eater	30	31	Humanoid
+Muspelheim	5-16-2002	mid	Dverge Igniter	26	28	?
+Muspelheim	5-16-2002	mid	Dverge Sparker	24	25	?
+Muspelheim	5-16-2002	mid	Ember	30	30	Drake
+Muspelheim	5-16-2002	mid	Fire Ant Gatherer	21	23	Insect
+Muspelheim	5-16-2002	mid	Fire Ant Scavenger	20	22	Insect
+Muspelheim	5-16-2002	mid	Fire Ant Worker	22	24	Insect
+Muspelheim	5-16-2002	mid	Firecat	24	28	?
+Muspelheim	5-16-2002	mid	Fire Flower	20	24	Plant
+Muspelheim	5-16-2002	mid	Fire Giant Guard	31	33	Giant
+Muspelheim	5-16-2002	mid	Fire Giant Lookout	27	30	Giant
+Muspelheim	5-16-2002	mid	Fire Giant Scout	28	28	Giant
+Muspelheim	5-16-2002	mid	Fire Giant Watchman	29	29	Giant
+Muspelheim	5-16-2002	mid	Fire Phantom	25	27	Undead
+Muspelheim	5-16-2002	mid	Fire Toad	27	29	Animal
+Muspelheim	5-16-2002	mid	Flame Spout	26	27	Elemental
+Muspelheim	5-16-2002	mid	Flame Thrower	21	25	Elemental
+Muspelheim	5-16-2002	mid	Flaming Raukomaz	30	33	Demon
+Muspelheim	5-16-2002	mid	Gokstad	24	25	Humanoid
+Muspelheim	5-16-2002	mid	Gokstorm	24	26	Giant
+Muspelheim	5-16-2002	mid	Lava Lizard	22	24	?
+Muspelheim	5-16-2002	mid	Lord Fire	33	34	?
+Muspelheim	5-16-2002	mid	Magmatasm	29	31	Undead
+Muspelheim	5-16-2002	mid	Mephitic Ghoul	26	31	Undead
+Muspelheim	5-16-2002	mid	Nocuous Hound	29	34	?
+Muspelheim	5-16-2002	mid	Noxious Hound	24	29	?
+Muspelheim	5-16-2002	mid	Olash	24	25	Humanoid
+Muspelheim	5-16-2002	mid	Plasmatasm	23	27	Undead
+Muspelheim	5-16-2002	mid	Pyrophantom	28	30	Undead
+Muspelheim	5-16-2002	mid	Pyrotasm	35	42	?
+Muspelheim	5-16-2002	mid	Seared Skeleton	27	32	Undead
+Muspelheim	5-16-2002	mid	Soot Harvester	20	24	Insect
+Muspelheim	5-16-2002	mid	Strykel	28	29	Giant
+Muspelheim	5-16-2002	mid	Sulphine	24	25	Insect
+Muspelheim	5-16-2002	mid	Sulphur Crab	20	23	?
+Muspelheim	5-16-2002	mid	Sulphuric Ghoul	22	23	?
+Muspelheim	5-16-2002	mid	Vapor Wraith	30	32	Undead
+Muspelheim	5-16-2002	mid	Young Fire Wyrm	25	27	Reptile
+Muspelheim	5-16-2002	mid	Young Wyrm Lord	30	30	?
+Odin's Gate	8-27-2002	mid	Aged Boreal Cockatrice	49	49	Reptile
+Odin's Gate	8-27-2002	mid	Aurora	43	46	Magical
+Odin's Gate	8-27-2002	mid	Bone-eater Clanmother	42	42	Humanoid
+Odin's Gate	8-27-2002	mid	Bone-eater Eviscerater	42	42	Humanoid
+Odin's Gate	8-27-2002	mid	Bone-eater Oracle	41	41	Humanoid
+Odin's Gate	8-27-2002	mid	Bone-eater Warleader	45	45	Humanoid
+Odin's Gate	8-27-2002	mid	Dire Wolverine	58	58	Animal
+Odin's Gate	8-27-2002	mid	Enhorning	50	50	Animal
+Odin's Gate	8-27-2002	mid	Fenrir Guard	45	45	Magical
+Odin's Gate	8-27-2002	mid	Fenrir Prophet	45	45	Magical
+Odin's Gate	8-27-2002	mid	Fenrir Shredder	46	46	Magical
+Odin's Gate	8-27-2002	mid	Frore Liche	55	57	Undead
+Odin's Gate	8-27-2002	mid	Frost Giant	37	37	Giant
+Odin's Gate	8-27-2002	mid	Frost Hound	30	31	Animal
+Odin's Gate	8-27-2002	mid	Frost Orm	35	35	Reptile
+Odin's Gate	8-27-2002	mid	Frost Stallion	54	55	Animal
+Odin's Gate	8-27-2002	mid	Fylgja	50	51	Animal
+Odin's Gate	8-27-2002	mid	Gelid Mass	35	35	Elemental
+Odin's Gate	8-27-2002	mid	Ghastly Albion Invader	43	43	Undead
+Odin's Gate	8-27-2002	mid	Glacial Mauler	44	45	Animal
+Odin's Gate	8-27-2002	mid	Glacier Giant	76	76	Giant
+Odin's Gate	8-27-2002	mid	Great Lynx	42	42	Animal
+Odin's Gate	8-27-2002	mid	Ice Giant	35	36	Giant
+Odin's Gate	8-27-2002	mid	Ice Golem	41	45	Elemental
+Odin's Gate	8-27-2002	mid	Ice Lizard	32	32	Reptile
+Odin's Gate	8-27-2002	mid	Ice Scrag	33	33	Giant
+Odin's Gate	8-27-2002	mid	Iceberg	42	42	Elemental
+Odin's Gate	8-27-2002	mid	Icestrider Frostweaver	46	46	Insect
+Odin's Gate	8-27-2002	mid	Icestrider Interceptor	47	49	Insect
+Odin's Gate	8-27-2002	mid	Isalf Forayer	44	44	Humanoid
+Odin's Gate	8-27-2002	mid	Mature Wyvern	55	57	Dragon
+Odin's Gate	8-27-2002	mid	Nordic Yeti	35	36	Humanoid
+Odin's Gate	8-27-2002	mid	Northern Ettin	25	27	Humanoid
+Odin's Gate	8-27-2002	mid	Savage Wyvern	45	45	Dragon
+Odin's Gate	8-27-2002	mid	Shard Golem	42	42	Elemental
+Odin's Gate	8-27-2002	mid	Sleipneirsson	51	56	Animal
+Odin's Gate	8-27-2002	mid	Snowshoe Bandit	30	34	Humanoid
+Odin's Gate	8-27-2002	mid	Snowshoe Bandit Mage	32	32	Humanoid
+Odin's Gate	8-27-2002	mid	Snow Giant	30	33	Giant
+Odin's Gate	8-27-2002	mid	Torpor Worm	37	37	Animal
+Odin's Gate	8-27-2002	mid	Undead Soldier	49	49	Undead
+Odin's Gate	8-27-2002	mid	Undead Troll Warrior	31	31	Undead
+Odin's Gate	8-27-2002	mid	White Wolf	30	30	Animal
+Odin's Gate	8-27-2002	mid	Windswept Wraith	50	50	Undead
+Odin's Gate	8-27-2002	mid	Winter Wolf	44	45	Animal
+Odin's Gate	8-27-2002	mid	Wintry Dirge	40	41	Undead
+Odin's Gate	8-27-2002	mid	Wyvern	38	38	Dragon
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Black Mauler	13	20	Animal
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Brush Cat	26	30	Animal
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Callow Wolverine	30	34	Animal
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Dryad Blossom	20	20	Elemental
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Dryad Greenthumb	21	21	Elemental
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Furf	25	25	Animal
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Gashir	30	31	Magical
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Giant Tree Frog	20	21	Animal
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Green Orm	40	43	?
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Krrrck	25	25	Animal
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Leildolf	37	39	Humanoid
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Moss Maiden	24	25	Humanoid
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Nimh	26	26	Monster
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Ove Grenle	30	30	Magical
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Pellinistra	29	31	Monster
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Pine Mephit	23	23	Demon
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Ra of Pine	29	31	Elemental
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Ra of Willow	31	31	Elemental
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Shrieking Willow	18	20	Plant
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Sidhe Draol	40	41	?
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Sidhe Gaoite	35	36	Elemental
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Skogsfru	13	16	Humanoid
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Stripe	25	37	Animal
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Timber Cat	36	41	Animal
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Timberland Badger	32	33	Animal
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Tradande	28	28	Plant
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Tree Spirit	26	27	Elemental
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Vindvasen	29	30	Elemental
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Werewolf Captain	37	38	Magical
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Werewolf Commander	36	36	Magical
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Werewolf Courier	26	28	Magical
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Werewolf Guard	31	33	Magical
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Werewolf Lieutenant	34	35	Magical
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Werewolf Noble	19	21	Magical
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Werewolf Runner	21	22	Magical
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Werewolf Skulker	23	25	Magical
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Werewolf Warder	27	30	Magical
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Wind Spirit	27	28	Elemental
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Wolfaur Headsman	33	36	Magical
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Wolverine	39	41	Animal
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Wood Mephit	22	22	Demon
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Wood Rat	24	25	Animal
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Woodland Badger	22	23	Animal
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Young Envy Drake	22	26	Reptile
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Young Silverscale Drake	22	22	Drake
+Skona Ravine	7-14-2002	mid; Varulvhamn 25-38	Young Wolverine	28	31	Animal
+Uppland	9-7-2002	mid	Abominable Snowman	26	30	Humanoid
+Uppland	9-7-2002	mid	Aged Boreal Cockatrice	49	49	Reptile
+Uppland	9-7-2002	mid	Alpine Cockatrice	33	33	Reptile
+Uppland	9-7-2002	mid	Aurora	41	44	Magical
+Uppland	9-7-2002	mid	Biting Wind	29	31	Elemental
+Uppland	9-7-2002	mid	Block of Ice	36	36	Elemental
+Uppland	9-7-2002	mid	Bone-Eater Clanmother	42	42	Humanoid
+Uppland	9-7-2002	mid	Bone-Eater Eviscerater	41	41	Humanoid
+Uppland	9-7-2002	mid	Bone-Eater Oracle	39	41	Humanoid
+Uppland	9-7-2002	mid	Bone-Eater Slayer	37	38	Humanoid
+Uppland	9-7-2002	mid	Bone-Eater Spine-Ripper	39	40	Humanoid
+Uppland	9-7-2002	mid	Boreal Cockatrice	24	26	Reptile
+Uppland	9-7-2002	mid	Chattering Skeleton	32	32	Undead
+Uppland	9-7-2002	mid	Chiseler	20	24	Insect
+Uppland	9-7-2002	mid	Cold Light	20	22	Magical
+Uppland	9-7-2002	mid	Fallen Troll	44	45	Undead
+Uppland	9-7-2002	mid	Fenrir Guard	45	45	Magical
+Uppland	9-7-2002	mid	Fenrir Prophet	44	45	Magical
+Uppland	9-7-2002	mid	Fenrir Shredder	45	46	Magical
+Uppland	9-7-2002	mid	Fenrir Snowscout	37	38	Magical
+Uppland	9-7-2002	mid	Fenrir Tracker	40	41	Magical
+Uppland	9-7-2002	mid	Flurry	23	23	Elemental
+Uppland	9-7-2002	mid	Fossegrim	29	31	Humanoid
+Uppland	9-7-2002	mid	Frost Hound	31	31	Animal
+Uppland	9-7-2002	mid	Frost Orm	35	35	Reptile
+Uppland	9-7-2002	mid	Frost Spectre	45	46	Undead
+Uppland	9-7-2002	mid	Frostbite Wilding	27	28	Humanoid
+Uppland	9-7-2002	mid	Frosty Colt	20	20	Animal
+Uppland	9-7-2002	mid	Frosty Scuttlebug	23	24	Insect
+Uppland	9-7-2002	mid	Gelid Mass	35	35	Elemental
+Uppland	9-7-2002	mid	Ghastly Albion Invader	43	43	Undead
+Uppland	9-7-2002	mid	Ghostly Hibernian Invader	42	43	Undead
+Uppland	9-7-2002	mid	Ghoulish Warrior	44	45	Undead
+Uppland	9-7-2002	mid	Giant Snowcrab	33	34	Insect
+Uppland	9-7-2002	mid	Glacial Mauler	44	44	Animal
+Uppland	9-7-2002	mid	Great Lynx	39	42	Animal
+Uppland	9-7-2002	mid	Half-frozen Madman	25	25	Humanoid
+Uppland	9-7-2002	mid	Ice Giant	34	36	Giant
+Uppland	9-7-2002	mid	Ice Lizard	34	34	Reptile
+Uppland	9-7-2002	mid	Ice Scrag	34	34	Giant
+Uppland	9-7-2002	mid	Iceberg	42	42	Elemental
+Uppland	9-7-2002	mid	Icestrider Chiller	43	43	Insect
+Uppland	9-7-2002	mid	Icestrider Frostweaver	46	46	Insect
+Uppland	9-7-2002	mid	Icestrider Interceptor	49	49	Insect
+Uppland	9-7-2002	mid	Icy Skeleton	25	25	Undead
+Uppland	9-7-2002	mid	Icy Wisp	31	33	Magical
+Uppland	9-7-2002	mid	Isalf Blinder	34	35	Humanoid
+Uppland	9-7-2002	mid	Isalf Icemage	34	34	Humanoid
+Uppland	9-7-2002	mid	Isalf Scryer	33	33	Humanoid
+Uppland	9-7-2002	mid	Isalf Snowtracker	35	35	Humanoid
+Uppland	9-7-2002	mid	Isalf Surveyor	33	33	Humanoid
+Uppland	9-7-2002	mid	Isalf Warrior	35	35	Humanoid
+Uppland	9-7-2002	mid	Mature Wyvern	54	54	Dragon
+Uppland	9-7-2002	mid	Miserable Zombie	28	32	Undead
+Uppland	9-7-2002	mid	Nordic Yeti	33	36	Giant
+Uppland	9-7-2002	mid	Northern Ettin	25	27	Giant
+Uppland	9-7-2002	mid	Northern Light	25	30	Magical
+Uppland	9-7-2002	mid	Savage Wyvern	45	45	Dragon
+Uppland	9-7-2002	mid	Shard Golem	42	42	Elemental
+Uppland	9-7-2002	mid	Shivering Presence	32	32	Undead
+Uppland	9-7-2002	mid	Sleigh Horse	30	30	Animal
+Uppland	9-7-2002	mid	Snow Giant	30	33	Giant
+Uppland	9-7-2002	mid	Snow Imp	20	22	Demon
+Uppland	9-7-2002	mid	Snowshoe Bandit	30	35	Humanoid
+Uppland	9-7-2002	mid	Stromkarl	40	40	Humanoid
+Uppland	9-7-2002	mid	Taiga Cat	32	32	Animal
+Uppland	9-7-2002	mid	Torpor Worm	37	37	Animal
+Uppland	9-7-2002	mid	Undead Minion	20	20	Undead
+Uppland	9-7-2002	mid	Undead Viking	44	45	Undead
+Uppland	9-7-2002	mid	White Wolf	27	31	Animal
+Uppland	9-7-2002	mid	Winter Wolf	43	44	Animal
+Uppland	9-7-2002	mid	Wintery Dirge	40	42	Undead
+Uppland	9-7-2002	mid	Wyvern	36	39	Dragon
+Uppland	9-7-2002	mid	Young Wyvern	28	30	Dragon
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Black Mauler Juvenile	5	5	Animal
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Carrion Lizard	3	3	Reptile
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Dryad Sprig	4	4	Elemental
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Enoga	25	26	?
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Frigol	10	10	Humanoid
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Grass Cat	11	14	Animal
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Green Serpent	2	2	Reptile
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Grumoz Demon	10	11	?
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Hill Cat	10	11	Animal
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Hill Person	6	6	Humanoid
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Hobgoblin Snagger	2	2	Humanoid
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Hobgoblin Snake-Finder	1	1	Humanoid
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Hobyah	12	12	Undead
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Hrrgyf	10	10	Animal
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Huldu Hunter	8	8	Humanoid
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Huldu Lurker	2	2	Humanoid
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Huldu Outcast	1	1	Humanoid
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Huldu Scout	4	4	Humanoid
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Huldu Stalker	5	5	Humanoid
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Little Water Goblin	2	2	Humanoid
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Manes Demon	7	7	?
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Meandering Spirit	1	1	Undead
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Phantom Hound	3	4	Undead
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Quirk	10	10	Humanoid
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Rabid Wolfhound	11	11	Animal
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Rasczel	11	11	Monster
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Rattling Skeleton	1	1	Undead
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Small Hill Cat	7	7	Animal
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Smiera-Gatto	4	4	Animal
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Spat	8	8	Animal
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Sveawolf Mother	5	5	Animal
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Tawny Lynx	8	8	Animal
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Vasa	11	11	Insect
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Vein Spider	10	10	Insect
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Vrede	12	12	Monster
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Wayward Ghoul	4	4	Undead
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Wolf Spiderling	12	12	Insect
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Wood-Eater	2	3	Insect
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Wood-Eater Alate	7	7	Insect
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Wood-Eater Hunter	3	5	Insect
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Wood-Eater Queen	8	9	Insect
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Wood-Eater Royal Guard	20	20	Insect
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Wood-Eater Scout	5	5	Insect
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Wood-Eater Soldier	6	6	Insect
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Wood-Eater Worker	4	4	Insect
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Wood-Eater Young King	10	10	Insect
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Young Grendelorm	10	12	Animal
+Vale of Mularn	5-15-2002	mid; Vendo Caverns 20-35; DF 25-50	Young Lynx	2	2	Animal
+West Svealand	8-17-2002	mid	Black Mauler	13	15	Animal
+West Svealand	8-17-2002	mid	Blodfelag Captive	10	10	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Dreng	14	16	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Haxa	19	20	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Henchman	12	13	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Livvakt	20	20	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Oathbreaker	10	12	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Partisan	13	15	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Soothsayer	14	14	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Svard	16	17	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Thralldriver	14	15	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Tormentor	19	20	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Warhound	10	10	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Windcaller	17	18	Humanoid
+West Svealand	8-17-2002	mid	Blodfelag Wolfwarrior	18	19	Humanoid
+West Svealand	8-17-2002	mid	Bloodthirsty She-Wolf	12	12	Animal
+West Svealand	8-17-2002	mid	Broch	16	16	Undead
+West Svealand	8-17-2002	mid	Drifting Spirit	14	16	Humanoid
+West Svealand	8-17-2002	mid	Elder Sveawolf	16	16	Animal
+West Svealand	8-17-2002	mid	Frothing Sveawolf	18	20	Animal
+West Svealand	8-17-2002	mid	Golga	18	20	Humanoid
+West Svealand	8-17-2002	mid	Graesen	18	18	Humanoid
+West Svealand	8-17-2002	mid	Grass Cat	11	14	Animal
+West Svealand	8-17-2002	mid	Grass Viper	15	15	Reptile
+West Svealand	8-17-2002	mid	Grizzled Sveawolf	13	16	Animal
+West Svealand	8-17-2002	mid	Large Sveawolf	14	14	Animal
+West Svealand	8-17-2002	mid	Mindless Thrall	12	14	Humanoid
+West Svealand	8-17-2002	mid	Minor Fideal	15	16	Humanoid
+West Svealand	8-17-2002	mid	Modervarg	6	8	Animal
+West Svealand	8-17-2002	mid	Morra	9	9	Animal
+West Svealand	8-17-2002	mid	Phantom Wolf	17	19	Animal
+West Svealand	8-17-2002	mid	Rabid Sveawolf	18	18	Animal
+West Svealand	8-17-2002	mid	Ribbon Toad	13	15	Animal
+West Svealand	8-17-2002	mid	Rip	18	18	Humanoid
+West Svealand	8-17-2002	mid	Rugged Dwarven Pony	4	4	Animal
+West Svealand	8-17-2002	mid	Sanguinite Ghoul	15	15	Monster
+West Svealand	8-17-2002	mid	Savage Lynx	17	17	Animal
+West Svealand	8-17-2002	mid	Shadow	10	11	Magical
+West Svealand	8-17-2002	mid	Skogsfru	13	14	Humanoid
+West Svealand	8-17-2002	mid	Squirt	15	15	Humanoid
+West Svealand	8-17-2002	mid	Svartalf Chanter	12	16	Humanoid
+West Svealand	8-17-2002	mid	Svartalf Hunter	16	17	Humanoid
+West Svealand	8-17-2002	mid	Swift	18	18	Magical
+West Svealand	8-17-2002	mid	Ulga	14	14	Humanoid
+West Svealand	8-17-2002	mid	Water Sprite	14	14	Humanoid
+West Svealand	8-17-2002	mid	Wiley	12	12	Humanoid
+West Svealand	8-17-2002	mid	Wind Sprite	15	17	Insect
+West Svealand	8-17-2002	mid	Wounded Sveawolf	14	14	Animal
+Yggdra Forest	8-28-2002	mid	Abominable Snowman	26	30	Humanoid
+Yggdra Forest	8-28-2002	mid	Biting Wind	29	29	Elemental
+Yggdra Forest	8-28-2002	mid	Block of Ice	36	37	Elemental
+Yggdra Forest	8-28-2002	mid	Bone-eater Clanmother	42	42	Humanoid
+Yggdra Forest	8-28-2002	mid	Bone-eater Eviscerater	41	42	Humanoid
+Yggdra Forest	8-28-2002	mid	Bone-eater Oracle	39	41	Humanoid
+Yggdra Forest	8-28-2002	mid	Bone-eater Slayer	37	37	Humanoid
+Yggdra Forest	8-28-2002	mid	Bone-eater Spine-ripper	39	40	Humanoid
+Yggdra Forest	8-28-2002	mid	Bone-eater Warleader	45	45	Humanoid
+Yggdra Forest	8-28-2002	mid	Boreal Cockatrice	24	27	Reptile
+Yggdra Forest	8-28-2002	mid	Chattering Skeleton	32	32	Undead
+Yggdra Forest	8-28-2002	mid	Chiseler	20	24	Insect
+Yggdra Forest	8-28-2002	mid	Cold Light	20	25	Magical
+Yggdra Forest	8-28-2002	mid	Fenrir Guard	45	45	Magical
+Yggdra Forest	8-28-2002	mid	Fenrir Prophet	44	45	Magical
+Yggdra Forest	8-28-2002	mid	Fenrir Snowscout	36	38	Magical
+Yggdra Forest	8-28-2002	mid	Fenrir Tracker	40	42	Magical
+Yggdra Forest	8-28-2002	mid	Flurry	23	23	Elemental
+Yggdra Forest	8-28-2002	mid	Fossegrim	29	31	Humanoid
+Yggdra Forest	8-28-2002	mid	Frost Giant	37	37	Giant
+Yggdra Forest	8-28-2002	mid	Frost Hound	30	31	Animal
+Yggdra Forest	8-28-2002	mid	Frost Orm	35	35	Reptile
+Yggdra Forest	8-28-2002	mid	Frost Spectre	46	46	Undead
+Yggdra Forest	8-28-2002	mid	Frostbite Wilding	27	29	Humanoid
+Yggdra Forest	8-28-2002	mid	Frosty Colt	20	20	Animal
+Yggdra Forest	8-28-2002	mid	Frosty Scuttlebug	23	24	Insect
+Yggdra Forest	8-28-2002	mid	Gelid Mass	35	35	Elemental
+Yggdra Forest	8-28-2002	mid	Ghastly Albion Invader	42	43	Undead
+Yggdra Forest	8-28-2002	mid	Ghostly Hibernian Invader	42	43	Undead
+Yggdra Forest	8-28-2002	mid	Giant Snowcrab	33	34	Insect
+Yggdra Forest	8-28-2002	mid	Glacial Mauler	44	44	Animal
+Yggdra Forest	8-28-2002	mid	Great Lynx	39	39	Animal
+Yggdra Forest	8-28-2002	mid	Half-frozen Madman	25	25	Humanoid
+Yggdra Forest	8-28-2002	mid	Ice Giant	33	36	Giant
+Yggdra Forest	8-28-2002	mid	Ice Lizard	34	34	Reptile
+Yggdra Forest	8-28-2002	mid	Ice Scrag	33	34	Giant
+Yggdra Forest	8-28-2002	mid	Icemuncher	28	28	Animal
+Yggdra Forest	8-28-2002	mid	Icestrider Chiller	43	45	Insect
+Yggdra Forest	8-28-2002	mid	Icy Skeleton	25	25	Undead
+Yggdra Forest	8-28-2002	mid	Icy Wisp	28	33	Magical
+Yggdra Forest	8-28-2002	mid	Isalf Abider	30	30	Humanoid
+Yggdra Forest	8-28-2002	mid	Isalf Blinder	35	35	Humanoid
+Yggdra Forest	8-28-2002	mid	Isalf Hierarch	38	38	Humanoid
+Yggdra Forest	8-28-2002	mid	Isalf Icemage	33	33	Humanoid
+Yggdra Forest	8-28-2002	mid	Isalf Scryer	33	33	Humanoid
+Yggdra Forest	8-28-2002	mid	Isalf Snowtracker	35	35	Humanoid
+Yggdra Forest	8-28-2002	mid	Isalf Surveyor	32	33	Humanoid
+Yggdra Forest	8-28-2002	mid	Isalf Warrior	35	36	Humanoid
+Yggdra Forest	8-28-2002	mid	Miserable Zombie	28	32	Undead
+Yggdra Forest	8-28-2002	mid	Nordic Yeti	33	36	Giant
+Yggdra Forest	8-28-2002	mid	Northern Ettin	25	27	Giant
+Yggdra Forest	8-28-2002	mid	Northern Light	26	30	Magical
+Yggdra Forest	8-28-2002	mid	Shard Golem	42	42	Elemental
+Yggdra Forest	8-28-2002	mid	Shivering Presence	32	33	Undead
+Yggdra Forest	8-28-2002	mid	Skeletal Wolf	17	19	Undead
+Yggdra Forest	8-28-2002	mid	Sleigh Horse	30	30	Animal
+Yggdra Forest	8-28-2002	mid	Snow Giant	30	33	Giant
+Yggdra Forest	8-28-2002	mid	Snowshoe Bandit	30	30	Humanoid
+Yggdra Forest	8-28-2002	mid	Taiga Cat	32	33	Animal
+Yggdra Forest	8-28-2002	mid	Thawing Corpse	31	31	Undead
+Yggdra Forest	8-28-2002	mid	Torpor Worm	37	37	Animal
+Yggdra Forest	8-28-2002	mid	Twister	29	29	Elemental
+Yggdra Forest	8-28-2002	mid	Undead Soldier	26	26	Undead
+Yggdra Forest	8-28-2002	mid	White Wolf	27	31	Animal
+Yggdra Forest	8-28-2002	mid	Winter Wolf	43	44	Animal
+Yggdra Forest	8-28-2002	mid	Wintery Dirge	40	42	Undead
+Yggdra Forest	8-28-2002	mid	Wyvern	36	37	Dragon
+Yggdra Forest	8-28-2002	mid	Young Wyvern	28	30	Dragon
