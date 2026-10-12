@@ -1,4 +1,4 @@
-OFFLINE DAOC - FORK SERVER BUILD (chris4aker/OfflineDAoC)
+OFFLINE DAOC - FORK SERVER BUILD (chris4aker/OfflineDAoC-SocialExpansion)
 =========================================================
 
 This is a server-only build for Offline DAoC 0.35 / 0.35b, the "Social Expansion". It replaces
