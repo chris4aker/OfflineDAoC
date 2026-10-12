@@ -21,9 +21,7 @@ from multiprocessing import Pool
 REALMS = ("Albion", "Midgard", "Hibernia")
 RINGS = ("border", "middle", "inner")
 RP_TABLE = {10: 7125, 20: 61750, 30: 213875, 40: 513500}   # realm level index -> RP (RR2, RR3, RR4, RR5), server table
-RR_LEVELS = [0, 0, 25, 125, 350, 750, 1375, 2250, 3500, 5125, 7125, 9625, 12625, 16125, 20125, 24625, 29625,
-             35125, 41125, 47625, 54625, 61750, 71750, 82750, 94750, 107750, 121750, 136750, 152750, 169750,
-             187750, 213875, 236375, 260375, 285875, 312875, 341375, 371375, 402875, 435875, 470375, 513500]
+RR_LEVELS = [0, 0, 25, 125, 350, 750, 1375, 2275, 3500, 5100, 7125, 9625, 12650, 16250, 20475, 25375, 31000, 37400, 44625, 52725, 61750, 71750, 82775, 94875, 108100, 122500, 138125, 155025, 173250, 192850, 213875, 236375, 260400, 286000, 313225, 342125, 372750, 405150, 439375, 475475, 513500, 553500]   # GamePlayer.REALMPOINTS_FOR_LEVEL, levels 0-41 (audit 2026-10-11: was mistyped)
 
 
 def realm_level(rp):
@@ -45,14 +43,14 @@ ROLE_SHARES = (("zerg", 0.45), ("roam", 0.43), ("stealth", 0.12))
 NOLIFER_SHARE = 0.10         # of the RvR pool: always online
 GUARDS = {"keep": 10, "relic": 25}          # guard strength in level-50 bot equivalents
 DOOR_MULT = {"keep": 1.3, "relic": 1.5}     # defenders' advantage behind doors and walls
-DEFENSE_RATIO = 0.8          # defenders sent per attacker who marched (server: "DefenseRatio", value not checked)
+DEFENSE_RATIO = 0.5          # RealmEventPolicy.DefenseRatio: defenders per attacker who marched (at least 8)
 THIRD_REALM_JOIN = 0.3
 MEET_PER_MIN = 0.04          # chance per minute that two hostile groups in the same zone meet
 STEALTH_KILL_PER_MIN = 0.003 # chance per minute that a stealther finds and kills a given enemy PvE bot in its (large) zone
 SPOT_PER_MIN = 0.005         # chance per minute a roaming group sweeps past a given enemy PvE bot (zones are large)
 STEALTH_CAUGHT_PER_MIN = 0.002   # chance per minute an enemy roaming group catches a stealther in its zone
 WARNED_EVADE = 0.6           # PvE bots warned of a group in their zone escape this often (stealthers give no warning)
-RELIC_BONUS = 0.05           # power per relic held beyond your own two (classic relics gave +10% damage per type)
+RELIC_BONUS = 0.10           # server relic_owning_bonus: 10% per enemy relic held
 RUN_BACK_MIN = 15            # after a death: release, respawn and travel back
 # ---- fixes under test (2026-10-11), each behind an option ----
 GUARD_FACTOR = {"border": 1.0, "middle": 0.6, "inner": 0.25}   # guarded_frontier: guards and patrols cut enemy reach by depth
@@ -199,7 +197,7 @@ class World:
 
     def start_siege(self):
         rng, t = self.rng, self.t
-        realm_force = {r: len(self.available(r, ("zerg",))) for r in REALMS}
+        realm_force = {r: len([a for a in self.available(r, ("zerg",)) if a["level"] == 50]) for r in REALMS}
         attacker = rng.choices(REALMS, weights=[max(1, realm_force[r]) for r in REALMS])[0]
         if realm_force[attacker] < 10:
             return
@@ -209,9 +207,9 @@ class World:
         if own_lost and rng.random() < 0.6:
             target = rng.choice(own_lost)
         else:
-            relics = [k for k in self.keeps if k["kind"] == "relic" and k["relic_holder"] != attacker and k["cooldown"] <= t
-                      and sum(1 for x in self.keeps if x["frontier"] == k["frontier"] and x["owner"] == attacker and x["kind"] == "keep") >= 3]
-            if relics and rng.random() < 0.12:
+            # server rule (audit 2026-10-11): a level-50 force picks a relic keep about one time in eight (RelicSiegeShare)
+            relics = [k for k in self.keeps if k["kind"] == "relic" and k["relic_holder"] != attacker and k["cooldown"] <= t]
+            if relics and (not targets or rng.random() < 0.12):
                 target = rng.choice(relics)
             elif targets:
                 w = [{"border": 6, "middle": 3, "inner": 1}[k["zone"][1]] for k in targets]
@@ -219,7 +217,7 @@ class World:
             else:
                 return
         cap = 240 if target["kind"] == "relic" else 128
-        army = self.available(attacker, ("zerg",))[:cap]
+        army = [a for a in self.available(attacker, ("zerg",)) if a["level"] == 50][:cap]   # sieges need average level 50
         for a in army:
             a["state"] = "siege"
         s = dict(attacker=attacker, target=target, army=army, phase="muster", march_at=t + 12, start=t)

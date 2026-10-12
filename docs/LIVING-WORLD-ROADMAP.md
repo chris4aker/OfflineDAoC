@@ -3,6 +3,47 @@
 Status: **planning.** Nothing in this document is implemented yet.
 Owner: Chris (`chris4aker/OfflineDAoC`). Started 2026-10-11.
 
+## Current direction (after the audit of 2026-10-11)
+
+This section is the up-to-date summary. The study sections further down are kept as a dated record;
+where a later study or the audit overtook one, it says so at its heading. The audit itself is in
+[LIVING-WORLD-AUDIT-2026-10-11.md](LIVING-WORLD-AUDIT-2026-10-11.md).
+
+**The owner's decisions so far:**
+- **Scale:** about 1,000 bots online per realm while he plays (the server only runs then).
+- **Start:** a fresh world, everyone at level 1 without armor, with a **staggered launch** (about 40%
+  on day one, the rest joining over about 12 weeks).
+- **No-lifers:** about 4% of bots, always online, no alts, min-maxing, chasing epics, raids and RvR.
+- **Bot players own characters:** up to 3 per bot player; alts are added, never rerolled; mains,
+  guilds and gold persist; occasional retirement and new players.
+- **XP shaped by level range:** owner 3× / 5× / 12× and bots 1.5× / 2.5× / 6× for levels 1–19 /
+  20–34 / 35–50. This needs a new server setting; today there is one flat `xp_rate` and one
+  `bot_xp_rate`.
+- **The owner:** about 5 hours a week, about 9 characters (3 per realm) with a favored main in each.
+- **Grouping:** keep the server's default of 40% group goals; grouping is a big lever for company and
+  leveling.
+- **Economy:**
+  - crafters about 7% of bot players, with realm commissions doubled;
+  - small classic repair and potion costs that never punish the owner for skipping the economy;
+  - a bot-only luxury sink that buys real things (houses, horse routes, dyes);
+  - an Exchange tax on trades only;
+  - named and epic drops at every level;
+  - crafted, spellcrafted gear costing about half the time of farming drops.
+- **RvR:**
+  - keep the three realms' bot counts equal;
+  - build a guarded, depth-graded frontier with PvE worth the trip (new content);
+  - no small-group RP bonus for now;
+  - watch the relic bonus for snowballing.
+
+**Still open:**
+- Apprentice commissions for typical crafters (crafting income is winner-take-most).
+- A reward for stealth hunting.
+- How rare epics should stay at the top.
+- Relic bonus size.
+
+**Next step:** move from simulation to real code on the owner's PC: set up the build, load-test
+1,000 bots per realm, and calibrate the models from real logs before building features.
+
 ## Vision
 
 Playing should feel like logging into a classic three-realm server at its peak in
@@ -99,9 +140,11 @@ checks are reported separately.
 | M4 | Frontier PvE | Frontier dungeons and named monsters worth the trip; the player can read danger: scouting, warnings, signs of roaming groups |
 | M5 | RvR alive | Group doctrines, observe-before-engage, danger memory, guild cohesion; roaming kill squads and big fights to avoid or join |
 | M6 | RvR stakes | Keeps, relics, realm rank and frontier ownership that matter to PvE access and rewards |
-| M7 | New content | Trials of Atlantis zones, Catacombs, then original dungeons for gaps in 1–50 |
+| M7 | New content | New monsters, named spawns, quests and loot in existing zones and dungeons for gaps in 1–50. Truly new 3D zones are not realistic to build here. Trials of Atlantis or Catacombs zones only if the client supports them (not checked). |
 
 ## M1 specification: Population flow + personalities, PvE-first
+
+> **Partly superseded:** see "Current direction". The owner chose a fresh start with a staggered launch (not an established start), alts that are added to a bot player's roster, 7% crafters, shaped XP and no-lifers.
 
 Updated 2026-10-11 after simulation (see "Simulation findings" below).
 
@@ -243,6 +286,8 @@ need to be stronger.
 
 ## Simulation findings (2026-10-11)
 
+> Directions still hold. Numbers are from the small 300-bot model; the full-scale model (bot players with rosters) supersedes them.
+
 Run with `tools/living-world-sim`: 300 Midgard bots, 20 hours, 5 seeds, using the real camp
 catalog (4,003 camps, 25 zones). This is a design model with stated assumptions. **Trust the
 directions, not the exact numbers.**
@@ -284,6 +329,8 @@ Takeaways:
    quirk; it needs checking in game.
 
 ## Trade study (2026-10-11): do crafters make sets for others?
+
+> **Superseded:** this model invented its own crafting-quality formula. The server's real rule (96–99%, a 2% masterpiece only at Legendary or for grey recipes) is used from the full-scale study on, so the "perfect set" numbers here do not apply.
 
 **Today: no.** Autonomous bots never craft. Nothing gives them crafting skills (only real players'
 progress writes `SerializedCraftingSkills`), the "Craft" rule in `Choose` has no live caller, and no
@@ -352,6 +399,8 @@ approximates.
 
 ## 60-hour study (2026-10-11): leveling, zones and crafting together
 
+> **Partly superseded:** alts here replace (reroll) a character, which drained the high levels. The current design adds alts to a bot player's roster. The "no one reaches 50 in 60 hours" finding is about the XP curve and still informs the shaped-XP decision.
+
 Same model, 60 hours, 5 seeds, with the corrected live rules. Results are in
 `tools/living-world-sim/results/trade_60h_*.json`; `summarize_population.py` prints them.
 
@@ -403,6 +452,8 @@ What this changes in the plan:
    proposal makes crafters useful, not legendary.
 
 ## XP-rate study (2026-10-11): the owner at 8×, 5 hours a week
+
+> **Superseded:** flat rates were replaced by XP shaped by level range (model v4).
 
 The owner plays about 5 hours a week and wants fast leveling. The server already has two
 separate dials: `xp_rate` (the real player only) and `bot_xp_rate` (autonomous gamebots only),
@@ -496,6 +547,8 @@ and spawn capacity at 1,000 online.
 
 ## Economy package study (2026-10-11): epic drops at every level and a richer crafter
 
+> Crafter wealth here uses a fixed 15,000-gold cushion. Later studies changed crafter spending rules and found model leaks; compare crafter numbers only within a study.
+
 The owner's goals: "holy shit" items and sets from monsters at all levels; crafting as important
 as PvE; crafted gear a clear but costly shortcut over farming; crafters level more slowly but are
 richer than anyone except the top farmers. Same full-scale model (1,450 bot players, about 900
@@ -548,6 +601,8 @@ What did not:
    special. The owner's call.
 
 ## Fresh-start study (2026-10-11): everyone at level 1, the owner's economy plan
+
+> **Crafter wealth numbers here are unreliable:** this study's "cheap practice craft" rule drained crafters, a leak found and fixed in model v4. The leveling, loneliness and staggered-launch findings stand.
 
 The owner chose a fresh start: every bot begins at level 1 with no armor. Plan (`PLAN` in
 `persona_sim.py`): 7% crafters, realm commissions doubled (60 per hour), small classic repair
@@ -663,111 +718,101 @@ Options if the owner wants the *typical* crafter rich, not only the famous ones:
 work (commissions sized to the crafter's skill, paid for time rather than item value), or fewer
 crafters sharing the same work.
 
-## RvR study (2026-10-11): three realms, keeps, relics, roaming and frontier PvE
+## RvR study (2026-10-11, corrected by the audit): three realms, keeps, relics, roaming, frontier PvE
 
 **What already exists in the server (read from the code, not playtested here):**
 - **Bot RvR objectives:** regroup, hunt enemies, defend a keep under attack, and assault keeps
   (`AutonomousRvrDirector`).
-- **Organized sieges** (`AutonomousRvrEventLayer`):
+- **Organized sieges** (`AutonomousRvrEventLayer`, `RealmEventPolicy`):
   - Each one goes muster → march → battle within a 4-hour window.
-  - Up to 128 attackers (240 for relic raids); relic raids are about 12% of sieges.
-  - A scheduler keeps about one siege running at almost all times (rarely two or three).
-  - A realm that loses a keep to the player makes one retake attempt.
-- **Realm raids into Darkness Falls and Summoner's Hall** (`AutonomousRealmRaid`). Their raid AI is
-  not described here as working; see `AGENTS.md`.
-- **Realm points for bots** use the pre-1.81 formula. The rank table puts RR2 at 7,125 RP, RR3 at
-  61,750, RR4 at 213,875 and RR5 at 513,500.
-- **Related server settings:** `rp_rate`, `relic_owning_bonus` (10% per enemy relic),
+  - Only forces averaging level 50 start sieges.
+  - Defenders answer the army that marched at `DefenseRatio` 0.5 (at least 8).
+  - Up to 128 attackers (240 for relic raids).
+  - A level-50 force picks a relic keep about one time in eight.
+  - The scheduler keeps about one siege running at almost all times.
+- **Realm raids into Darkness Falls and Summoner's Hall.** Their raid AI is not described here as
+  working; see `AGENTS.md`.
+- **Realm points for bots** use the pre-1.81 formula. RR2 is 7,125 RP, RR3 61,750, RR4 213,875 and
+  RR5 513,500.
+- **Settings:** `rp_rate`, `relic_owning_bonus` (10% per enemy relic),
   `relic_players_required_on_pad` (16), `Relic_Return_Time` (20 minutes) and
   `keep_balance_multiplier`.
-- **A gap for the "deep frontier PvE" vision:** the bots' PvE camp catalog has no frontier zones, so
-  bots do not level or farm in the frontier today. Frontier PvE would be new content.
+- **A gap:** the bots' PvE camp catalog has no frontier zones, so bots do not level or farm in the
+  frontier today. Frontier PvE would be new content.
 
 **Model** (`tools/living-world-sim/rvr_sim.py`):
-- Three frontiers of 5 zones each (2 border, 2 middle, 1 inner), with 7 keeps and 2 relic keeps
-  per frontier.
-- 400 RvR-capable characters per 1,000 online in each realm, rotating through sessions. Roles: 45%
-  join sieges, 43% roam in groups of 8, 12% are stealthers; 10% are no-lifers.
+- Three frontiers of 5 zones (2 border, 2 middle, 1 inner), each with 7 keeps and 2 relic keeps.
+- 400 RvR-capable characters per 1,000 online in each realm. Roles: 45% join sieges, 43% roam in
+  8s, 12% stealth; 10% are no-lifers.
 - 8% of level 35+ PvE bots farm their own frontier (proposed content).
-- The scheduler, caps, relic share and RP formula follow the code. Meeting, spotting and fight
-  odds are assumptions.
-- 120 server hours (about 24 weeks of the owner's play), 3 seeds.
+- 120 server hours, 3 seeds. Meeting, spotting and fight odds are assumptions.
 
-| Per hour of server time | Balanced 1000/1000/1000 | Hibernia at 750 | Hibernia 750 + 15% underdog bonus |
-|---|---|---|---|
-| Sieges / keep flips | 2.1 / 1.0 | 2.1 / 1.0 | 2.1 / 1.0 |
-| Open-field fights / RvR deaths | 33 / 285 | 29 / 256 | 29 / 256 |
-| Relic raids / relic captures | 0.04 / 0.01 | 0.03 / 0.01 | 0.02 / 0.01 |
-| Darkness Falls access (Alb / Mid / Hib) | 25% / 53% / 20% | 38% / 59% / **3%** | 50% / 40% / 9% |
-| Keeps held, mean of 21 (Alb / Mid / Hib) | 6.6 / 7.9 / 6.4 | 7.4 / 8.5 / 5.1 | 7.8 / 7.8 / 5.3 |
+**Audit correction:** the first version of this study let low-level bots siege, sent defenders at
+0.8× instead of the server's 0.5×, gated relic raids behind an invented rule, used a 5% relic bonus
+instead of 10%, and had a mistyped realm-rank table. Those runs said "zerging pays 2.5× more" and
+"relics barely move". Both were artifacts and are withdrawn. The numbers below are the corrected runs.
 
-| Per active hour (balanced) | RP per hour | Deaths per hour |
-|---|---|---|
-| Siege armies | about 1,200–1,400 | 0.3 |
-| 8-person roaming groups | about 500 | 0.56 |
-| Stealthers | about 320 | 0.09 |
+| Per hour of server time | Balanced | Hibernia at 750 | Hibernia 750 + 15% underdog bonus | Balanced, no relic bonus |
+|---|---|---|---|---|
+| Sieges / keep flips | 2.1 / 1.1 | 2.1 / 1.2 | 2.1 / 1.2 | 2.1 / 1.2 |
+| Open-field fights / RvR deaths | 34 / 243 | 30 / 215 | 30 / 215 | 34 / 239 |
+| Relic raids / relic captures | 0.18 / 0.07 | 0.15 / 0.06 | 0.17 / 0.06 | 0.14 / 0.05 |
+| Darkness Falls access (Alb / Mid / Hib) | 19% / 20% / 60% | 84% / 7% / 8% | 42% / 40% / 17% | 28% / 27% / 44% |
+| Most relics held by one realm at the end (of 6, per seed) | 2, 5, 5 | 3, 3, 3 | 4, 3, 6 | 3, 3, 2 |
 
-**Ranks after 24 weeks:** every RvR-capable bot is RR2 or higher, about 45% are RR3 or higher, a
-handful reach RR4 and none reach RR5. No-lifers reach a median of about 90,000–110,000 RP (RR3).
-
-**Frontier PvE** (proposed), deaths per hour while farming: border 0.81, middle 0.78, inner
-0.73. Without warnings when enemies enter the zone, this rises to 0.86–1.13.
+- **RP per active hour (balanced):** sieges about 460, roaming about 460, stealth about 320.
+- **Deaths per active hour (balanced):** sieges 0.18, roaming 0.57, stealth 0.09.
+- **Ranks after 24 weeks:** about 88% of RvR-capable bots reach RR2 and about 10% RR3; none reach RR4.
+  No-lifers reach a median of about 57,000 RP (just under RR3).
+- **Frontier PvE deaths per hour** (proposed): border 0.79, middle 0.79, inner 0.73. Without enemy
+  warnings, 1.13 / 1.01 / 0.90.
 
 Takeaways:
-1. **The frontier is busy.** About one keep changes hands every hour of play, and there are about
-   30 small fights an hour across the three frontiers. No realm runs away with the map.
-2. **Population balance decides Darkness Falls.** A realm with 25% fewer bots holds Darkness Falls
-   only about 3% of the time, and a 15% underdog bonus barely helps (9%). Keep the three realms'
-   bot counts equal (the launcher creates bots per realm, and a realm login balancer exists).
-3. **Relics barely move:** about one capture per 100 hours. If relic drama is wanted, relic raids
-   need to be easier or more frequent. (The model's rule that a raid needs 3 keeps in that frontier
-   is an assumption.)
-4. **Zerging pays 2.5× more than small-group roaming and is safer.** That pushes everyone into the
-   zerg, the classic complaint. Options: realm point bonuses for small groups or outnumbered kills.
-5. **Deep-frontier PvE is too deadly and not graded by depth:** about one death per 75–80 minutes
-   anywhere in the frontier. For "explore deep, avoid the kill squads", it needs safer inner zones
-   (guards, patrols, nearness to the portal keep), warnings, and rewards that rise toward the border.
-6. **Realm ranks are a long climb** at the default `rp_rate` of 1. RR5 is out of reach in 24 weeks
-   even for no-lifers. The owner can tune `rp_rate`, which already exists.
+1. **The frontier is busy:** about one keep flip and 34 small fights an hour.
+2. **Sieges and roaming pay about the same** under the server's real siege rules. There is no zerg
+   problem to fix in this model.
+3. **Relics do move** (about one capture per 14 hours), and **the 10% relic bonus can snowball:** in
+   two of three balanced runs one realm ended with 5 of the 6 relics, and Darkness Falls access was
+   lopsided. Without the bonus, access is more even. Worth watching in playtest; options are a smaller
+   bonus, a cap, or relics that drift home.
+4. **Population balance decides Darkness Falls:** a realm with 25% fewer bots holds it about 8% of the
+   time; a 15% underdog bonus lifts that to 17%. Keep the three realms equal.
+5. **Deep-frontier PvE is too deadly and not graded by depth** without new design (next section).
+6. **Realm ranks are a long climb** at `rp_rate` 1: RR3 is rare after 24 weeks.
 
-### RvR fix run (2026-10-11): small-group realm points and a guarded, graded frontier
+### RvR fix run (2026-10-11, corrected by the audit)
 
-Same model (balanced realms, 120 server hours, 3 seeds), with three options (`RVR_SET=fix`):
-- **Adaptive roles:** at half of their logins, bots re-pick siege, roam or stealth, weighted by
-  their realm's recent RP per hour.
-- **Small-group RP bonus:** open-field kills by groups of 8 or fewer pay 1.5×, and outnumbered kills
-  pay up to 2× more.
-- **Guarded, graded frontier:** guards and patrols cut enemy reach to 60% in middle zones and 25% in
-  inner zones, and wear down enemy groups deep inside. Proposed frontier PvE rewards are 2.0× a home
-  zone at the border, 1.5× in the middle and 1.2× inner.
+Options (`RVR_SET=fix`):
+- **Adaptive roles:** at half of their logins, bots re-pick their role weighted by their realm's
+  recent RP per hour.
+- **Small-group bonus:** open-field kills by 8 or fewer pay 1.5×, and outnumbered kills up to 2× more.
+- **Guarded, graded frontier:** guards cut enemy reach to 60% in middle zones and 25% in inner zones,
+  and wear down enemy groups inside. Proposed rewards are 2.0× / 1.5× / 1.2× a home zone.
 
-| | Baseline | Adaptive roles only | + small-group bonus | Guarded frontier only | **Both fixes + adaptive roles** |
+| | Baseline | Adaptive roles | + small-group bonus | Guarded frontier | Both + adaptive roles |
 |---|---|---|---|---|---|
-| Time in sieges / roaming / stealth | 46% / 44% / 11% | **64% / 30% / 7%** | 52% / 42% / 6% | 46% / 44% / 11% | 55% / 40% / 5% |
-| RP per hour: siege / roam / stealth | 1,280 / 500 / 330 | 1,480 / 440 / 350 | 1,280 / **740** / 340 | 1,260 / 510 / 230 | 1,350 / **740** / 240 |
-| Open-field fights per hour | 33 | **18** | 31 | 33 | 29 |
-| Frontier PvE deaths/hour: border / middle / inner | 0.81 / 0.78 / 0.73 | 0.52 / 0.50 / 0.44 | 0.53 / 0.50 / 0.44 | 0.80 / 0.47 / 0.17 | **0.47 / 0.27 / 0.09** |
-| Frontier PvE value vs a home zone: border / middle / inner | 1.68 / 1.27 / 1.02 | 1.78 / 1.35 / 1.09 | 1.78 / 1.34 / 1.09 | 1.69 / 1.35 / 1.15 | **1.80 / 1.41 / 1.17** |
+| Time in sieges / roaming / stealth | 46% / 44% / 11% | 34% / 56% / 11% | 25% / 67% / 9% | 46% / 44% / 11% | 24% / 70% / 6% |
+| RP per hour: siege / roam / stealth | 464 / 461 / 324 | 360 / 534 / 321 | 304 / 892 / 323 | 449 / 455 / 231 | 287 / 902 / 233 |
+| Open-field fights per hour | 34 | 52 | 68 | 34 | 72 |
+| Frontier PvE deaths/hour: border / middle / inner | 0.79 / 0.79 / 0.73 | 0.82 / 0.82 / 0.81 | 0.76 / 0.76 / 0.66 | **0.81 / 0.49 / 0.17** | 0.65 / 0.38 / 0.13 |
+| Frontier PvE value vs home: border / middle / inner | 1.69 / 1.27 / 1.03 | 1.68 / 1.26 / 1.01 | 1.70 / 1.28 / 1.04 | **1.68 / 1.35 / 1.16** | 1.74 / 1.38 / 1.16 |
 
 Takeaways:
-1. **Left alone, bots drift into the zerg:** with adaptive roles, siege time rises from 46% to 64%,
-   roaming falls to 30%, and open-field fights drop from 33 to 18 an hour. This is the classic
-   collapse, and it makes the frontier quieter.
-2. **A small-group bonus holds roaming at about 40%** and keeps the fights (about 30 an hour), with
-   roaming paying about 740 RP an hour instead of 440.
-3. **A guarded frontier grades the danger:** with both fixes, frontier PvE deaths are about one
-   every 2 hours at the border, one every 4 hours in the middle and one every 11 hours inner.
-   Every ring is worth more than home PvE, and the border pays most.
-4. **Stealthers shrink to about 5%** under these fixes (guards hurt them and their pay is lowest). If
-   stealth hunting is wanted as a play style, it needs its own reward.
+1. **Left to choose, bots drift toward roaming** (56%), and open-field fights rise to about 52 an hour.
+2. **A small-group RP bonus is not needed** and would push roaming to about 70% and sieges to about
+   24%, which risks thin sieges. Hold it until a playtest shows a zerg problem.
+3. **The guarded, graded frontier works on its own:** frontier PvE deaths fall from 0.81 an hour at the
+   border to 0.49 in the middle and 0.17 inner. Every ring stays worth more than home PvE.
+4. **Stealthers earn the least** and shrink when guards are added. Stealth hunting needs its own
+   reward if it should stay a common play style.
 
 ## Open questions
 
-- Final type list, names and time budgets.
-- Bot population size: more bots offset the thinner high-level zones.
-- Alts: replace offline high-level bots, or add new ones?
-- Should the player see a bot's personality, for example in `/who` or a `/bot` command?
-- When should stefanrows' guild charters arrive: M2 or M5?
+- Apprentice commissions: should typical crafters earn a living, or is winner-take-most right?
+- Stealth hunting: give stealthers their own reward, or let them stay rare?
+- Epic and named drops: how rare at levels 41–50?
+- Relic bonus: keep 10% per relic, lower it, or cap it?
+- Can the owner's PC run about 3,000 bots online at once? (Load test before building features.)
 
 ## Sources
 
