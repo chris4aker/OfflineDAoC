@@ -1,34 +1,48 @@
-> **Disclaimer.** Dark Age of Camelot is the intellectual property of Electronic Arts and Broadsword
-> Online Games. Offline DAoC is not affiliated with, endorsed by, or connected to either company. The
-> game client, textures, models and other assets it uses belong to them, and this project is built on
-> top of that copyrighted work.
->
-> This is a free, non-commercial fan project. It is not a product and it is not for sale. No donations
-> are accepted, and the project owner has not made, and will not make, any money from it. The client
-> files are the same publicly available ones every free shard uses; the work original to this
-> repository is the bot system and the server customizations. Because the code is open source, the
-> owner cannot control what forks or other people do with it.
->
-> This "time capsule" of the 2002-2003 game was never meant to compete with the current retail Dark Age
-> of Camelot, which is a very different, modern experience. If that interests you, please visit the
-> official site: [darkageofcamelot.com](https://www.darkageofcamelot.com/).
-
 # Offline DAoC: Social Expansion
 
-**Single-player Dark Age of Camelot that feels like a live 2003 server.** This fork of
-[shadowofze's Offline DAoC](https://github.com/shadowofze/OfflineDAoC) gives its bots a social life.
-They join guilds and recruit you, each has its own personality, and they talk the way players did in
-2002–2003, down to the build arguments in /faction.
+### Single-player Dark Age of Camelot that feels like a live 2003 server.
 
-> **Status: in testing, not released yet.** The first release is planned for shadowofze's 0.36b once
-> he publishes it. Watch this repository's [Releases](https://github.com/chris4aker/OfflineDAoC-SocialExpansion/releases).
+The bots stop being a population and start being a community. They form guilds and recruit you,
+each has a personality of its own, and they fill /faction with the chatter and arguments you
+remember. Built on [shadowofze's Offline DAoC](https://github.com/shadowofze/OfflineDAoC).
+
+> **In testing, not released yet.** The first release is planned for shadowofze's 0.36b once he
+> publishes it. Watch [Releases](https://github.com/chris4aker/OfflineDAoC-SocialExpansion/releases).
+> An unofficial, non-commercial fan project, not affiliated with EA or Broadsword
+> ([disclaimer](#disclaimer)).
+
+## A night on the server
+
+- You log in at Mularn and type **"lf guild"** in /faction. An officer from a small leveling guild
+  answers with an invite, and the guild welcomes you in /gu.
+- Your guildmates greet you when you log in, cheer when you ding, and form groups with each other.
+- In town, a Socialite lingers for half an hour. A Leveler barely stops.
+- A Daredevil heads for the hardest cons it's allowed in a dungeon. An Explorer wanders off to a
+  zone it hasn't seen in a while.
+- When your warband takes a keep, a bot guild of your realm claims it, and its members turn out to
+  defend it.
+- Every half hour or so, /faction starts arguing:
+
+```
+[Faction] Hroald: savage or berserker for an alt?
+[Faction] Sigrun: savage, hand to hand and savagery, fast hits and you feel them
+[Faction] Torvi: Berserker, left axe and the rage, nothing hits harder.
+[Faction] Sigrun: savages look cooler
+[Faction] Torvi: Zerkers look cooler.
+[Faction] Hroald: lol
+[Faction] Sigrun: savage
+[Faction] Torvi: Zerk.
+```
+
+*A real scene from the corpus; the names are examples. Each bot keeps its own writing style: Torvi
+always capitalizes and ends with a full stop.*
 
 ## Why
 
-Peak servers felt alive because of the people: the guild that adopted you at level 12, the officer
-who called keep defense, the regular who said "ding" at the same camp every night, the endless
-arguments over specs. Offline DAoC's bots already level, group, trade and fight on their own. The
-Social Expansion makes them feel like a community, not just a population.
+Peak servers felt alive because of the people: the guild that took you in at level 12, the officer
+calling keep defense, the regular who said "ding" at the same camp every night, the endless spec
+arguments. Offline DAoC's bots already level, group, trade and fight on their own. The Social
+Expansion gives them that social life.
 
 ## What it adds
 
@@ -74,6 +88,25 @@ Social Expansion makes them feel like a community, not just a population.
   ([chris4aker](https://github.com/chris4aker)) and written with Claude (Anthropic).
 
 Same license as the original: GPL-3.0.
+
+---
+
+## Disclaimer
+
+> **Disclaimer.** Dark Age of Camelot is the intellectual property of Electronic Arts and Broadsword
+> Online Games. Offline DAoC is not affiliated with, endorsed by, or connected to either company. The
+> game client, textures, models and other assets it uses belong to them, and this project is built on
+> top of that copyrighted work.
+>
+> This is a free, non-commercial fan project. It is not a product and it is not for sale. No donations
+> are accepted, and the project owner has not made, and will not make, any money from it. The client
+> files are the same publicly available ones every free shard uses; the work original to this
+> repository is the bot system and the server customizations. Because the code is open source, the
+> owner cannot control what forks or other people do with it.
+>
+> This "time capsule" of the 2002-2003 game was never meant to compete with the current retail Dark Age
+> of Camelot, which is a very different, modern experience. If that interests you, please visit the
+> official site: [darkageofcamelot.com](https://www.darkageofcamelot.com/).
 
 ---
 
