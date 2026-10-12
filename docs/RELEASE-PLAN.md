@@ -165,7 +165,8 @@ changes.
 
 ### After the release: the next coding project
 
-**Bot memory of you** (bot-voices step 3), with Chris's OK: greetings by name, thanks for a rez,
+**Bot memory of you** (bot-voices step 3), only after this release is confirmed in game (Chris,
+2026-10-12): greetings by name, thanks for a rez,
 gossip and invites. It also unlocks the corpus lines that are skipped today. After that, the
 living-world population work (M1).
 
@@ -176,3 +177,4 @@ living-world population work (M1).
    `living-world/roadmap` and `ci/github-actions` on GitHub.
 3. **Release visibility:** public, at stage 7, after the tests pass.
 4. **Scope:** hold the release for personalities, voices and debates ("Social Expansion").
+5. **Bot memory of you:** wait until this release is confirmed in game.
