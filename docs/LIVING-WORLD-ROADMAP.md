@@ -44,6 +44,39 @@ where a later study or the audit overtook one, it says so at its heading. The au
 **Next step:** move from simulation to real code on the owner's PC: set up the build, load-test
 1,000 bots per realm, and calibrate the models from real logs before building features.
 
+**Redundancy check (2026-10-11, after the audit):** the plan was checked against this fork's code
+and the original's latest `main` (`1cabc77`, 0.36 in progress). Two planned pieces were already
+done upstream and were dropped, and several others now extend existing systems instead of adding
+new ones. See "What the base already has" below; the milestones and the M1 specification were
+revised to match.
+
+## What the base already has
+
+Checked in the code on 2026-10-11 (file names under `source/server/GameServer`). "In the world" means
+whether it is actually live in a played install, which has not been checked unless stated.
+
+| Planned | Already in the base | Plan now |
+|---|---|---|
+| Port HearthDAoC quest indicators, epic chains and restored spawns (old M3) | 0.35 ships 448 classic 1.65/SI quests including class epics, red map markers, the Quest Guide, and period monster populations; 0.36 adds 940 quest reward items | **Dropped.** Compare HearthDAoC item by item only for specific missing quests or spawns. |
+| Personality-voiced chat with a safety blocklist (old M2) | `AutonomousBotChat` (lines assembled from parts), `AutonomousBotChatCoordinator` (short, rare conversations), `AutonomousChatIntentModel` (small classifier for player questions), `AutonomousChatKnowledge` (places and spells), `RealmEventBanter` | **Shrunk:** add personality flavor to the existing chat. No blocklist: nothing is generated freely, all text is pre-written. |
+| Named and epic drops at every level | `Managers/RandomObjectGeneration/AtlasROGManager` (random items, 95–99% quality, stat weights as `atlas_rog` settings), already used by bounty and quest rewards | **Extend:** drop rules for named monsters on top of the generator |
+| PvE reasons in every zone | **Bounty Masters** (`scripts/quests/Bounty`): repeatable hunts of named monster types and epic named spawns across the home realm, dungeons and DF; equipment and XP rewards; map markers | **Extend** bounties to every level band and later to the frontier |
+| Frontier PvE reasons | Atlas daily, weekly and monthly quests (`scripts/quests/AtlasQuests`), e.g. "kill 25 yellow-or-higher monsters in any RvR zone" (levels 10–50; XP, coin, a random item and a jewel). Their givers create themselves at startup when `load_quests` is on. Also `rvr_zones_xp_rate`. | **Check first:** whether the givers appear in the 0.35 world, and whether these Atlas-era quests fit the classic feel (owner's call) |
+| Bots crafting | `AutonomousBotDecisionEngine` has a "craft at a station with owned materials" activity (16% with 3+ material stacks), but nothing calls `Choose` | **Wire up and finish** the existing activity |
+| Luxury spending | Housing, consignment merchants, market search (`market_fee_percent` 20) | Bots spend through the **real** housing system |
+| RvR warnings | `GameWideAnnouncements`, `RealmEventNotices` (siege, relic and raid lines on screen) | **Extend** with frontier-danger warnings |
+| Guard patrols | `keeps/Gameobjects/Guards/Patrol.cs` | **Tune** by frontier depth |
+| Staggered launch | `AutonomousPopulationRamp` staggers only the startup (the whole roster loads over about 15 minutes); `AutonomousRealmLoginBalancer`; an `IsRetired` flag | **Extend** `AutonomousPopulationController`, no parallel system |
+
+**Genuinely new** (no fork has done these better for this base):
+- XP by level range (only flat `xp_rate` and `bot_xp_rate` exist);
+- bot play sessions, rosters of up to 3 characters per bot player, and alts (today every non-retired bot is online whenever the server runs);
+- bot guilds (`GameBot.Guild` exists, but nothing assigns one);
+- personalities and time budgets (stefanrows' design is the reference);
+- RvR group doctrines, danger memory and observe-before-engaging (from stefanrows);
+- the crafter economy: commissions, discounts and an Exchange tax (no fee was found on the Realm Exchange);
+- a guarded, depth-graded frontier with PvE camps for bots.
+
 ## Vision
 
 Playing should feel like logging into a classic three-realm server at its peak in
@@ -68,6 +101,9 @@ Playing should feel like logging into a classic three-realm server at its peak i
 - **Stay mergeable.** Regularly merge the original's `main` into this fork. Prefer
   additive changes (new files, new settings, new columns) over rewriting shared code, so
   upstream updates keep merging cleanly.
+- **Check upstream before each feature.** The original ships about weekly (0.36 was in progress
+  on 2026-10-11). Before starting a milestone, merge its `main` and read its `CHANGELOG.md`, so
+  nothing is built that it has just shipped.
 - **Other forks are sources of ideas and code, not bases.** Their work is ported feature
   by feature onto this base. All of it is GPL-3; keep upstream attribution and each
   source's license notices, and credit the fork in commit messages and in this file.
@@ -84,7 +120,7 @@ These are surveyed as of 2026-10-11. "Own commits" counts commits that the origi
 | Fork | Own commits | Relationship to the original | What to take |
 |---|---|---|---|
 | `stefanrows/OfflineDAoC` | 449 | Split 2026-09-16; 118 of the original's commits missing; 1,277 files differ; **replaced three-realm RvR with Camlann-style PvP** (see its `docs/CAMLANN.md`) | Ideas and selected code, adapted to three-realm rules (below) |
-| `lometur/HearthDAoC` | 260 | Close to the original (4 commits behind, 176 files differ); a shared multiplayer server | Quest indicators, epic quest chains with period dialogue, restored leveling spawns, monster period corrections |
+| `lometur/HearthDAoC` | 260 | Close to the original (4 commits behind, 176 files differ); a shared multiplayer server | Mostly covered by the original's 0.35/0.36 (classic quests with markers, epics, period spawns, reward items). Only specific missing quests or spawns, after an item-by-item comparison. |
 | `scaleysandwich/OfflineDAoC-` | 7 | Early work | Trials of Atlantis (Oceanus) and Catacombs restoration plan (`docs/GOAL2-TOA-MIGRATION.md`) |
 | `BeezKneezItem9/OfflineDAoC` | 20 | Recent | Two-way bind portals, buff stones, configurable RvR XP (later, if wanted) |
 | `BlakeFL`, `ThatFontGuy`, `catastrophic-impact` | 1–7 | Small | LAN/hosting/Linux tooling; not part of this vision |
@@ -103,7 +139,9 @@ borrow:
   Leveler. Its finding F8 ("no identity or intent") matches this fork today.
 - **Guild charters:** hunting, RvR, keep, leveling and social guilds, with member mixes
   and invented names.
-- **Type-voiced chat in 2003 style**, with a safety blocklist (`AutonomousChatSafetyPolicy`).
+- **Type-voiced chat in 2003 style.** Only the per-type flavor: this base already has its own chat
+  system (see "What the base already has"), so its chat engine and blocklist
+  (`AutonomousChatSafetyPolicy`) are not needed.
 - **RvR group behavior:** group doctrines with habits (`AutonomousRvrDoctrine`,
   `AutonomousRvrCombatHabits`); weighted roaming toward recent fights (`AutonomousRvrHeat`);
   **danger memory** of where a group died, which cautious and bold leaders treat
@@ -134,12 +172,12 @@ checks are reported separately.
 
 | # | Milestone | Outcome |
 |---|---|---|
-| M1 | **Population flow + personalities, PvE-first** | A world that starts and stays spread across levels (established start, play sessions, new characters and alts); every gamebot has a persistent type, traits and a **time budget** (hunt / craft-trade / social / explore); zone memory; personality-voiced chat. No RvR changes. |
-| M2 | Living towns and chat | Downtime that looks human (inns, trading, idle chatter, emotes), type-voiced 2003-style chat, a safety blocklist |
-| M3 | Reasons to explore PvE | HearthDAoC's quest indicators, epic chains and restored spawns; bots spread rumors about named monsters and unexplored places |
-| M4 | Frontier PvE | Frontier dungeons and named monsters worth the trip; the player can read danger: scouting, warnings, signs of roaming groups |
+| M1 | **Population flow + personalities, PvE-first** | A world that starts and stays spread across levels (established start, play sessions, new characters and alts); every gamebot has a persistent type, traits and a **time budget** (hunt / craft-trade / social / explore); zone memory; personality flavor in the existing chat. No RvR changes. |
+| M2 | Living towns | Downtime that looks human (inns, trading, idle chatter, emotes); bot guilds; personality flavor added to the **existing** chat system (no new chat engine) |
+| M3 | Reasons to explore PvE | Built on what exists: Bounty Masters extended to every level band, named and epic drops through the existing random-item generator, the crafter economy; bots spread rumors about named monsters and unexplored places. (The classic quests, markers, epics and period spawns are already in the base.) |
+| M4 | Frontier PvE | Frontier dungeons and named monsters worth the trip, starting from the existing frontier daily quests and `rvr_zones_xp_rate` if the owner keeps them; frontier PvE camps for bots (new); the player can read danger: scouting, warnings through the existing announcement channel, signs of roaming groups |
 | M5 | RvR alive | Group doctrines, observe-before-engage, danger memory, guild cohesion; roaming kill squads and big fights to avoid or join |
-| M6 | RvR stakes | Keeps, relics, realm rank and frontier ownership that matter to PvE access and rewards |
+| M6 | RvR stakes | Keeps, relics, realm rank and frontier ownership that matter to PvE access and rewards; existing keep guard patrols tuned by frontier depth |
 | M7 | New content | New monsters, named spawns, quests and loot in existing zones and dungeons for gaps in 1–50. Truly new 3D zones are not realistic to build here. Trials of Atlantis or Catacombs zones only if the client supports them (not checked). |
 
 ## M1 specification: Population flow + personalities, PvE-first
@@ -169,10 +207,14 @@ zones are empty by hour 3, and everyone is level 21–30 by hour 20.
   41–50 fall from 43 bots to 1 by hour 60); no alts empties levels 1–10 by hour 40; **one alt per
   hour per 300 bots kept every level band populated for 60 hours.** Start there and tune in
   playtest. "Replace" or "add" is still the owner's choice.
-- **Check what exists first.** `AutonomousPopulationController`, `AutonomousPopulationRamp`
-  and `offline_population_settings` already manage population. stefanrows' roadmap
-  milestone M5 ("Established-server generator and alts") is the reference design to
-  review before building.
+- **Build on what exists (checked 2026-10-11).** `AutonomousPopulationController` loads
+  launcher-created characters and never creates any itself; `AutonomousPopulationRamp` staggers
+  only the startup (the whole non-retired roster is the target, loaded over about 15 minutes);
+  `AutonomousRealmLoginBalancer` picks the next login by realm load; `offline_world_bots` has an
+  `IsRetired` flag. There are no play sessions, rosters or alts. Sessions, rosters and the
+  staggered launch extend the controller and the ramp; they are not a parallel system.
+  stefanrows' roadmap milestone M5 ("Established-server generator and alts") is the reference
+  design to review before building.
 
 ### Part B: Personalities with time budgets
 
@@ -195,7 +237,8 @@ reserved for M5.
 - **Activities:** each one goes through normal game systems, per the owner's rules:
   - **Hunt:** the existing PvE flow, with personality weights.
   - **Craft/trade:** real crafting at stations with owned materials, plus Realm Exchange
-    and vendor trading at natural breaks.
+    and vendor trading at natural breaks. Start from the existing, unused `Craft` activity in
+    `AutonomousBotDecisionEngine` (station lookup, owned-material check) rather than a new one.
   - **Social:** time in town (bind point, inn, trainers), emotes, chat, forming groups.
   - **Explore:** travel to a zone the bot hasn't seen recently, with typical monster
     levels up to about 6 above its own, for 30–90 minutes. It kills monsters along the
@@ -220,11 +263,14 @@ reserved for M5.
 
 ### Decisions inside "hunt"
 
-| Today | Change |
+Corrected 2026-10-11: this table first listed the 0.28 / 0.16 / 0.035 chances from
+`AutonomousBotDecisionEngine.Choose`, which nothing calls. The live rules are below.
+
+| Today (live) | Change |
 |---|---|
-| Trainer visit chance 0.28 | Unchanged |
-| Craft chance 0.16 | Replaced by the craft/trade budget |
-| Safe-town downtime 0.035 | Replaced by the social budget |
+| Train 90% of the time when points are unspent (`AutonomousObjectiveAssignments`) | Unchanged |
+| No crafting (the `Craft` activity exists but is unused) | Craft/trade budget, wiring up the existing activity |
+| Town break: 15% chance at a task boundary, 15–30 minutes (`AutonomousTownDowntime`) | Replaced by the social budget |
 | Safer camps after 2 deaths at a camp | Risk tolerance moves the threshold; Daredevils tolerate more |
 | Camp choice: outdoor camps weighted by live spawns (`SelectByLiveSpawns`), dungeons balanced by region (`SelectWithinEnvironment`); nothing personal | Add personality weights on top: curiosity favors unvisited zones; Leveler favors short trips; Daredevil favors higher con; sociability favors zones with people |
 | Dungeon preference permille (100 / 300 / 400) | Shifted by type and risk tolerance |
@@ -246,14 +292,19 @@ need to be stronger.
 
 ### Chat
 
-- `AutonomousBotChat` gets per-type phrase pools:
+- The base already has a full chat system: `AutonomousBotChat` assembles lines from parts,
+  `AutonomousBotChatCoordinator` keeps conversations short and rare, `AutonomousChatIntentModel`
+  recognizes player questions and `AutonomousChatKnowledge` answers about places and spells. M1
+  only adds flavor to it.
+- Per-type phrase parts added to the existing pools:
   - Explorers talk about places.
   - Crafters talk about prices and orders.
   - Socialites invite.
   - Levelers ask for groups.
   - Daredevils brag.
-- Chattiness scales frequency within the existing rate limits.
-- No profanity in M1. A blocklist check is applied to generated lines.
+- Chattiness scales frequency within the coordinator's existing rate limits.
+- No profanity in the new parts. No blocklist is needed: every line is pre-written, nothing is
+  generated freely.
 
 ### Settings
 
@@ -813,10 +864,39 @@ Takeaways:
 - Epic and named drops: how rare at levels 41–50?
 - Relic bonus: keep 10% per relic, lower it, or cap it?
 - Can the owner's PC run about 3,000 bots online at once? (Load test before building features.)
+- Are the Atlas daily, weekly and monthly quest givers (for example Herou at Svasud Faste) actually
+  in the 0.35 world? (Check in game or in the database.)
+- Do those Atlas-era quests fit the classic feel, or should frontier PvE reasons come only from
+  extended Bounty Masters and named monsters?
+- Should the Realm Exchange get a fee? None was found in the code; the housing market search
+  already charges 20%.
+
+## Graphics (tabled, 2026-10-11)
+
+Tabled until after the current sprint, except two client-side add-ons to try on a test copy:
+- **ReShade** (post-processing such as ambient shadows, sharpening and color grading).
+- **NVIDIA RTX Remix** (path-traced lighting and asset replacement for old DirectX 8/9 games).
+  Compatibility with this client is unknown.
+
+Facts that bear on both:
+- The client draws with **DirectX 9**.
+- The original's 0.36 runs the client on Vulkan through DXVK 3.1.1. That is two files in the
+  client folder (`d3d9.dll`, `dxvk.conf`), and deleting them goes back to DirectX 9.
+- RTX Remix probably cannot run alongside DXVK and would replace it. This is an inference, not
+  tested.
+
+Neither add-on touches `game.dll`, so the hash guards are unaffected.
+
+Later options:
+- Recolored and reshaped private art (`tools/pet-art`).
+- An HD-texture test on one skin.
+- Extra foliage and props added through zone `fixtures.csv` rows: `si_portal_visuals.py` is the
+  precedent. Non-solid objects are safe; solid ones need that zone's navmesh rebuilt.
 
 ## Sources
 
-- Original: https://github.com/shadowofze/OfflineDAoC
+- Original: https://github.com/shadowofze/OfflineDAoC (its `CHANGELOG.md` lists what each
+  upcoming version adds; checked at `1cabc77` on 2026-10-11)
 - stefanrows: https://github.com/stefanrows/OfflineDAoC (docs/AUTONOMOUS_BOT_ROADMAP.md,
   docs/AUTONOMOUS_BOT_M7_REVIEW.md, docs/CAMLANN.md, docs/RVR_GROUP_DOCTRINE.md)
 - HearthDAoC: https://github.com/lometur/HearthDAoC

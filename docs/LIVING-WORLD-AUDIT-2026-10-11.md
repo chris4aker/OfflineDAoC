@@ -114,17 +114,22 @@ it.
   - personalities;
   - economy rules (Exchange tax, repair fees, commissions, discounts, premiums, luxury spending that
     buys real things);
-  - RvR tuning (relic bonus, warnings, guard patrols);
-  - named and epic drops built on existing models and effects.
+  - RvR tuning (relic bonus, warnings through the existing announcements, the existing keep guard
+    patrols);
+  - named and epic drops built on the existing random-item generator (`AtlasROGManager`) and on
+    existing models and effects.
 - **Codeable but hard and slow:**
-  - bots crafting through the real crafting system (it is written for players);
+  - bots crafting through the real crafting system (it is written for players; an unused `Craft`
+    activity in `AutonomousBotDecisionEngine` is the starting point);
   - frontier PvE camps for bots (needs the world database);
   - human-looking bot tactics (needs many playtest rounds);
   - 3,000 bots online (performance unknown);
   - raid bosses.
 - **Not realistic here:**
   - new 3D zones or dungeons (reuse existing ones instead);
-  - new models, art, animation or sound;
+  - wholly new models, skeletons, animations or sound files. Recolored and reshaped private copies
+    of existing art are possible (`tools/pet-art`), as are extra props from existing models in a
+    zone's `fixtures.csv`;
   - client features beyond small, hash-guarded patches;
   - seeing or playing the game, which needs the owner as playtester;
   - building .NET in the cloud workspace (GitHub Actions and the owner's PC do that).
@@ -145,3 +150,35 @@ it.
    ones, and start feature work on new branches from `main`.
 6. **The first real code task:** XP by level range (a small, testable server setting), followed by
    the population pieces of milestone 1.
+
+## 7. Redundancy check (added later the same day)
+
+The plan was checked against this fork's code and the original's latest `main` (`1cabc77`, with
+0.36 in progress) for work that already exists.
+
+**Dropped because it already exists:**
+- **Porting HearthDAoC's quests and spawns.** 0.35 has 448 classic quests with map markers and the
+  Quest Guide, the class epics and period monster populations; 0.36 adds 940 quest reward items.
+- **A new chat engine and blocklist.** The base has assembled chat, a conversation coordinator, a
+  question classifier and world knowledge; all text is pre-written.
+
+**Changed from "build" to "extend":**
+- named and epic drops: the random-item generator;
+- PvE reasons: Bounty Masters;
+- frontier PvE: Atlas frontier daily quests and `rvr_zones_xp_rate` (whether they are in the world
+  is not checked);
+- bot crafting: the unused `Craft` activity;
+- luxury spending: housing;
+- RvR warnings: the announcements;
+- guard patrols: the keep patrols;
+- staggered launch: the population ramp.
+
+**Also corrected:** the M1 specification's "Decisions inside hunt" table still listed the non-live
+`Choose` chances (correction 1 above had missed it). It now lists the live rules.
+
+**Process:** the original ships about weekly, so its `main` is merged and its changelog read before
+each milestone.
+
+**Not compared:** HearthDAoC item by item; the forks that could not be identified.
+
+The roadmap's "What the base already has" section holds the full table.
