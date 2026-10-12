@@ -17,8 +17,8 @@ where a later study or the audit overtook one, it says so at its heading. The au
 - **Bot players own characters:** up to 3 per bot player; alts are added, never rerolled; mains,
   guilds and gold persist; occasional retirement and new players.
 - **XP shaped by level range:** owner 3× / 5× / 12× and bots 1.5× / 2.5× / 6× for levels 1–19 /
-  20–34 / 35–50. This needs a new server setting; today there is one flat `xp_rate` and one
-  `bot_xp_rate`.
+  20–34 / 35–50. The settings `xp_rate_by_level` and `bot_xp_rate_by_level` are written on
+  `feature/xp-by-level-range` (off by default; not yet checked in game).
 - **The owner:** about 5 hours a week, about 9 characters (3 per realm) with a favored main in each.
 - **Grouping:** keep the server's default of 40% group goals; grouping is a big lever for company and
   leveling.
@@ -81,7 +81,7 @@ whether it is actually live in a played install, which has not been checked unle
 | Staggered launch | `AutonomousPopulationRamp` staggers only the startup (the whole roster loads over about 15 minutes); `AutonomousRealmLoginBalancer`; an `IsRetired` flag | **Extend** `AutonomousPopulationController`, no parallel system |
 
 **Genuinely new** (no fork has done these better for this base):
-- XP by level range (only flat `xp_rate` and `bot_xp_rate` exist);
+- XP by level range (now written on `feature/xp-by-level-range`);
 - bot play sessions, rosters of up to 3 characters per bot player, and alts (today every non-retired bot is online whenever the server runs);
 - bot guilds (`GameBot.Guild` exists, but nothing assigns one);
 - personalities and time budgets (stefanrows' design is the reference);

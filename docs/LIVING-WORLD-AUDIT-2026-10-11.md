@@ -19,7 +19,11 @@ Nothing in this audit changed the game, started a server, or touched a played in
 
 - **Authorship:** every commit is authored `chris4aker <chris4aker@users.noreply.github.com>`, with
   co-author attribution.
-- **Automatic build (GitHub Actions):** every push to `trade-sim` built and passed the tests.
+- **Automatic build (GitHub Actions):** every push to `trade-sim` built.
+  - **Corrected 2026-10-12:** not every run passed the tests. Two runs, on documentation-only
+    commits, each had one failing server test. The same code passed on rerun (3 more runs), so one
+    existing test is intermittent ("flaky"). Its name is not known yet: the build now names failing
+    tests, so the next failure will show it.
   - The number of tests that ran was never confirmed: run logs could not be read from the cloud
     workspace. **Later the same day:** a CI step now reports counts as notices. On
     `feature/xp-by-level-range`, 2,674 of 2,674 server tests ran and passed.
