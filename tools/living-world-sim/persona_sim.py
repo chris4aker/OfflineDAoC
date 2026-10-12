@@ -309,6 +309,7 @@ class World:
         if self.o.get("rog"):
             # random class items from ordinary kills; "rog_value" is how much of the utility is useful to this
             # character (random stat lines: some are wasted for a template)
+            # ASSUMPTION: a grouped character takes part in 1.5x the kills of a solo one
             kills = KILLS_PER_HOUR * eff * (1.5 if b.get("group") else 1.0) / 60
             chance = rog_group_chance(camp["level"]) if b.get("group") else ROG_SOLO
             if c == "grey":

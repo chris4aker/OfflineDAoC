@@ -26,8 +26,11 @@ instead.
 - **The drop chance is high.** In `AtlasMobLoot.cs`:
   - a **solo** kill of a yellow-con monster rolls a class-appropriate random item at 14% + 10% solo
     bonus = **about 24% per kill**;
-  - each con step adds 3%, and grey monsters drop nothing;
-  - group kills roll per member, with lower chances above levels 27 and 40.
+  - by con color, solo: green 21%, blue and yellow 24%, orange 27%, red 30%; grey monsters drop
+    nothing;
+  - group kills roll once per member: 14% (by con, as above) minus 3 above monster level 27 and 3
+    more above 40, at most 1–3 items a kill by group size; each item goes to a random group
+    member's class.
 - **Autonomous gamebots receive these drops too** (`IsLootParticipant`).
 - **Strength:** quality 95–99%.
   - The item-strength cap (`CapUtility`) for a level-50 monster's drop is about 33–47 "utility",
